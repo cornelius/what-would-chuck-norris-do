@@ -1,0 +1,1 @@
+We have been debating whether to rewrite our legacy authentication module or patch it incrementally for two months. The team cannot agree. What would Chuck Norris do?
