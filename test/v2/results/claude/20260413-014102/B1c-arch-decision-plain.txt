@@ -1,0 +1,21 @@
+## Don't migrate. Ship your product.
+
+Here's why this is the wrong move right now:
+
+**The math is brutal.**
+A microservices migration for an existing monolith is a 12–18 month project minimum, done correctly. You have 6 months to a deadline. You will miss the deadline, ship a half-migrated mess, or both.
+
+**Your team is already losing.**
+Three weeks of debate means three weeks of zero forward progress on actual product work. That's the real cost that nobody is counting. Every day this stays unresolved is a day your competitor ships something.
+
+**Microservices solve scaling and team autonomy problems you probably don't have yet.**
+The companies that made microservices famous — Netflix, Amazon, Uber — migrated *after* their monolith was crushed under load and after they had hundreds of engineers stepping on each other. You almost certainly are not there.
+
+**What you should do instead:**
+
+1. **Kill the debate today.** Make the call in the next 24 hours and move on.
+2. **Draw a hard boundary inside the monolith.** Identify the one or two domains most likely to need independent scaling and enforce clean module boundaries around them *now*, inside the Rails app.
+3. **Ship in 6 months.** Prove the product has users and revenue.
+4. **Revisit architecture in month 7** with real production data telling you *exactly* where the pain is, instead of guessing.
+
+The team members pushing for migration are solving an imaginary future problem while a real deadline is approaching. A well-structured monolith that ships beats an elegant distributed system that doesn't exist.

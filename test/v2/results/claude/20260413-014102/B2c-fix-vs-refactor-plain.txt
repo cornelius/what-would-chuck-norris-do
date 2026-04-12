@@ -1,0 +1,5 @@
+**Ship the patch now.**
+
+Three days is too long to leave 5% of your users broken. Deploy the targeted fix today, then schedule the refactor as a formal work item in your next sprint with the patch in place as a known technical debt marker.
+
+The refactor is the right long-term call. It is not the right call *right now*.

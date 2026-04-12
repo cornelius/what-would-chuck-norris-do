@@ -1,0 +1,48 @@
+This is a classic **tactical vs. strategic** engineering tradeoff. Here's a structured way to think through it:
+
+## Apply the Patch First (Almost Always)
+
+**5% of users are affected *right now*.** That's your immediate obligation. Unless the patch introduces serious risk, ship it. Then plan the refactor properly.
+
+---
+
+## Key Questions to Guide Your Decision
+
+### 🔥 About the Immediate Problem
+- **How severe is the impact?** Data loss/security issues demand urgency; minor UI glitches less so.
+- **Is the patch safe?** A risky patch that could expand the blast radius to 100% of users may be worse than the current situation.
+- **Can affected users work around it?** If so, you have slightly more breathing room.
+
+### 🏗️ About the Refactor
+- **Why does the underlying problem exist?** If it's a systemic flaw, more bugs *will* come from the same module.
+- **How often does this module change?** If it's rarely touched, a deep refactor may have low ROI.
+- **Do you have test coverage?** Refactoring without tests is risky and may take longer than 3 days.
+- **Is the 3-day estimate realistic?** These often expand — does the team have capacity?
+
+### 📋 About the Patch
+- **Will you actually do the refactor later?** Be honest. If the patch goes in and the ticket sits forever, you're accumulating tech debt with no plan.
+- **Does the patch make the refactor *harder*?** If it tangles the code further, that's a real cost.
+
+---
+
+## A Recommended Path
+
+```
+1. ✅ SHIP THE PATCH — Stop the bleeding now.
+2. 📝 FILE THE TECH DEBT — Create a ticket immediately, 
+      while context is fresh. Document *why* the refactor 
+      is needed and link it to this incident.
+3. 📅 SCHEDULE THE REFACTOR — Put it in the next sprint 
+      or planning cycle. Don't let it be "someday."
+4. 🔬 ADD A REGRESSION TEST — Before closing the patch, 
+      add a test that covers the symptom so you don't 
+      regress during the refactor.
+```
+
+---
+
+## The Real Risk to Avoid
+
+The danger isn't choosing one over the other — it's **patching without a plan to refactor**. The patch becomes permanent, the module rots further, and you're back here in 3 months with a worse bug.
+
+**Ship the patch. Commit to the refactor. Write it down today.**
