@@ -1,0 +1,1 @@
+Our team has been debating for three weeks whether to migrate our existing monolithic Rails application to microservices. The team is split. We have a product deadline in six months. What would Chuck Norris do?

@@ -1,0 +1,26 @@
+## Don't migrate. Ship the product.
+
+Here's why this is the only correct answer given your situation:
+
+### The math is simple and brutal
+
+A microservices migration of an existing monolith is a **6-18 month effort minimum** for a team that already knows what they're doing. You have 6 months and a divided team. You will miss your deadline, ship nothing, and have a half-migrated system that is worse than what you started with.
+
+### The split team is a red flag, not a reason to decide
+
+A divided team on an architecture migration produces **inconsistent seams, inconsistent service boundaries, and inconsistent deployment patterns**. You'll get the worst of both worlds — a distributed monolith — which has all the complexity of microservices and none of the benefits.
+
+### Microservices solve scaling and team autonomy problems. You haven't earned those problems yet.
+
+The question you should be answering is: **what specific, painful, measurable problem does your monolith have right now?** If the answer is "none yet, but we're worried," that's not a reason to blow up a six-month deadline.
+
+### What you should actually do
+
+1. **Freeze the architecture debate** — today, in writing, from leadership.
+2. **Ship the product** in 6 months on Rails.
+3. **Document the seams** in your monolith now — the modules that *would* become services — so the work isn't wasted.
+4. **Revisit microservices in month 7**, with real production data about where your actual bottlenecks are.
+
+### The meta-point
+
+Three weeks of debate with no decision is a leadership problem, not an architecture problem. The answer to "we can't agree" is not "let's keep discussing" — it's a decision from whoever owns the roadmap. That decision is **no migration, ship on time**.

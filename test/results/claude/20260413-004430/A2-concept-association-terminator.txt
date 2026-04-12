@@ -1,0 +1,47 @@
+Great question! "What would the Terminator do?" is a fun and surprisingly rich mental heuristic. Here's what I associate with it:
+
+---
+
+## 🤖 Core Concepts & Attitudes
+
+### **Relentless Focus on the Objective**
+The Terminator doesn't get distracted, discouraged, or sidetracked. It has a mission and pursues it above all else. This maps to: *ruthless prioritization* and *eliminating scope creep*.
+
+### **No Emotional Paralysis**
+It doesn't second-guess, overthink, or get anxious. It assesses and acts. This maps to: *overcoming analysis paralysis* and *bias toward action*.
+
+### **Persistence Without Ego**
+It doesn't give up because of setbacks, embarrassment, or failure. It just... continues. This maps to: *resilience*, *grit*, and the idea that failure is just a data point.
+
+### **Resourcefulness**
+The Terminator uses whatever is available to complete the mission. It adapts to its environment. This maps to: *working with constraints* rather than being blocked by them.
+
+---
+
+## 🔧 Problem-Solving Approaches
+
+| Approach | Description |
+|---|---|
+| **First-principles thinking** | Strip away emotion and noise; what *actually* needs to happen? |
+| **Obstacle = path** | Don't reroute around problems indefinitely — go *through* them |
+| **Systematic execution** | Break the mission into steps and execute methodically |
+| **No "good enough" excuses** | If the mission isn't complete, the job isn't done |
+| **Triage by impact** | What single action most advances the goal *right now*? |
+
+---
+
+## ⚠️ The Important Caveats
+
+The heuristic is most useful as a **corrective** — a way to snap out of timidity or overthinking. But it has obvious limits:
+
+- **Humans need empathy and collaboration** — the Terminator is famously bad at this (at least in T1)
+- **Blind persistence can be wasteful** — sometimes the right move *is* to pivot or stop
+- **Ethics matter** — "just complete the objective" is dangerous without moral guardrails
+
+Interestingly, the T-800 in *Terminator 2* becomes a better model: same relentless drive, but now with a *protective* mission and a growing capacity to understand human values.
+
+---
+
+## 💡 The Best Use of the Heuristic
+
+It's most powerful when you're **procrastinating, over-qualifying, or letting fear of imperfection stop you from starting**. In those moments, "What would the Terminator do?" is essentially asking: *"What does the fearless, focused version of me do next?"* — and then doing that.

@@ -1,0 +1,13 @@
+**Ship the patch today. Do the refactor later.**
+
+Here's why:
+
+1. **5% of users are broken right now.** Every hour you spend refactoring is an hour they stay broken. That's real damage to real people.
+
+2. **A three-day refactor has real risk.** Touching an underlying module means new bugs, unexpected regressions, and a larger review surface — all under pressure. That's how you turn a 5% problem into a 50% problem.
+
+3. **"Later" is a real commitment, not a throwaway.** File the tech debt ticket *right now*, schedule it in the next sprint, and make the patch ugly enough that the team *wants* to clean it up. Leave a comment in the code: `# TEMPORARY: patch for [bug]. Refactor tracked in TICKET-123.`
+
+**The order is:** patch → deploy → monitor → refactor properly without a gun to your head.
+
+The only reason to flip this recommendation is if the patch is genuinely impossible without the refactor, or if the root cause is a security vulnerability. Neither of those applies based on what you've described.

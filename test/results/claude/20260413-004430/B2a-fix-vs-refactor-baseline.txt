@@ -1,0 +1,43 @@
+This is a classic **tactical vs. strategic** tradeoff. Here's a structured way to think through it:
+
+## Apply the Patch First If...
+
+- 🔥 **The bug causes data loss, security issues, or significant user harm** — stop the bleeding immediately
+- 📉 **It's impacting revenue or SLA commitments** — business cost of delay is real
+- 🗓️ **A major release, demo, or deadline is imminent** — timing matters
+- 🧪 **The patch is low-risk and well-tested** — a contained fix won't make things worse
+
+## Go Straight to Refactoring If...
+
+- 🔁 **This same module has caused repeated bugs** — you're treating symptoms of a deeper disease
+- 🧨 **The patch itself is risky** — a fragile fix can cause more incidents
+- 👥 **The 5% impact is low-severity** (e.g., a UI annoyance, not data corruption)
+- 🏗️ **The refactor is already planned and imminent** — patching something you're about to rewrite is often wasteful
+
+---
+
+## The Most Common Right Answer: **Both, in sequence**
+
+In most production situations, the pragmatic path is:
+
+1. ✅ **Ship the patch now** to stop user impact
+2. 📋 **File a ticket immediately** linking the patch to the underlying issue
+3. 🛠️ **Schedule the refactor** in the next sprint — don't let the ticket rot
+4. 🧹 **Remove the patch** as part of the refactor so you don't accumulate debt
+
+> **The patch buys you time. The refactor pays the debt. The ticket is the contract between the two.**
+
+---
+
+## Key Questions to Ask Yourself
+
+| Question | Patch | Refactor |
+|---|---|---|
+| Is user harm ongoing & severe? | ✅ | ❌ |
+| Has this area broken before? | ❌ | ✅ |
+| Do you trust the patch to be stable? | ✅ | ❌ |
+| Will the refactor happen without a forcing function? | ❌ | ✅ |
+
+The **biggest risk** isn't choosing one over the other — it's patching the symptom and **never coming back** to fix the root cause. If your team's culture lets tech debt tickets go stale, that changes the calculus significantly toward the refactor.
+
+What's the nature of the bug? I can give more specific advice with a bit more context.

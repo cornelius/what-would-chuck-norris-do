@@ -1,0 +1,18 @@
+## Use PostgreSQL.
+
+Here's why this is the right call:
+
+**The "MongoDB is faster for documents" argument is outdated and wrong.**
+PostgreSQL has had a mature JSONB column type for years. You get native document storage with full indexing, querying, and flexibility — without sacrificing anything. MongoDB's performance edge for document workloads over modern PostgreSQL is negligible to nonexistent in real-world benchmarks.
+
+**Your team knows PostgreSQL.** That is the single most important factor for a startup. Velocity matters. Debugging at 2am matters. Onboarding new engineers matters. Familiarity compounds over time. Switching to MongoDB means paying a productivity tax every single day to solve a problem that doesn't exist.
+
+**PostgreSQL scales to where you're going.** MongoDB was historically chosen to avoid the pain of rigid schemas and scaling walls. PostgreSQL handles both now. You can store documents in JSONB, keep relational data relational, run complex joins, enforce constraints, and use full ACID transactions — all in one place. MongoDB gives you document storage and makes you work harder for everything else.
+
+**MongoDB's "flexibility" is a trap for startups.** Schemaless sounds freeing until you have 18 months of inconsistent documents and no idea what shape your data is in. PostgreSQL's structure is a feature, not a limitation.
+
+**The two-week debate is itself the signal.** When a team that knows Postgres is seriously considering switching, it's almost always because of hype, not evidence. No one on your team has shown a benchmark from *your* workload proving MongoDB wins.
+
+---
+
+**Pick PostgreSQL. Start building. This decision is done.**
