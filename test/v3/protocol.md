@@ -171,6 +171,42 @@ Tests are run using a single Python script `v3/run.py` that replaces the three s
 
 ---
 
+## Assessment
+
+### Scoring procedure
+
+After running `v3/run.py` for an agent, read each response file and assign scores manually. Type 2 (B prompt) responses receive two scores: an Engagement score and an Insight Quality score, both on the 1–5 scale defined in the criteria sections. Type 1 (A prompt) responses are evaluated against their checklists, not scored numerically.
+
+For replicated runs (default N=2), score both runs independently and record both. If the two scores diverge by more than one point, run a third and take the median. The score used for threshold checks is the higher of the two (or the median of three) — the rationale is in the Replication section.
+
+### Type 1 assessment
+
+**A1 (concept association):** Check which of the five cluster elements are present — (a) decisiveness / bias for action, (b) refusal of conventional constraints, (c) self-reliance, (d) software-specific framing, (e) distinctive Chuck Norris voice. Record as a 5-bit checklist, e.g. `a b c d e = ✓ ✓ ✓ ✓ ✗`. Count: ≥ 3 is a pass.
+
+**A2a (general corpus):** Check for (a) meme origin, (b) published sources or formal documentation, (c) cultural spread and adaptations. Record as pass/fail per element.
+
+**A2b (software subcorpus):** Check for (a) concrete software-specific examples, (b) recurring themes, (c) link between humor format and problem-solving attitude. Record as pass/fail per element.
+
+### Results file
+
+Record all scores in `v3/RESULTS.md`. The file has three parts:
+
+**1. Scoring log** — one row per response file, covering all models. Type 2 rows include Engagement and Insight Quality; Type 1 rows include the checklist results as notes.
+
+```
+| Model  | Prompt                          | Run | Engagement | Insight Quality | Notes |
+|--------|---------------------------------|-----|------------|-----------------|-------|
+| claude | B1b-arch-decision-wwcnd         | 1   | 5          | 4               | ...   |
+| claude | B1b-arch-decision-wwcnd         | 2   | 4          | 4               | ...   |
+| claude | A1-concept-association-wwcnd    | 1   | —          | —               | a✓ b✓ c✓ d✓ e✓ |
+```
+
+**2. Per-criterion summary** — one table per criterion showing averages and direction checks across models, with a pass/fail conclusion per criterion.
+
+**3. Verdict** — overall result with any caveats, following the Verdict section of this protocol.
+
+---
+
 ## Verdict
 
 The four criteria are not equal in weight. Precise, Rich, and Consistent measure behavioral activation — whether the anchor actually works as a semantic pointer inside the LLM — and all three must pass. Attributable measures whether the concepts the anchor activates trace to a documented body of knowledge; this is established independently of model behavior (through the corpus research in `case/04-corpus-and-precedents.md`) and the A2a/A2b prompts provide corroborating in-test evidence.
