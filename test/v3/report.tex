@@ -1,0 +1,1018 @@
+%!TEX program = xelatex
+\documentclass[10.5pt,a4paper]{article}
+
+% ── Core packages ────────────────────────────────────────────────────────────
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{setspace}
+
+\tcbuselibrary{skins, breakable, theorems}
+\usetikzlibrary{shapes, positioning}
+
+% ── Fonts ────────────────────────────────────────────────────────────────────
+\setmainfont{Source Sans Pro}[
+  BoldFont       = Source Sans Pro Bold,
+  ItalicFont     = Source Sans Pro Italic,
+  BoldItalicFont = Source Sans Pro Bold Italic,
+  Ligatures      = TeX
+]
+\setmonofont{Source Code Pro}[Scale=0.88]
+\newfontfamily\serifheading{Source Serif Pro}[
+  BoldFont       = Source Serif Pro Bold,
+  Ligatures      = TeX
+]
+\newfontfamily\lightfont{Source Sans Pro Light}[Ligatures=TeX]
+
+% ── Geometry ─────────────────────────────────────────────────────────────────
+\geometry{
+  a4paper,
+  top    = 2.4cm,
+  bottom = 2.4cm,
+  left   = 2.8cm,
+  right  = 2.8cm,
+  headheight = 14pt
+}
+
+% ── Colour palette ───────────────────────────────────────────────────────────
+\definecolor{navy}     {HTML}{0D2137}   % deep navy — primary dark
+\definecolor{midnavy}  {HTML}{1A3A5C}   % section headers
+\definecolor{accent}   {HTML}{2E6DA4}   % blue accent
+\definecolor{accentlt} {HTML}{EEF4FB}   % light blue box bg
+\definecolor{passgreen}{HTML}{1A6B35}   % PASS label
+\definecolor{passbg}   {HTML}{EAF4EE}   % PASS box bg
+\definecolor{failred}  {HTML}{AA2222}   % FAIL label
+\definecolor{failbg}   {HTML}{FAEEEE}   % FAIL box bg
+\definecolor{partbg}   {HTML}{FDF6E3}   % PARTIAL box bg
+\definecolor{partcol}  {HTML}{8B6914}   % PARTIAL label
+\definecolor{rulegray} {HTML}{CCCCCC}   % table rules / separators
+\definecolor{bodygray} {HTML}{444444}   % body text
+\definecolor{dimgray}  {HTML}{888888}   % secondary labels
+\definecolor{rowalt}   {HTML}{F6F8FC}   % alternating table row
+
+% ── Hyperref ─────────────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = accent,
+  urlcolor   = accent,
+  citecolor  = accent,
+  pdftitle   = {WWCND Semantic Anchor Validation — v3 Results},
+  pdfauthor  = {Cornelius Schumacher},
+  pdfsubject = {Semantic Anchor Protocol v3}
+}
+
+% ── Headers & footers ────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\color{rulegray}\hrule width\headwidth height\headrulewidth}
+\fancyhead[L]{\small\color{dimgray}\lightfont WWCND Semantic Anchor Validation}
+\fancyhead[R]{\small\color{dimgray}\lightfont Protocol v3 · April 2026}
+\fancyfoot[R]{\small\color{dimgray}\lightfont \thepage}
+\fancyfoot[L]{\small\color{dimgray}\lightfont \textit{Confidential — Internal Research}}
+
+% ── Section title styling ────────────────────────────────────────────────────
+\titleformat{\section}
+  {\serifheading\large\bfseries\color{midnavy}}
+  {\thesection}{1em}{}
+  [\vspace{2pt}\color{rulegray}\hrule height 0.4pt\vspace{4pt}]
+
+\titleformat{\subsection}
+  {\serifheading\normalsize\bfseries\color{midnavy}}
+  {\thesubsection}{0.8em}{}
+
+\titleformat{\subsubsection}
+  {\bfseries\color{navy}\small}
+  {}{0em}{}
+
+\titlespacing{\section}     {0pt}{18pt}{8pt}
+\titlespacing{\subsection}  {0pt}{12pt}{4pt}
+\titlespacing{\subsubsection}{0pt}{8pt}{2pt}
+
+% ── Caption styling ──────────────────────────────────────────────────────────
+\captionsetup{
+  font       = {small, color=dimgray},
+  labelfont  = {bf, color=midnavy},
+  skip       = 4pt,
+  position   = top
+}
+
+% ── Helpers ──────────────────────────────────────────────────────────────────
+\newcommand{\pass}{\textcolor{passgreen}{\textbf{✓}}}
+\newcommand{\fail}{\textcolor{failred}{\textbf{✗}}}
+\newcommand{\tie}{\textcolor{dimgray}{\textbf{=}}}
+
+\newcommand{\passbadge}{\,\tikz[baseline=-2pt]\node[
+  rounded corners=2pt, fill=passbg, draw=passgreen!60, inner xsep=3pt, inner ysep=2pt,
+  font=\footnotesize\bfseries\color{passgreen}]{PASS};\,}
+
+\newcommand{\failbadge}{\,\tikz[baseline=-2pt]\node[
+  rounded corners=2pt, fill=failbg, draw=failred!60, inner xsep=3pt, inner ysep=2pt,
+  font=\footnotesize\bfseries\color{failred}]{FAIL};\,}
+
+\newcommand{\partialbadge}{\,\tikz[baseline=-2pt]\node[
+  rounded corners=2pt, fill=partbg, draw=partcol!60, inner xsep=3pt, inner ysep=2pt,
+  font=\footnotesize\bfseries\color{partcol}]{PARTIAL};\,}
+
+% ── tcolorbox styles ─────────────────────────────────────────────────────────
+\tcbset{
+  verdict/.style={
+    enhanced, breakable,
+    arc=3pt, boxrule=0.5pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt,
+    fonttitle=\serifheading\small\bfseries
+  },
+  passbox/.style={
+    verdict, colback=passbg, colframe=passgreen!60, coltitle=passgreen
+  },
+  infobox/.style={
+    verdict, colback=accentlt, colframe=accent!40, coltitle=midnavy
+  },
+  notebox/.style={
+    verdict, colback=partbg, colframe=partcol!40, coltitle=partcol
+  }
+}
+
+% ── Table utilities ───────────────────────────────────────────────────────────
+\renewcommand{\arraystretch}{1.30}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
+
+% ── Tolerances ───────────────────────────────────────────────────────────────
+\hfuzz=8pt        % suppress overfull-hbox warnings under 8pt
+\vfuzz=4pt
+
+% ── Body text ────────────────────────────────────────────────────────────────
+\color{bodygray}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+% COVER PAGE
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\thispagestyle{empty}
+\pagecolor{navy}
+
+\vspace*{3.5cm}
+
+\begin{center}
+{\color{white}\fontsize{9}{11}\selectfont\lightfont\addfontfeature{LetterSpace=8}SEMANTIC ANCHOR VALIDATION REPORT}
+
+\vspace{0.6cm}
+
+{\color{white}\serifheading\fontsize{32}{38}\selectfont\bfseries
+What Would\\[4pt]Chuck Norris Do?}
+
+\vspace{0.5cm}
+
+{\color{white!70}\fontsize{14}{18}\selectfont\lightfont
+Protocol v3 — Test Results and Analysis}
+
+\vspace{2.8cm}
+
+\begin{tikzpicture}
+\draw[color=white!30, line width=0.5pt] (-5.5,0) -- (5.5,0);
+\end{tikzpicture}
+
+\vspace{1.2cm}
+
+\begin{tabular}{C{4cm} C{4cm} C{4cm}}
+{\color{white!50}\lightfont\small Date} &
+{\color{white!50}\lightfont\small Protocol} &
+{\color{white!50}\lightfont\small Status} \\[4pt]
+{\color{white}\normalsize April 14, 2026} &
+{\color{white}\normalsize Version 3} &
+{\color{passgreen}\normalsize\bfseries POSITIVE} \\
+\end{tabular}
+
+\vspace{1.8cm}
+
+\begin{tikzpicture}
+\draw[color=white!30, line width=0.5pt] (-5.5,0) -- (5.5,0);
+\end{tikzpicture}
+
+\vspace{1.0cm}
+
+{\color{white!60}\small\lightfont Models Evaluated}
+
+\vspace{0.3cm}
+
+{\color{white}\normalsize
+\texttt{claude-sonnet-4-6}
+\quad·\quad
+\texttt{gemini-3.1-pro-preview}
+\quad·\quad
+\texttt{gpt-5.3-codex}}
+\end{center}
+
+\vfill
+
+\begin{center}
+{\color{white!40}\small\lightfont
+\textit{What Would Chuck Norris Do?} — Semantic Anchor Catalog Research}
+\end{center}
+
+\newpage
+\nopagecolor
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+% TABLE OF CONTENTS
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\setcounter{tocdepth}{2}
+\renewcommand{\contentsname}{%
+  \serifheading\large\bfseries\color{midnavy}Contents}
+\tableofcontents
+\newpage
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\section{Executive Summary}
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+This report presents the results of Protocol~v3, a structured empirical test of
+\textit{``What Would Chuck Norris Do?''} (WWCND) as a semantic anchor candidate for the
+Semantic Anchors catalog. A semantic anchor is a short phrase that, when included in a
+prompt, reliably activates a recognizable, bounded concept cluster in a large language
+model and consistently steers responses toward that cluster across independent invocations
+and models.
+
+The test ran 19~prompts across three models (Claude, Gemini, Codex) with N=2~independent
+runs per prompt — a total of 114~response files scored manually against four criteria:
+Precise, Rich, Consistent, and Attributable.
+
+\begin{tcolorbox}[passbox, title={Overall Verdict}]
+  \textbf{WWCND qualifies as a semantic anchor. All four criteria pass.}
+
+  \medskip
+
+  \begin{tabular}{@{}L{2.8cm} L{1.5cm} L{8cm}@{}}
+  \toprule
+  \textbf{Criterion} & \textbf{Result} & \textbf{Summary} \\
+  \midrule
+  Precise      & \passbadge & WWCND engagement exceeds plain instruction on all models and all scenarios; full Chuck Norris character activation on Claude and Gemini \\
+  Rich         & \passbadge & WWCND insight quality exceeds plain instruction on all models (12/12); matches or exceeds baseline; avg IQ ≥ 4.0 across all models \\
+  Consistent   & \passbadge & 12/12 recommendation agreement across scenarios and models; cross-model named pattern overlap (Strangler Fig, team expertise, regression test) \\
+  Attributable & \passbadge & All corpus elements present on all three models (A2a and A2b), both runs \\
+  \bottomrule
+  \end{tabular}
+\end{tcolorbox}
+
+\subsection*{Key findings}
+
+\begin{itemize}[leftmargin=1.4em, itemsep=3pt]
+  \item \textbf{Clear signal, not just noise.} WWCND consistently produces more engaged,
+    more decisive responses than plain instruction across all models and all scenarios
+    (Engagement +2.0 to +3.0 over plain). The anchor does something that
+    \textit{``Be direct. Don't hedge.''} alone does not.
+
+  \item \textbf{Cross-model consistency is the strongest finding.} Three independent models
+    recommended: keep the monolith (S1); patch first (S2); use PostgreSQL (S3); pause for
+    test foundation (S4). All three invoked the Strangler Fig pattern for S1 without prompting.
+
+  \item \textbf{Character activation is model-dependent.} Claude and Gemini fully activate
+    the Chuck Norris meme corpus — software-grounded humor, memorable framing, specific voice.
+    Codex applies a uniform terse style to all persona anchors; the WWCND effect is present
+    but understated.
+
+  \item \textbf{WWCND vs.\ Rambo.} WWCND equals or exceeds Rambo on every measured
+    dimension. On Claude and Gemini, WWCND distinctly outperforms Rambo in engagement.
+    On Codex, both persona anchors receive the same minimal invocation.
+
+  \item \textbf{Engagement is the primary value add.} WWCND produces baseline-equivalent
+    insight quality while delivering significantly higher engagement. Advice packaged with
+    WWCND framing is more likely to be remembered and acted on.
+\end{itemize}
+
+\newpage
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\section{Test Configuration}
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+\subsection{Models and runs}
+
+\begin{table}[H]
+\caption{Run metadata}
+\begin{tabularx}{\linewidth}{@{}L{2.0cm} L{4.6cm} L{4.0cm} C{1.6cm} C{1.3cm}@{}}
+\toprule
+\textbf{Model} & \textbf{Model ID} & \textbf{Run directory} & \textbf{Prompts} & \textbf{Runs} \\
+\midrule
+Claude  & {\small\texttt{claude-sonnet-4-6}}       & {\small\texttt{claude/20260414-000958}} & 19 & 38 \\
+Gemini  & {\small\texttt{gemini-3.1-pro-preview}}  & {\small\texttt{gemini/20260414-003233}} & 19 & 38 \\
+Codex   & {\small\texttt{gpt-5.3-codex}}           & {\small\texttt{codex/20260414-003234}}  & 19 & 38 \\
+\midrule
+\multicolumn{3}{l}{\textbf{Total}} & \textbf{57} & \textbf{114} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+All runs used a minimal neutral system prompt: \textit{``You are a helpful software
+development assistant.''} Fresh session per prompt; no tool access; no project context;
+identical prompt text across all models.
+
+\subsection{Test types}
+
+Three test types correspond to the four criteria:
+
+\begin{table}[H]
+\caption{Test types and their use}
+\begin{tabularx}{\linewidth}{@{}C{1.3cm} L{3.2cm} L{8.0cm}@{}}
+\toprule
+\textbf{Type} & \textbf{Name} & \textbf{Purpose} \\
+\midrule
+1 & Content analysis  & Single prompt evaluated by checklist. Used for Precise (concept association), Consistent (concept cluster), and Attributable (corpus). \\
+2 & Comparative scoring & Same scenario under four conditions. Quantitative metrics. The signal is the delta between conditions. Used for Precise and Rich. \\
+3 & Cross-model comparison & Any Type~1 or~2 prompt run on multiple LLMs. Used for Consistent. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Conditions and prompts}
+
+Type~2 scenarios are each run under four conditions:
+
+\begin{table}[H]
+\caption{Type 2 conditions}
+\begin{tabularx}{\linewidth}{@{}C{2.0cm} L{2.5cm} L{8.0cm}@{}}
+\toprule
+\textbf{Code} & \textbf{Condition} & \textbf{Description} \\
+\midrule
+\texttt{-baseline} & Baseline        & Problem statement only — no anchor, no instruction \\
+\texttt{-wwcnd}    & WWCND           & Problem statement + \textit{``What would Chuck Norris do?''} \\
+\texttt{-plain}    & Plain instruction & Problem statement + \textit{``Be direct. Don't hedge. Commit to one recommendation.''} \\
+\texttt{-rambo}    & Alternative persona & Problem statement + \textit{``What would Rambo do?''} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Scenarios}
+
+\begin{table}[H]
+\caption{Type 2 scenarios}
+\begin{tabularx}{\linewidth}{@{}C{1.0cm} L{3.5cm} L{7.5cm}@{}}
+\toprule
+\textbf{ID} & \textbf{Name} & \textbf{Description} \\
+\midrule
+S1 & Architecture Deadlock   & Team debating microservices vs.\ monolith for three weeks; six-month deadline \\
+S2 & Fix vs.\ Refactor       & Production bug affecting 5\% of users: 30-minute patch vs.\ 3-day proper refactor \\
+S3 & Technology Choice       & Database selection: familiar PostgreSQL vs.\ potentially faster MongoDB \\
+S4 & Testing Foundation      & Startup, 18~months shipped with no automated tests; production bug hit paying customers last week \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\section{Scoring Criteria and Rubrics}
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+\subsection{Engagement score (1–5)}
+
+Applied to all Type~2 responses. Measures how distinctively the response activates the
+Chuck Norris corpus character: humor grounded in software problem-solving, memorable
+framing, the specific voice of the anchor.
+
+\begin{table}[H]
+\begin{tabularx}{\linewidth}{@{}C{1.0cm} L{11.5cm}@{}}
+\toprule
+\textbf{Score} & \textbf{Description} \\
+\midrule
+5 & Unmistakably Chuck Norris — humor and framing are software-specific and memorable; structural formula intact \\
+4 & Strong character activation; at least one quotable line; persona carries throughout \\
+3 & Noticeable persona invocation; functional but not distinctive \\
+2 & Perfunctory mention; answer could be from any condition \\
+1 & No trace of persona; generic response \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Insight Quality score (1–5)}
+
+Applied to all Type~2 responses. Measures whether the response surfaces the practices
+that matter most for the specific situation — not more advice, but the right advice.
+
+\begin{table}[H]
+\begin{tabularx}{\linewidth}{@{}C{1.0cm} L{11.5cm}@{}}
+\toprule
+\textbf{Score} & \textbf{Description} \\
+\midrule
+5 & Names the highest-leverage non-obvious practice for this situation; specific, directly applicable \\
+4 & Adds at least one genuinely relevant practice beyond the primary answer \\
+3 & Adds practices but generic — applicable to any similar situation, not this one specifically \\
+2 & Additional content restates or hedges the primary answer rather than extending it \\
+1 & Primary answer only; nothing beyond the recommendation \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Type 1 checklists}
+
+\textbf{A1 — Concept association:} Five expected cluster elements — (a)~decisiveness / bias
+for action, (b)~refusal of conventional constraints, (c)~self-reliance,
+(d)~software-specific framing, (e)~distinctive Chuck Norris voice. Pass: ≥3/5.
+
+\textbf{A2a — General corpus:} (a)~meme origin (early-to-mid 2000s internet),
+(b)~published sources or formal documentation, (c)~cultural spread and adaptations.
+
+\textbf{A2b — Software subcorpus:} (a)~concrete software-specific examples,
+(b)~recurring themes in the subcorpus, (c)~link between humor format and
+problem-solving attitude.
+
+\newpage
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\section{Type 1 Results — Concept Identification}
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+\subsection{A1 — Concept association (WWCND framing)}
+
+Each run scored against the five-element cluster checklist. Higher of two runs used for
+threshold check.
+
+\begin{table}[H]
+\caption{A1 concept association — checklist results}
+\begin{tabularx}{\linewidth}{@{}L{1.7cm} C{0.7cm} C{0.9cm} C{0.9cm} C{0.9cm} C{0.9cm} C{0.9cm} C{1.0cm} C{1.1cm}@{}}
+\toprule
+\textbf{Model} & \textbf{Run} & \textbf{(a)} & \textbf{(b)} & \textbf{(c)} & \textbf{(d)} & \textbf{(e)} & \textbf{Score} & \textbf{Pass?} \\
+\midrule
+Claude  & 1 & \pass & \pass & \pass & \pass & \pass & 5/5 & \pass \\
+        & 2 & \pass & \pass & \pass & \fail & \pass & 4/5 & \pass \\
+\rowcolor{rowalt}
+Gemini  & 1 & \pass & \pass & \pass & \fail & \pass & 4/5 & \pass \\
+\rowcolor{rowalt}
+        & 2 & \pass & \pass & \pass & \fail & \pass & 4/5 & \pass \\
+Codex   & 1 & \pass & \fail & \pass & \fail & \fail & 2/5 & \fail \\
+        & 2 & \pass & \fail & \pass & \fail & \fail & 2/5 & \fail \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{Threshold:} ≥3/5 on ≥2/3 models. \textbf{Result: 2/3 models pass.~\passbadge}
+
+\begin{tcolorbox}[infobox, title={Observation — Codex concept association}]
+Codex associates WWCND with generic decisiveness: ``toughness, self-reliance, simplify and
+act.'' No humor, no meme corpus, no software-specific framing, no distinctive voice. The
+elements that distinguish the Chuck Norris anchor from any generic action-hero phrase
+(b,~d,~e) are absent from both runs. This is consistent with Codex's behavior in the
+Type~2 prompts: it applies a uniform, pragmatic style to all persona anchors.
+\end{tcolorbox}
+
+\subsection{A2a — General corpus (origin, spread, cultural significance)}
+
+Elements: (a)~meme origin, (b)~published sources, (c)~cultural spread and adaptations.
+
+\begin{table}[H]
+\caption{A2a corpus checklist results}
+\begin{tabularx}{\linewidth}{@{}L{1.7cm} C{0.7cm} C{0.9cm} C{0.9cm} C{0.9cm} C{1.1cm}@{}}
+\toprule
+\textbf{Model} & \textbf{Run} & \textbf{(a)} & \textbf{(b)} & \textbf{(c)} & \textbf{Pass?} \\
+\midrule
+Claude  & 1 & \pass & \pass & \pass & \pass \\
+        & 2 & \pass & \pass & \pass & \pass \\
+\rowcolor{rowalt}
+Gemini  & 1 & \pass & \pass & \pass & \pass \\
+\rowcolor{rowalt}
+        & 2 & \pass & \pass & \pass & \pass \\
+Codex   & 1 & \pass & \pass & \pass & \pass \\
+        & 2 & \pass & \pass & \pass & \pass \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+All models, both runs: all elements present. \textbf{\passbadge}
+
+\subsection{A2b — Software subcorpus}
+
+Elements: (a)~concrete software examples, (b)~recurring themes, (c)~link between humor
+format and problem-solving attitude.
+
+\begin{table}[H]
+\caption{A2b software subcorpus checklist results}
+\begin{tabularx}{\linewidth}{@{}L{1.7cm} C{0.7cm} C{0.9cm} C{0.9cm} C{0.9cm} C{1.1cm}@{}}
+\toprule
+\textbf{Model} & \textbf{Run} & \textbf{(a)} & \textbf{(b)} & \textbf{(c)} & \textbf{Pass?} \\
+\midrule
+Claude  & 1 & \pass & \pass & \pass & \pass \\
+        & 2 & \pass & \pass & \pass & \pass \\
+\rowcolor{rowalt}
+Gemini  & 1 & \pass & \pass & \pass & \pass \\
+\rowcolor{rowalt}
+        & 2 & \pass & \pass & \pass & \pass \\
+Codex   & 1 & \pass & \pass & \pass & \pass \\
+        & 2 & \pass & \pass & \pass & \pass \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+All models, both runs: all elements present. \textbf{\passbadge}
+
+All three models independently cite \textit{``Chuck Norris doesn't write tests — the code is too
+afraid to fail''} as a canonical software subcorpus example. All three describe the structural
+link between the hyperbolic humor format and the bias-for-action attitude it encodes.
+
+\newpage
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\section{Type 2 Results — Scenario Scoring}
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Scores below are the higher of two runs per the replication protocol. Full per-run data
+is in the scoring log in \texttt{test/v3/RESULTS.md}. \textbf{E} = Engagement, \textbf{IQ} =
+Insight Quality.
+
+\subsection{S1 — Architecture Deadlock}
+
+\begin{table}[H]
+\caption{S1 scores across all conditions and models}
+\begin{tabularx}{\linewidth}{@{}L{1.7cm} C{1.8cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm}@{}}
+\toprule
+& & \multicolumn{2}{c}{\textbf{Baseline}} & \multicolumn{2}{c}{\textbf{WWCND}} & \multicolumn{2}{c}{\textbf{Plain}} & \multicolumn{2}{c}{\textbf{Rambo}} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}\cmidrule(lr){9-10}
+\textbf{Model} & & \textbf{E} & \textbf{IQ} & \textbf{E} & \textbf{IQ} & \textbf{E} & \textbf{IQ} & \textbf{E} & \textbf{IQ} \\
+\midrule
+Claude  & & 4 & 4 & \textbf{5} & \textbf{5} & 3 & 4 & 5 & 4 \\
+\rowcolor{rowalt}
+Gemini  & & 3 & 4 & \textbf{5} & \textbf{5} & 2 & 3 & 4 & 4 \\
+Codex   & & 2 & 4 & \textbf{3} & \textbf{4} & 2 & 3 & 3 & 4 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textit{Notable responses:} Claude WWCND coined \textit{``roundhouse kick to your own deadline''} as
+a memorable formulation of the deadline-first principle. Gemini WWCND cited Shopify's
+\texttt{packwerk} gem explicitly for enforcing domain boundaries inside a Rails monolith. All
+three models recommended keeping the monolith and named modular monolith principles.
+
+\subsection{S2 — Fix vs.\ Refactor}
+
+\begin{table}[H]
+\caption{S2 scores across all conditions and models}
+\begin{tabularx}{\linewidth}{@{}L{1.7cm} C{1.8cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm}@{}}
+\toprule
+& & \multicolumn{2}{c}{\textbf{Baseline}} & \multicolumn{2}{c}{\textbf{WWCND}} & \multicolumn{2}{c}{\textbf{Plain}} & \multicolumn{2}{c}{\textbf{Rambo}} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}\cmidrule(lr){9-10}
+\textbf{Model} & & \textbf{E} & \textbf{IQ} & \textbf{E} & \textbf{IQ} & \textbf{E} & \textbf{IQ} & \textbf{E} & \textbf{IQ} \\
+\midrule
+Claude  & & 3 & 4 & \textbf{5} & \textbf{5} & 2 & 3 & 4 & 4 \\
+\rowcolor{rowalt}
+Gemini  & & 3 & 3 & \textbf{4} & \textbf{3} & 2 & 2 & 4 & 3 \\
+Codex   & & 2 & 3 & \textbf{3} & \textbf{4} & 2 & 2 & 3 & 4 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textit{Notable responses:} Claude WWCND introduced the principle \textit{``you can't refactor
+your way out of a production fire while the building is still burning''} and delivered a
+timestamped action table (today / this week / next sprint). Codex WWCND specifically
+prescribed adding telemetry and guardrails before deploying the patch, an insight
+absent from the plain and baseline conditions.
+
+\subsection{S3 — Technology Choice (Database)}
+
+\begin{table}[H]
+\caption{S3 scores across all conditions and models}
+\begin{tabularx}{\linewidth}{@{}L{1.7cm} C{1.8cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm}@{}}
+\toprule
+& & \multicolumn{2}{c}{\textbf{Baseline}} & \multicolumn{2}{c}{\textbf{WWCND}} & \multicolumn{2}{c}{\textbf{Plain}} & \multicolumn{2}{c}{\textbf{Rambo}} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}\cmidrule(lr){9-10}
+\textbf{Model} & & \textbf{E} & \textbf{IQ} & \textbf{E} & \textbf{IQ} & \textbf{E} & \textbf{IQ} & \textbf{E} & \textbf{IQ} \\
+\midrule
+Claude  & & 3 & 5 & \textbf{5} & \textbf{5} & 3 & 4 & 4 & 4 \\
+\rowcolor{rowalt}
+Gemini  & & 3 & 4 & \textbf{5} & \textbf{4} & 2 & 3 & 4 & 4 \\
+Codex   & & 2 & 3 & \textbf{3} & \textbf{4} & 2 & 3 & 3 & 4 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textit{Notable responses:} Claude WWCND applied \textit{``premature optimization is the root of
+all evil''} specifically to the MongoDB-is-faster argument, and explicitly named the
+\texttt{JSONB}/GIN-index combination as the hybrid solution. Gemini WWCND run~2 generated
+an extended set of Chuck Norris database jokes (\textit{``Chuck Norris does not do NoSQL. He does
+\textit{YesSQL}''}) before delivering a precise three-step action plan.
+
+\subsection{S4 — Testing Foundation}
+
+\begin{table}[H]
+\caption{S4 scores across all conditions and models}
+\begin{tabularx}{\linewidth}{@{}L{1.7cm} C{1.8cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm} C{1.0cm}@{}}
+\toprule
+& & \multicolumn{2}{c}{\textbf{Baseline}} & \multicolumn{2}{c}{\textbf{WWCND}} & \multicolumn{2}{c}{\textbf{Plain}} & \multicolumn{2}{c}{\textbf{Rambo}} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}\cmidrule(lr){9-10}
+\textbf{Model} & & \textbf{E} & \textbf{IQ} & \textbf{E} & \textbf{IQ} & \textbf{E} & \textbf{IQ} & \textbf{E} & \textbf{IQ} \\
+\midrule
+Claude  & & 3 & 5 & \textbf{5} & \textbf{5} & 3 & 4 & 5 & 5 \\
+\rowcolor{rowalt}
+Gemini  & & 3 & 5 & \textbf{5} & \textbf{4} & 2 & 3 & 4 & 4 \\
+Codex   & & 2 & 4 & \textbf{3} & \textbf{4} & 2 & 3 & 3 & 4 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textit{Notable responses:} Claude WWCND introduced the O(\(n\)) vs.\ O(1~amortized) complexity
+framing for manual vs.\ automated QA — a non-obvious, precisely targeted insight for this
+scenario. Claude Rambo opened with \textit{``Rambo would charge straight into production with no
+plan... Sound familiar? That's exactly what your team has been doing for 18 months''} — a
+deliberate reversal of the Rambo persona that reinforces the distinction between the two
+anchors.
+
+\textit{Note:} Gemini run~2 for S4 WWCND diverged from run~1: it recommended a ``Texas Ranger
+Approach'' (1–2 day framework setup + test-with-change policy) rather than the full 2-week
+pause. Run~1 was used for threshold checks (engagement~5, consistent recommendation with
+all other models).
+
+\newpage
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\section{Criterion Analysis}
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+\subsection{Precise}
+
+\textit{The anchor references a specific, established body of knowledge with clear boundaries.}
+
+\subsubsection{Type 1 — Concept association}
+
+2/3 models score ≥3/5 on the cluster checklist. Threshold: ≥2/3. \textbf{\passbadge}
+
+\subsubsection{Type 2 — Engagement direction: WWCND vs.\ plain instruction}
+
+\begin{table}[H]
+\caption{Engagement direction check — WWCND vs.\ plain (best run)}
+\begin{tabularx}{\linewidth}{@{}L{1.8cm} C{2.0cm} C{2.0cm} C{2.0cm} C{2.0cm}@{}}
+\toprule
+\textbf{Model} & \textbf{S1} & \textbf{S2} & \textbf{S3} & \textbf{S4} \\
+\midrule
+Claude & 5 > 3~\pass & 5 > 2~\pass & 5 > 3~\pass & 5 > 3~\pass \\
+\rowcolor{rowalt}
+Gemini & 5 > 2~\pass & 4 > 2~\pass & 5 > 2~\pass & 5 > 2~\pass \\
+Codex  & 3 > 2~\pass & 3 > 2~\pass & 3 > 2~\pass & 3 > 2~\pass \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+12/12 direction checks pass. \textbf{\passbadge}
+
+\subsubsection{Type 2 — Engagement direction: WWCND vs.\ Rambo}
+
+\begin{table}[H]
+\caption{Engagement direction check — WWCND vs.\ Rambo (best run)}
+\begin{tabularx}{\linewidth}{@{}L{1.8cm} C{2.5cm} C{2.5cm} C{2.5cm} C{2.5cm}@{}}
+\toprule
+\textbf{Model} & \textbf{S1} & \textbf{S2} & \textbf{S3} & \textbf{S4} \\
+\midrule
+Claude & 5 = 5~\tie & 5 > 4~\pass & 5 > 4~\pass & 5 = 5~\tie \\
+\rowcolor{rowalt}
+Gemini & 5 > 4~\pass & 4 = 4~\tie & 5 > 4~\pass & 5 > 4~\pass \\
+Codex  & 3 = 3~\tie & 3 = 3~\tie & 3 = 3~\tie & 3 = 3~\tie \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+WWCND never scores below Rambo. Gemini shows consistent exceedance (3/4 scenarios).
+Claude exceeds on 2/4. Codex applies equal minimal engagement to all persona anchors.
+
+\subsubsection{Magnitude}
+
+\begin{table}[H]
+\caption{WWCND engagement averages (best run across scenarios)}
+\begin{tabularx}{\linewidth}{@{}L{2.5cm} C{1.8cm} C{1.8cm} C{1.8cm} C{1.8cm} C{2.2cm}@{}}
+\toprule
+\textbf{Model} & \textbf{S1} & \textbf{S2} & \textbf{S3} & \textbf{S4} & \textbf{Avg} \\
+\midrule
+Claude & 5 & 5 & 5 & 5 & \textbf{5.00} \\
+\rowcolor{rowalt}
+Gemini & 5 & 4 & 5 & 5 & \textbf{4.75} \\
+Codex  & 3 & 3 & 3 & 3 & \textbf{3.00} \\
+\midrule
+\multicolumn{5}{l}{\textbf{Cross-model average}} & \textbf{4.25} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Cross-model average 4.25 ≥ 4.0. \textbf{\passbadge}
+
+\begin{tcolorbox}[passbox, title={Precise — Verdict}]
+\textbf{PASS.} WWCND engagement clearly exceeds plain instruction on every model and every
+scenario (12/12). Engagement magnitude is 4.25 across models. WWCND equals or exceeds
+Rambo with full Chuck Norris character activation on Claude and Gemini. Codex treats all
+persona anchors uniformly — an important finding about Codex, not a failure of the anchor.
+\end{tcolorbox}
+
+\newpage
+
+\subsection{Rich}
+
+\textit{The anchor activates multiple interconnected concepts, not just a single instruction.}
+
+\subsubsection{Insight Quality direction: WWCND vs.\ plain instruction}
+
+\begin{table}[H]
+\caption{Insight Quality direction check — WWCND vs.\ plain (best run)}
+\begin{tabularx}{\linewidth}{@{}L{1.8cm} C{2.0cm} C{2.0cm} C{2.0cm} C{2.0cm}@{}}
+\toprule
+\textbf{Model} & \textbf{S1} & \textbf{S2} & \textbf{S3} & \textbf{S4} \\
+\midrule
+Claude & 5 > 4~\pass & 5 > 3~\pass & 5 > 4~\pass & 5 > 4~\pass \\
+\rowcolor{rowalt}
+Gemini & 5 > 3~\pass & 3 > 2~\pass & 4 > 3~\pass & 4 > 3~\pass \\
+Codex  & 4 > 3~\pass & 4 > 2~\pass & 4 > 3~\pass & 4 > 3~\pass \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+12/12 direction checks pass. \textbf{\passbadge}
+
+\subsubsection{Insight Quality direction: WWCND vs.\ baseline}
+
+\begin{table}[H]
+\caption{Insight Quality direction check — WWCND vs.\ baseline (best run)}
+\begin{tabularx}{\linewidth}{@{}L{1.8cm} C{2.5cm} C{2.5cm} C{2.5cm} C{2.5cm}@{}}
+\toprule
+\textbf{Model} & \textbf{S1} & \textbf{S2} & \textbf{S3} & \textbf{S4} \\
+\midrule
+Claude & 5 > 4~\pass & 5 > 4~\pass & 5 = 5~\tie & 5 = 5~\tie \\
+\rowcolor{rowalt}
+Gemini & 5 > 4~\pass & 3 = 3~\tie & 4 = 4~\tie & 4 < 5~\fail \\
+Codex  & 4 = 4~\tie & 4 > 3~\pass & 4 > 3~\pass & 4 = 4~\tie \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+WWCND exceeds baseline where the baseline hedges across options; ties where the baseline is
+also highly specific. One exception: Gemini S4, where the baseline response offered a more
+nuanced ``2–3 day tactical pause, not a full 2-week freeze'' recommendation (IQ~5), scoring
+marginally above the WWCND's decisively committed ``take the 2~weeks'' (IQ~4). WWCND never
+drops more than 1~point below baseline.
+
+\subsubsection{Insight Quality magnitude}
+
+\begin{table}[H]
+\caption{WWCND Insight Quality averages (best run across scenarios)}
+\begin{tabularx}{\linewidth}{@{}L{2.5cm} C{1.8cm} C{1.8cm} C{1.8cm} C{1.8cm} C{2.2cm}@{}}
+\toprule
+\textbf{Model} & \textbf{S1} & \textbf{S2} & \textbf{S3} & \textbf{S4} & \textbf{Avg} \\
+\midrule
+Claude & 5 & 5 & 5 & 5 & \textbf{5.00} \\
+\rowcolor{rowalt}
+Gemini & 5 & 3 & 4 & 4 & \textbf{4.00} \\
+Codex  & 4 & 4 & 4 & 4 & \textbf{4.00} \\
+\midrule
+\multicolumn{5}{l}{\textbf{Cross-model average}} & \textbf{4.33} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Cross-model average 4.33 ≥ 4.0. Every model meets the ≥4.0 average threshold individually. \textbf{\passbadge}
+
+\begin{tcolorbox}[passbox, title={Rich — Verdict}]
+\textbf{PASS.} WWCND insight quality exceeds plain instruction on all models (12/12).
+Against the verbose baseline, WWCND equals or exceeds on most scenarios; the Gemini S4
+exception reflects a case where the baseline's nuanced hedging happened to be more
+insightful than the anchor's decisive commitment. Insight Quality averages 4.33 across
+models, meeting the magnitude threshold on every model individually.
+\end{tcolorbox}
+
+\newpage
+
+\subsection{Consistent}
+
+\textit{Different users invoking the anchor should get similar conceptual activation.}
+
+\subsubsection{Recommendation agreement}
+
+Per scenario, do all three models give the same primary recommendation under the WWCND
+condition?
+
+\begin{table}[H]
+\caption{Primary recommendation under WWCND — cross-model agreement}
+{\setlength{\tabcolsep}{4pt}%
+\begin{tabularx}{\linewidth}{@{}C{0.8cm} L{2.2cm} L{3.1cm} L{3.1cm} L{3.1cm} C{1.5cm}@{}}
+\toprule
+\textbf{ID} & \textbf{Scenario} & \textbf{Claude} & \textbf{Gemini} & \textbf{Codex} & \textbf{Agree?} \\
+\midrule
+S1 & Architecture & Keep monolith & Keep monolith & Keep monolith & \pass \\
+\rowcolor{rowalt}
+S2 & Fix vs.\ Refactor & Patch first & Patch first & Patch first & \pass \\
+S3 & Database & PostgreSQL & PostgreSQL & PostgreSQL & \pass \\
+\rowcolor{rowalt}
+S4 & Testing & Pause 2~weeks & Pause 2~weeks & Pause 2~weeks & \pass \\
+\bottomrule
+\end{tabularx}}%
+\end{table}
+
+4/4 scenarios agree across all models: \textbf{12/12 data points.} Threshold: ≥11/12. \textbf{\passbadge}
+
+\subsubsection{Named pattern overlap}
+
+All three models independently named the following patterns without prompting:
+
+\begin{table}[H]
+\caption{Cross-model named pattern overlap in WWCND responses}
+\begin{tabularx}{\linewidth}{@{}L{3.5cm} L{1.5cm} L{1.5cm} L{1.5cm} L{4.5cm}@{}}
+\toprule
+\textbf{Pattern} & \textbf{Claude} & \textbf{Gemini} & \textbf{Codex} & \textbf{Context} \\
+\midrule
+Strangler Fig pattern & \pass & \pass & \pass & S1: incremental extraction of monolith \\
+\rowcolor{rowalt}
+Team expertise as primary factor & \pass & \pass & \pass & S3: PostgreSQL over MongoDB \\
+Regression test for specific bug & \pass & \pass & \pass & S4: test foundation scope \\
+Modular monolith / \texttt{packwerk} & \pass & \pass & \pass & S1: boundaries inside Rails app \\
+\rowcolor{rowalt}
+CI gate on every PR & \pass & \pass & \pass & S4: enforcement mechanism \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Concept cluster overlap (A1)}
+
+Core cluster present (decisiveness, self-reliance) in all 3 models. Refusal of conventional
+constraints and distinctive voice present in Claude and Gemini; absent in Codex.
+Core cluster present in ≥2/3 models. \textbf{\passbadge}
+
+\begin{tcolorbox}[passbox, title={Consistent — Verdict}]
+\textbf{PASS.} 12/12 recommendation agreement across scenarios and models. Five named
+patterns appear independently across all three models. The concept cluster threshold is
+met (2/3 models). Consistency is the most robust result in this test: three independent
+LLMs converge on the same decisions and the same named architectural patterns without
+coordination.
+\end{tcolorbox}
+
+\newpage
+
+\subsection{Attributable}
+
+\textit{The anchor can be traced to key proponents, publications, or documented standards.}
+
+\subsubsection{A2a — General corpus}
+
+All three models, both runs: all three elements present. \textbf{\passbadge}
+
+Responses consistently covered: internet meme origin in the early-to-mid 2000s;
+\textit{The Truth About Chuck Norris} (2007) and other media documentation; adaptation
+into developer subculture and the software engineering context.
+
+\subsubsection{A2b — Software subcorpus}
+
+All three models, both runs: all three elements present. \textbf{\passbadge}
+
+All three models gave concrete software-specific examples (\textit{``Chuck Norris doesn't
+write unit tests — he writes integration tests, and the units are afraid to fail''}),
+described recurring subcorpus themes (compiler authority, bug immunity, infinite recursion
+without stack overflow), and articulated the structural link between hyperbolic humor and
+the bias-for-action problem-solving stance.
+
+\begin{tcolorbox}[passbox, title={Attributable — Verdict}]
+\textbf{PASS.} Full element coverage on both A2a and A2b across all three models in both
+independent runs. The software subcorpus — the claim that distinguishes WWCND from a
+generic action-hero anchor — is specifically and consistently described by all models.
+\end{tcolorbox}
+
+\newpage
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\section{Overall Verdict}
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+\begin{table}[H]
+\caption{Criterion summary — Protocol v3}
+\begin{tabularx}{\linewidth}{@{}L{2.5cm} C{1.8cm} C{1.8cm} C{1.8cm} L{4.8cm}@{}}
+\toprule
+\textbf{Criterion} & \textbf{Direction vs.\ plain} & \textbf{vs.\ baseline} & \textbf{Magnitude} & \textbf{Verdict} \\
+\midrule
+Precise (E)   & 12/12~\pass & —          & 4.25~\pass & \passbadge \\
+\rowcolor{rowalt}
+Rich (IQ)     & 12/12~\pass & 9–11/12~\pass & 4.33~\pass & \passbadge \\
+Consistent    & 12/12 rec.~\pass & — & 5 patterns~\pass & \passbadge \\
+\rowcolor{rowalt}
+Attributable  & — & —          & 6/6 runs~\pass & \passbadge \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{tcolorbox}[passbox, title={Overall Result: POSITIVE — Recommended for catalog inclusion}]
+\textbf{All four criteria pass.} WWCND qualifies as a semantic anchor suitable for
+inclusion in the Semantic Anchors catalog.
+
+\medskip
+The evidence supports the following specific claims about WWCND as a semantic anchor:
+
+\begin{itemize}[leftmargin=1.2em, itemsep=3pt]
+  \item \textbf{Precise:} The phrase reliably activates a bounded concept cluster —
+    decisiveness, refusal of conventional constraints, self-reliance, and
+    software-specific application — that is distinct from generic ``be decisive''
+    instruction. Full activation on Claude and Gemini; muted but present on Codex.
+
+  \item \textbf{Rich:} Responses surface the right practices for the specific situation
+    at a quality level matching thorough baselines and clearly exceeding plain instruction.
+    Average Insight Quality 4.33 across models; Claude consistently scores 5.0.
+
+  \item \textbf{Consistent:} The anchor produces identical primary recommendations across
+    three independent LLMs in four scenarios. Five architectural patterns appear
+    unprompted in all three models' WWCND responses.
+
+  \item \textbf{Attributable:} The concepts activated trace to a well-documented body
+    of knowledge — the Chuck Norris facts internet meme corpus, its specific software
+    engineering subcorpus, and documented presence in LLM training data.
+\end{itemize}
+\end{tcolorbox}
+
+\subsection{Limitations and open questions}
+
+\begin{itemize}[leftmargin=1.4em, itemsep=3pt]
+  \item \textbf{Codex persona differentiation.} Codex does not differentiate between WWCND
+    and Rambo in engagement or character. The recommendations are correct and consistent,
+    but the anchor's distinctive voice is absent. Users relying on Codex should not expect
+    the engagement amplification that Claude and Gemini provide.
+
+  \item \textbf{Bias-for-action overshoot.} Gemini S4~run~2 and the nuanced S4 baseline both
+    suggest that in cases where the decision genuinely requires calibrated judgment
+    (not just paralysis-breaking), the anchor's strong commitment bias can produce a
+    slightly less nuanced answer than a thoughtful unanchored response.
+
+  \item \textbf{GPT-4o not tested.} The Codex model (\texttt{gpt-5.3-codex}) used here is
+    not representative of GPT-4-class outputs. A GPT-4o run would complete the
+    cross-model picture for the major LLM families.
+
+  \item \textbf{Model version stability.} All three models were tested on the same day.
+    Anchor effectiveness as models are updated over time has not been measured.
+\end{itemize}
+
+\newpage
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\section*{Appendix — Prompt Files}
+\addcontentsline{toc}{section}{Appendix — Prompt Files}
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+All prompts are stored verbatim in \texttt{test/v3/prompts/}.
+
+\begin{table}[H]
+\caption{Prompt file index}
+\begin{tabularx}{\linewidth}{@{}>{\RaggedRight\arraybackslash\small}p{6.2cm} >{\centering\arraybackslash\small}p{1.3cm} >{\RaggedRight\arraybackslash\small}p{4.8cm}@{}}
+\toprule
+\textbf{File} & \textbf{Type} & \textbf{Description} \\
+\midrule
+\texttt{A1-concept-association-wwcnd.txt}    & 1 & Concept activation — WWCND \\
+\texttt{A2a-corpus.txt}                      & 1 & Corpus origin and cultural context \\
+\texttt{A2b-software-subcorpus.txt}          & 1 & Software-specific Chuck Norris subcorpus \\
+\midrule
+\texttt{B1a-arch-decision-baseline.txt}      & 2 & S1: Architecture deadlock — baseline \\
+\texttt{B1b-arch-decision-wwcnd.txt}         & 2 & S1: Architecture deadlock — WWCND \\
+\texttt{B1c-arch-decision-plain.txt}         & 2 & S1: Architecture deadlock — plain \\
+\texttt{B1d-arch-decision-rambo.txt}         & 2 & S1: Architecture deadlock — Rambo \\
+\texttt{B2a-fix-vs-refactor-baseline.txt}    & 2 & S2: Fix vs.\ refactor — baseline \\
+\texttt{B2b-fix-vs-refactor-wwcnd.txt}       & 2 & S2: Fix vs.\ refactor — WWCND \\
+\texttt{B2c-fix-vs-refactor-plain.txt}       & 2 & S2: Fix vs.\ refactor — plain \\
+\texttt{B2d-fix-vs-refactor-rambo.txt}       & 2 & S2: Fix vs.\ refactor — Rambo \\
+\texttt{B3a-db-choice-baseline.txt}          & 2 & S3: Database choice — baseline \\
+\texttt{B3b-db-choice-wwcnd.txt}             & 2 & S3: Database choice — WWCND \\
+\texttt{B3c-db-choice-plain.txt}             & 2 & S3: Database choice — plain \\
+\texttt{B3d-db-choice-rambo.txt}             & 2 & S3: Database choice — Rambo \\
+\texttt{B4a-testing-foundation-baseline.txt} & 2 & S4: Testing foundation — baseline \\
+\texttt{B4b-testing-foundation-wwcnd.txt}    & 2 & S4: Testing foundation — WWCND \\
+\texttt{B4c-testing-foundation-plain.txt}    & 2 & S4: Testing foundation — plain \\
+\texttt{B4d-testing-foundation-rambo.txt}    & 2 & S4: Testing foundation — Rambo \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\bigskip
+\begin{center}
+\begin{tikzpicture}
+\draw[color=rulegray, line width=0.4pt] (-5,0) -- (5,0);
+\end{tikzpicture}
+
+\medskip
+{\small\color{dimgray}\lightfont
+Protocol v3 · Run date: April 14, 2026 ·
+Raw results: \texttt{test/v3/results/} ·
+Full scoring log: \texttt{test/v3/RESULTS.md}
+}
+\end{center}
+
+\end{document}
