@@ -133,6 +133,110 @@ on commitment; WWCND wins on engagement by a large margin.
 
 ---
 
+## Cross-Run Consistency: v1 vs v2 WWCND Responses
+
+The v1 and v2 Claude runs used identical WWCND prompts but were independent sessions separated
+by ~70 minutes. Comparing the WWCND responses across runs reveals how stable the anchor's
+activation is.
+
+### What was identical
+
+**The primary recommendation in every scenario was the same** — same answer, same reasoning,
+same named patterns. v1 and v2 both recommended: don't migrate (B1), patch first then refactor
+(B2), PostgreSQL with JSONB (B3). Zero divergence on the actual advice across any scenario.
+
+**The structural formula was identical in every response, both runs:**
+Chuck Norris joke → "But seriously" transition → real advice → Chuck Norris bottom line.
+Every response followed this template without exception.
+
+**Several phrases appeared verbatim across runs.** "The best architecture is the one that
+ships" appears word-for-word in both B1b responses. "Microservices would migrate to Chuck
+Norris" appears in both.
+
+### What varied
+
+**The specific jokes differed, but were drawn from the same pool.** v1 B1b: "Chuck Norris's
+monolith has no latency because time itself is afraid to be slow." v2 B1b: "He'd roundhouse
+kick the whiteboard and ship." Different wording, same energy and same mapping onto the
+software problem.
+
+**v2 B1b used a more elegant structure** — explicit "Chuck Norris fact → Translation" pairs
+rather than v1's joke-upfront-then-pivot format. Same content, better packaging.
+
+**Each run produced one distinctive quotable line the other did not:**
+- v1 B3b: *"If a debate lasts more than a week and no new information is being produced, the
+  default answer is: use the thing your team already knows."*
+- v2 B2b: *"Never let perfect be the enemy of good — but never let good be the excuse to
+  avoid perfect."*
+
+**v2 A1 surfaced a meta-layer** — the phrase is self-aware and ironic, it simultaneously
+celebrates and mocks the archetype — that v1 did not make explicit.
+
+### What this means
+
+The cross-run comparison directly addresses the consistency objection: *"responses will cluster
+around humor and roundhouse-kick metaphors, not a consistent problem-solving approach."*
+
+Both runs show the opposite. The humor is a stable frame for consistent, practical advice —
+not a replacement for it. The deep structure (formula, recommendation, named patterns) is
+identical across runs. The surface (specific jokes, memorable quotes) varies naturally, the way
+any two conversations on the same topic vary.
+
+This is what a robust semantic anchor should produce: stable deep structure, variable surface.
+The variation is evidence of generativity, not inconsistency.
+
+---
+
+## Cross-Run Consistency: v1 vs v2 Plain Instruction Responses
+
+The plain instruction responses ("Be direct. Don't hedge. Commit to one recommendation. No
+caveats.") show a different consistency pattern from the WWCND responses.
+
+### What was identical
+
+**The primary recommendation and opening were nearly verbatim.** B1c headlines: v1 "Don't
+migrate. Ship the product." / v2 "Don't migrate. Ship your product." B3c opens identically in
+both runs: "Use PostgreSQL. Here's why this is the right call:" — word for word. The MongoDB
+refutation is near-identical: v1 "The 'MongoDB is faster for documents' argument is outdated
+and wrong." / v2 "...outdated and wrong for your situation."
+
+**The closing lines rhyme.** v1 B3c: "Pick PostgreSQL. Start building. This decision is done."
+v2 B3c: "Decision: PostgreSQL. Start building." Same rhythm, same finality.
+
+### What varied — and how it differs from WWCND variation
+
+**Plain responses show larger length variation than WWCND responses.** v1 B2c is five
+paragraphs with numbered reasoning, a specific code comment pattern
+(`# TEMPORARY: patch for [bug]. Refactor tracked in TICKET-123`), and an explicit exception
+rule. v2 B2c is three sentences. Same prompt, same instruction, dramatically different length.
+
+**WWCND does not vary this way.** The joke-frame structure acts as a natural length scaffold:
+joke → translation → advice → bottom line. It has a floor. Plain instruction can produce
+anything from a paragraph to an essay.
+
+**v1 B2c includes things v2 doesn't:** the code comment pattern, and "The only reason to flip
+this recommendation is if the patch is genuinely impossible without the refactor, or if the
+root cause is a security vulnerability." v2 drops all of that. Neither version is wrong, but
+v1 is more useful precisely because it runs longer.
+
+### The key difference between the two conditions
+
+WWCND responses vary in surface (different jokes, different memorable lines) but are stable in
+depth — the joke structure ensures every response has a real answer behind it. Plain instruction
+responses are stable in surface (same opening words, same conclusion) but vary unpredictably in
+depth. You might get five paragraphs or three sentences.
+
+Neither is inconsistent in the problematic sense. But WWCND's variation is generative —
+different runs produce different quotable lines, different framings of the same principle.
+Plain instruction's variation is just noise in length.
+
+A second observation: across both runs, the plain responses produced no memorable lines. They
+are accurate and decisive, but there is nothing to quote, nothing to share, nothing that
+reframes the problem. The v1 B2c code comment tip is the closest, and it disappeared in v2.
+WWCND produced at least one strong quotable line per scenario in every run.
+
+---
+
 ## Revised Framing for the Counter-Case
 
 The combined v1 + v2 findings suggest a more precise argument than the original:
