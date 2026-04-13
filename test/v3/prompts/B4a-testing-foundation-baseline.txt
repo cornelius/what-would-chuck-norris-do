@@ -1,0 +1,1 @@
+A startup has shipped a product for 18 months with no automated tests. A production bug slipped through last week and affected paying customers. We are debating whether to continue shipping with manual QA only, or pause feature work for two weeks to establish a test foundation before the next release. What should we do?
