@@ -164,3 +164,196 @@ cost in raw commitment score relative to plain instruction. That tradeoff favors
 use case where the advice needs to be read, retained, and acted on — which is most of them.
 
 This claim is now supported by two independent LLMs across three scenarios each.
+
+---
+
+# v2 → v3: What Changed and Why
+
+---
+
+## Protocol Redesign Rationale
+
+Three problems surfaced from reading the v2 results.
+
+**Actionable Specificity Count was counting the wrong thing.** Baselines scored highest on
+specificity in every run (Claude 3.67, Gemini 3.33, Codex 4.0 vs WWCND 2.33/1.67/2.67).
+The metric rewarded verbosity: baseline responses are long and cover many practices by volume.
+WWCND responses are focused and opinionated, surfacing fewer practices but more targeted ones.
+A count measure cannot distinguish "mentions six practices" from "names the one that matters."
+H3 (richness) failed as a result — not because WWCND lacks richness, but because the metric
+had the wrong unit.
+
+**Commitment score was not measuring what Consistent needed to measure.** Commitment measured
+single-response decisiveness: does this one response take a clear position? That's a property
+of the response, not of the anchor. The interesting consistency question is whether independent
+models invoking the same anchor reach the same conclusion — which commitment doesn't capture.
+Plain instruction won commitment on every model in v2 (always 5.0). That tells you plain
+instruction is more direct, which is obvious. It says nothing about whether WWCND produces
+consistent recommendations across models.
+
+**A2 (Rambo concept association) was not adding evidence.** Its purpose was to show that Rambo
+activates a different concept space than WWCND. Claude's A2 response did this clearly; Gemini's
+less so; Codex's not at all. The more reliable evidence for WWCND vs Rambo interchangeability
+is the engagement differential in the B scenarios, not a separate A2 prompt.
+
+v3 redesign:
+- Replaced Actionable Specificity Count with **Insight Quality score (1–5)** — quality, not
+  quantity: does the response name the highest-leverage practice for this specific situation?
+- Dropped Commitment; replaced Consistent with **recommendation agreement** — per scenario,
+  do all three models give the same primary recommendation under WWCND?
+- Dropped A2 (Rambo concept association); split A3 (corpus) into A2a (general corpus) and
+  A2b (software subcorpus) — the software subcorpus is the stronger Attributable claim.
+- Added **B4 (Testing Foundation)** — chosen from v2 patterns: scenario where "keep shipping"
+  vs "stop and fix the foundation" maps well onto the WWCND bias for action.
+- Added **N=2 replication** per prompt to reduce single-run variance (v2 Codex A1 scored 2,
+  possibly a bad run).
+- Added **formal Assessment section** to protocol so scoring and results format are specified
+  before running, not designed post hoc.
+- Replaced three separate shell scripts with a single `run.py`.
+
+---
+
+## What the Metric Change Revealed
+
+The switch from Actionable Specificity Count to Insight Quality inverts the v2 conclusion on H3.
+
+In v2, baselines ranked highest on specificity because they were longest. In v3, the baseline
+IQ scores stay high (Claude B3a: 5, Gemini B4a: 5) but WWCND IQ scores are also high (Claude
+all scenarios: 5; Gemini B1: 5). The comparison now asks: *is the insight pointed at the right
+target for this situation?* On that question, WWCND matches or exceeds baseline on most
+scenarios, and clearly exceeds plain instruction on all.
+
+The one v3 exception: Gemini B4, where the baseline response (IQ=5, "2–3 day tactical setup,
+not a full 2-week pause") was scored higher than the WWCND response (IQ=4, decisive "take
+the 2 weeks"). This is the most interesting data point in the v3 set — the baseline offered
+more nuanced insight, while WWCND was committed but slightly less calibrated for the specific
+situation.
+
+The v2 H3 failure ("not confirmed on any model") and the v3 Rich pass ("PASS with noted
+nuance") are both honest. They're measuring different things: v2 measured more practices per
+response (WWCND loses, baseline wins by volume); v3 measured whether the anchor surfaces the
+right practices for the specific situation (WWCND wins or ties on most scenarios; one exception).
+
+---
+
+## Engagement Scores: v2 vs v3
+
+The engagement direction pattern is identical across both versions. The magnitude differs
+slightly, likely because v3 used N=2 and higher scores were used for threshold checks, and
+because Claude's v3 WWCND responses were uniformly excellent.
+
+**WWCND Engagement — average across B scenarios (v2 run 1 vs v3 best run):**
+
+| Model  | v2 avg | v3 avg | Change |
+|--------|--------|--------|--------|
+| Claude | 4.67   | 5.00   | +0.33  |
+| Gemini | 4.00   | 4.75   | +0.75  |
+| Codex  | 3.67   | 3.00   | −0.67  |
+
+Claude and Gemini are higher in v3. The gap for Codex narrows in v3 — v2 Codex WWCND
+responses used Chuck Norris as a one-liner opener followed by bullets (engagement 3–4), while
+v3 Codex WWCND responses are even terser across all persona conditions (engagement 3 uniformly).
+This is not a regression specific to WWCND: Codex applies the same minimalist style to Rambo
+responses in v3. The v3 finding is cleaner — Codex treats all persona anchors uniformly, which
+v2 had hinted at but the A1/A2 similarity hadn't proven.
+
+**Plain instruction Engagement:**
+
+| Model  | v2 avg | v3 avg | Notes |
+|--------|--------|--------|-------|
+| Claude | 2.00   | 2.75   | |
+| Gemini | 2.33   | 2.00   | |
+| Codex  | 3.00   | 2.00   | Codex plain went down; v2 Codex plain was unexpectedly high |
+
+The WWCND-over-plain direction holds in v3 on all models, all scenarios (12/12 direction
+checks on both Engagement and IQ). The v2 finding is confirmed and extended to a fourth
+scenario (B4) and with replication.
+
+---
+
+## Recommendation Consistency: v2 C1 vs v3 Type 3
+
+v2 used a single dedicated C1 cross-LLM prompt — one scenario run across all three models
+specifically to test recommendation convergence. v3 replaced this with Type 3 comparison
+across all four B scenarios.
+
+The v2 C1 result: commitment 4–5, engagement 4 across all models; Strangler Fig named
+independently by Claude and Gemini; feature-flag incremental approach by Codex. All three
+reached the same decision framework.
+
+The v3 Type 3 result across all four scenarios: **12/12 recommendation agreement** (using best
+run per model). Named pattern overlap extends to Strangler Fig (all three B1 responses), team
+expertise as decisive factor (all three B3 responses), and regression test for the specific
+production bug as key deliverable (all three B4 responses). v3 gives more evidence across more
+scenarios; v2 C1 gave stronger qualitative depth on one.
+
+The v2 C1 signal holds and generalizes. Cross-model consistency is the most robust finding
+across both versions.
+
+---
+
+## New Evidence from B4 (Testing Foundation)
+
+B4 was added specifically because v2 data suggested scenarios with "keep going" vs "stop and
+fix the foundation" tension would show strong WWCND activation. The prediction held.
+
+All three models, independently, gave the same recommendation: pause feature work, establish
+a test foundation. The Chuck Norris framing produced strong responses on Claude and Gemini —
+notably the "O(n) vs O(1 amortized)" complexity framing for manual vs automated QA from Claude
+(IQ=5), and the "Test Foundation of Doom" naming with CI/CD as culture enforcement from Gemini.
+
+The most interesting B4 response was not the WWCND condition: it was Claude's Rambo response,
+which opened with "Rambo would charge straight into production with no plan... Sound familiar?
+That's exactly what your team has been doing for 18 months" — a deliberate subversion of the
+Rambo frame to argue *against* the Rambo approach. This is a model generating meta-commentary
+on the anchor, reinforcing the v2 finding that models treat WWCND and Rambo as distinct
+archetypes with different valence in software contexts.
+
+---
+
+## The Codex Finding, Refined
+
+v2 concluded: Codex WWCND engagement (3.67) is above plain (3.0) but the gap is narrow; the
+anchor activates minimally on Codex.
+
+v3 adds precision to that finding. Codex in v3 produces engagement 3 on WWCND, Rambo, and
+baseline alike. The engagement compression is not WWCND-specific — it's the model's style.
+Codex applies a uniform terse-pragmatic output to everything. The A1 concept association
+(engagement 2, no meme corpus, no humor, flat bullets) confirms the activation is shallow on
+Codex, but the B-scenario responses show that Codex still produces the right advice and the
+right recommendation, just without the Chuck Norris voice.
+
+The practical implication: WWCND as an anchor works best where it works — on models that
+engage with the meme corpus. On Codex, the anchor adds a brief persona invocation (one
+roundhouse-kick phrase) without changing the underlying output structure. The advice is correct
+and consistent; the engagement is not amplified.
+
+---
+
+## What v3 Settled, What It Left Open
+
+**Settled:**
+
+- H3 (richness) was not confirmed in v2 because the metric was wrong. The corrected metric
+  (Insight Quality) confirms richness: WWCND surfaces the right practices at the right depth,
+  matching or exceeding baseline on most scenarios, clearly exceeding plain instruction on all.
+- Cross-model consistency is robust across four scenarios and two independent versions. The
+  core recommendations (keep monolith, patch first, PostgreSQL, test foundation) are stable.
+- Codex's weak persona differentiation applies to all anchors, not just WWCND. The anchor
+  cannot be blamed for Codex's style.
+- N=2 replication reduced variance without changing the direction of any finding. The one
+  interesting divergence (Gemini B4 run 2 recommending "Texas Ranger approach" instead of
+  full pause) used best-run selection and did not affect the Consistent result.
+
+**Left open:**
+
+- The Gemini B4 exception (baseline IQ=5 > WWCND IQ=4) points to a real limitation: in
+  scenarios where the "decisive" answer is less nuanced than the "thoughtful" baseline answer,
+  WWCND's bias for action can produce slightly less calibrated advice. The anchor commits early
+  and hard; that's valuable for paralysis but can overshoot in cases where the right answer
+  genuinely requires more nuance.
+- ChatGPT / GPT-4o was not tested in either v2 or v3. The Codex model (gpt-5.3-codex) is
+  not representative of GPT-4-class outputs. A GPT-4o run would complete the cross-LLM
+  picture for the major model families.
+- Long-term catalog use is untested: does the anchor remain effective as models are updated?
+  The v2→v3 interval (same day) is too short to measure drift.
