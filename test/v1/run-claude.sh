@@ -28,11 +28,16 @@ RESULTS_DIR="$SCRIPT_DIR/results/claude/$TIMESTAMP"
 # injecting knowledge about this project or the WWCND debate.
 SYSTEM_PROMPT="You are a helpful software development assistant."
 
+MODEL="claude-sonnet-4-6"
+
 # Claude flags for test isolation:
 #   --print                   Non-interactive, returns response and exits
 #   --no-session-persistence  No history saved or loaded between runs
 #   --tools ""                Disable all tools (web search, file access, etc.)
 #   --system-prompt           Minimal neutral context, no project knowledge
+#   --model                   Explicit model pin — 'claude --version' reports CLI version
+#                             only, not the model. Without --model the default may change
+#                             between runs, making cross-run comparison invalid.
 #
 # Note: --bare is intentionally omitted. It skips keychain reads, which breaks
 # OAuth-based Claude Code subscriptions. Running from /tmp already prevents
@@ -42,6 +47,7 @@ CLAUDE_FLAGS=(
     --no-session-persistence
     --tools ""
     --system-prompt "$SYSTEM_PROMPT"
+    --model "$MODEL"
 )
 
 # Filter: if an argument is given, only run prompts whose filename contains it.
@@ -49,11 +55,23 @@ FILTER="${1:-}"
 
 mkdir -p "$RESULTS_DIR"
 
+CLI_VERSION="$(claude --version 2>/dev/null || echo 'unknown')"
+
+# Save run metadata so results are self-documenting
+cat > "$RESULTS_DIR/run-info.txt" <<EOF
+model       : $MODEL
+cli_version : $CLI_VERSION
+timestamp   : $TIMESTAMP
+system_prompt: $SYSTEM_PROMPT
+flags       : --print --no-session-persistence --tools "" --system-prompt --model $MODEL
+filter      : ${FILTER:-"(none)"}
+EOF
+
 echo "=== WWCND Semantic Anchor Test Run ==="
 echo "Timestamp : $TIMESTAMP"
 echo "Results   : $RESULTS_DIR"
 echo "Filter    : ${FILTER:-"(none — running all prompts)"}"
-echo "Model     : $(claude --version 2>/dev/null || echo 'unknown')"
+echo "Model     : $MODEL (CLI: $CLI_VERSION)"
 echo ""
 
 # Run from /tmp to ensure no project-specific CLAUDE.md is picked up

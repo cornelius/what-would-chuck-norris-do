@@ -10,6 +10,12 @@ See [../protocol.md](../protocol.md) for the full test design, scoring rubric, a
 
 Claude run: `results/claude/20260413-014102` (claude-sonnet-4-6, 2026-04-13)
 
+> **Note on model provenance:** The model recorded above (claude-sonnet-4-6) was inferred from
+> session context at time of testing. The v2 run script did not pass `--model` explicitly at
+> that time, and `claude --version` reports CLI version only (e.g. "2.1.104 (Claude Code)"),
+> not the model ID. The run script has since been updated to pass `--model claude-sonnet-4-6`
+> explicitly and write a `run-info.txt` metadata file into each results directory.
+
 Commitment and engagement scores assigned manually. Actionable specificity counts practices
 beyond the primary answer per the rubric in protocol.md.
 

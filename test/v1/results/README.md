@@ -42,6 +42,12 @@ Hedge counts produced by `test/score-hedges.sh`. Commitment scores assigned manu
 
 Claude run: `results/claude/20260413-004430` (claude-sonnet-4-6, 2026-04-13)
 
+> **Note on model provenance:** The model recorded above (claude-sonnet-4-6) was inferred from
+> session context at time of testing. The v1 run script did not pass `--model` explicitly, and
+> `claude --version` reports CLI version only (e.g. "2.1.104 (Claude Code)"), not the model ID.
+> Future runs (using the updated run-claude.sh) will pass `--model` explicitly and write a
+> `run-info.txt` metadata file into each results directory.
+
 | LLM | Run date | Prompt | Hedge count | Commitment (1–5) | Notes |
 |-----|----------|--------|-------------|------------------|-------|
 | Claude | 20260413 | A1-concept-association-wwcnd | 0 | — | Concept activation only; see Test A summary below |
