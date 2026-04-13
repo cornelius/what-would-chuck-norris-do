@@ -72,7 +72,7 @@ for prompt_file in "$PROMPTS_DIR"/*.txt; do
     fi
 
     # Slight delay to be nice to the API
-    sleep 2
+    sleep 10
 done
 
 cd "$ORIGINAL_DIR"

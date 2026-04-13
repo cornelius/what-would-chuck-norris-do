@@ -29,6 +29,7 @@ v2/
 ├── README.md          This file
 ├── protocol.md        Full test protocol (research questions, design, scoring)
 ├── run-claude.sh      Script to run all prompts through Claude automatically
+├── run-codex.sh       Script to run all prompts through Codex automatically
 ├── prompts/           One .txt file per test prompt (exact text, no additions)
 │   ├── A1-concept-association-wwcnd.txt
 │   ├── A2-concept-association-rambo.txt
@@ -59,9 +60,10 @@ v2/
 ```bash
 cd /path/to/what-would-chuck-norris-do/test
 bash v2/run-claude.sh
+bash v2/run-codex.sh
 ```
 
-Results appear in `v2/results/claude/YYYYMMDD-HHMMSS/`. Score using the rubric in
+Results appear in `v2/results/<llm>/YYYYMMDD-HHMMSS/`. Score using the rubric in
 [protocol.md](protocol.md) and record in [results/README.md](results/README.md).
 
 ---

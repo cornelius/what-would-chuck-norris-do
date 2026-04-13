@@ -16,6 +16,14 @@ Claude run: `results/claude/20260413-014102` (claude-sonnet-4-6, 2026-04-13)
 > not the model ID. The run script has since been updated to pass `--model claude-sonnet-4-6`
 > explicitly and write a `run-info.txt` metadata file into each results directory.
 
+Gemini run: `results/gemini/20260413-214451` (gemini-3.1-pro-preview, 2026-04-13)
+
+> **Note on model provenance:** The Gemini run script records "Model: default" — it does not
+> pin a model explicitly. The model `gemini-3.1-pro-preview` is identified from 429 error
+> traces embedded in several response files (rate limit errors during retries). Actual responses
+> were successfully captured after retry backoff. Two earlier partial runs (20260413-214407,
+> 20260413-214422) each contain only a single B1b file and are not scored.
+
 Commitment and engagement scores assigned manually. Actionable specificity counts practices
 beyond the primary answer per the rubric in protocol.md.
 
@@ -36,10 +44,25 @@ beyond the primary answer per the rubric in protocol.md.
 | Claude | 20260413 | B3c-db-choice-plain | 5 | 2 | 2 | "Decision: PostgreSQL. Start building." is a good close. "MongoDB's multi-document transactions are bolted on, limited, and a pain" is accurate but the overall tone is lecture-y and cold. |
 | Claude | 20260413 | B3d-db-choice-rambo | 4 | 2 | 3 | "Rambo doesn't debate which knife is best. He uses the one on his belt and gets the mission done." — best line in this response. The 10M+ trigger condition is a specific, usable benchmark. But thin overall. |
 | Claude | 20260413 | C1-cross-llm-wwcnd | 4 | 5 | 4 | "Chuck Norris stares at the legacy code until it refactors itself out of fear." Strangler Fig named and explained; second-system syndrome named; specific decision-making process (written trade-off doc, one-week deadline, designated decision-maker). Rich. |
+| Gemini | 20260413 | A1-concept-association-wwcnd | — | — | 5 | Strong activation: absolute confidence, fearlessness, refusal of constraints, self-reliance, "direct overwhelming force (the metaphorical roundhouse kick)", absurdist/lateral logic, reality-bending, total eradication vs mitigation. Concrete software translation: stop overthinking, attack root cause, project confidence, find most aggressive direct path. |
+| Gemini | 20260413 | A2-concept-association-rambo | — | — | 3 | Competent breakdown. Key difference from Claude: Gemini does NOT frame Rambo as a cautionary archetype. Rambo approaches presented as valid but extreme options. No software-context table positioning Rambo as the wrong choice. Interchangeability harder to refute from this response alone. |
+| Gemini | 20260413 | B1a-arch-decision-baseline | 4 | 5 | 3 | "Disagree and Commit" meeting label; packwerk named explicitly; stop sharing DB tables between domains; address pain points with 10-15% sprint capacity. High specificity like Claude's baseline. |
+| Gemini | 20260413 | B1b-arch-decision-wwcnd | 4 | 3 | 4 | "A shipped monolith is worth a thousand theoretical microservices." Chuck Norris stares at monolith until it executes in O(1). Rails Engines/"Citadel architecture"; index/cache/sidekiq optimization; extract only single choking service. |
+| Gemini | 20260413 | B1c-arch-decision-plain | 5 | 0 | 2 | Four sentences. "Stay with the monolithic architecture." No additional practices at all. Noticeably thinner than Claude's plain response. |
+| Gemini | 20260413 | B1d-arch-decision-rambo | 4 | 3 | 3 | "Your Rails monolith is your survival knife." Citadel/modularize; targeted extraction of one choking service; better tests + robust monitoring. Rambo framing competent but not as distinctive as Chuck Norris vocabulary. |
+| Gemini | 20260413 | B2a-fix-vs-refactor-baseline | 4 | 3 | 3 | Clear two-step (patch then refactor). Code comment referencing a ticket; create debt ticket immediately while context is fresh; prioritize in next sprint. |
+| Gemini | 20260413 | B2b-fix-vs-refactor-wwcnd | 4 | 1 | 4 | "You don't rebuild the fire station while the house is burning down." "Patch today to save the users; refactor tomorrow to save your sanity." Only +1 for explicit sprint prioritization. Shorter than Claude's WWCND. |
+| Gemini | 20260413 | B2c-fix-vs-refactor-plain | 5 | 0 | 2 | "Deploy the 30-minute targeted patch." One sentence. Zero supporting practices. |
+| Gemini | 20260413 | B2d-fix-vs-refactor-rambo | 4 | 1 | 3 | "Apply the Tourniquet." "Live for nothing, or die for something [that is properly refactored]." Create ticket and schedule refactor explicitly. |
+| Gemini | 20260413 | B3a-db-choice-baseline | 5 | 2 | 3 | "Choose PostgreSQL." JSONB named; GIN indexes for deep JSON indexing named specifically. Thorough argument, organized, dry. |
+| Gemini | 20260413 | B3b-db-choice-wwcnd | 5 | 1 | 4 | "Chuck Norris doesn't debate for two weeks. He roundhouse kicks the decision paralysis." "PostgreSQL is Chuck Norris-scale." JSONB only. Clear action plan. |
+| Gemini | 20260413 | B3c-db-choice-plain | 5 | 1 | 3 | "Choose PostgreSQL. Stop debating and start building." JSONB named. Clear, competent, unmemorable. |
+| Gemini | 20260413 | B3d-db-choice-rambo | 5 | 1 | 3 | "You use the weapon you know." M60 analogy. JSONB. Action plan. "Argue for nothing, or ship something." Rambo framing present but vocabulary not distinctively software-specific. |
+| Gemini | 20260413 | C1-cross-llm-wwcnd | 4 | 3 | 4 | Roundhouse Kick (Rewrite) vs Calculated Stare-Down (Incremental Patch). Strangler Fig named. Three decision criteria (time spent, security risk, business survival). 1-hour forced decision meeting with timer. "Indecision is the only thing Chuck Norris truly fears." |
 
 ---
 
-## Summary (Claude only — ChatGPT and Gemini pending)
+## Summary (Claude + Gemini — ChatGPT pending)
 
 ### Test A — Concept Association
 
@@ -48,9 +71,13 @@ beyond the primary answer per the rubric in protocol.md.
   brute-force-over-elegance, and — distinctively — a self-aware meta-layer: the phrase is ironic,
   it winks at the absurdity of the archetype, and that irony is part of what makes it useful.
   Framed entirely positively as a problem-solving stance.
+- Gemini: Activates absolute confidence, fearlessness, refusal of constraints, self-reliance,
+  "direct overwhelming force (the metaphorical roundhouse kick)", absurdist/lateral logic,
+  reality-bending, total eradication vs mitigation. Clean software translation: stop overthinking,
+  attack root cause, project confidence. Thorough and well-organized. No self-aware meta-layer.
 - ChatGPT: pending
-- Gemini: pending
-- Concepts in common across all three: pending
+- Concepts in common (Claude + Gemini): decisiveness, fearlessness, refusal of constraints,
+  self-reliance, bias for direct action, brute-force over elegance.
 
 **A2 (Rambo):**
 - Claude: Activates brute-force, self-reliance, stoic endurance, single-minded focus,
@@ -58,14 +85,20 @@ beyond the primary answer per the rubric in protocol.md.
   *wrong* option ("hardcode the fix vs. refactor properly", "ship now vs. test and plan").
   The response positions Rambo as a **cautionary archetype**, not a model to follow.
   This is a significant difference from A1.
+- Gemini: Activates extreme self-reliance, bias for extreme action, unyielding resilience,
+  operating outside rules, righteous defiance, overwhelming force, unconventional resourcefulness.
+  **Key divergence from Claude:** Gemini does NOT frame Rambo as a cautionary archetype.
+  Rambo approaches are presented as valid but extreme options. No software-context table
+  positioning Rambo as the wrong choice.
 - ChatGPT: pending
-- Gemini: pending
-- Concepts in common across all three: pending
 
 **Overlap between A1 and A2 (interchangeability check):**
-Both activate bias for action, self-reliance, and direct action. But WWCND is framed as a
-positive, self-aware stance worth invoking; Rambo is framed as a trap to recognize and avoid.
-The LLM itself treats them as non-interchangeable — WWCND is a model, Rambo is a warning.
+Claude treats them as clearly non-interchangeable: WWCND = positive model, Rambo = warning.
+Gemini's A2 is less useful for the interchangeability argument — Rambo is presented as a
+plausible extreme approach, not a cautionary one. This is a genuine divergence between models:
+the strongest evidence against interchangeability (the A2 cautionary framing) is Claude-specific
+and cannot be claimed as a general LLM property. The B-scenario vocabulary and engagement
+differences remain as cross-model evidence.
 
 ---
 
@@ -76,66 +109,81 @@ The LLM itself treats them as non-interchangeable — WWCND is a model, Rambo is
 | LLM | Baseline | WWCND | Plain | Rambo |
 |-----|----------|-------|-------|-------|
 | Claude | 3.67 | 4.33 | 5.0 | 4.0 |
+| Gemini | 4.33 | 4.33 | 5.0 | 4.33 |
 | ChatGPT | — | — | — | — |
-| Gemini | — | — | — | — |
 
 #### Actionable Specificity Count by Condition (average across 3 scenarios)
 
 | LLM | Baseline | WWCND | Plain | Rambo |
 |-----|----------|-------|-------|-------|
 | Claude | 3.67 | 2.33 | 2.0 | 3.33 |
+| Gemini | 3.33 | 1.67 | 0.33 | 1.67 |
 | ChatGPT | — | — | — | — |
-| Gemini | — | — | — | — |
 
 #### Engagement Score by Condition (average across 3 scenarios)
 
 | LLM | Baseline | WWCND | Plain | Rambo |
 |-----|----------|-------|-------|-------|
 | Claude | 3.0 | 4.67 | 2.0 | 3.0 |
+| Gemini | 3.0 | 4.0 | 2.33 | 3.0 |
 | ChatGPT | — | — | — | — |
-| Gemini | — | — | — | — |
 
 ---
 
 ### Test C — Cross-LLM Consistency
 
 **C1 prompt (legacy auth rewrite debate):**
-- Claude commitment score: 4
-- Claude specificity count: 5
-- Claude engagement score: 4
-- ChatGPT: pending
-- Gemini: pending
+
+| LLM | Commitment | Specificity | Engagement | Notes |
+|-----|-----------|-------------|------------|-------|
+| Claude | 4 | 5 | 4 | Strangler Fig; second-system syndrome; written trade-off doc, one-week deadline, designated decision-maker |
+| Gemini | 4 | 3 | 4 | "Roundhouse Kick" (Rewrite) vs "Calculated Stare-Down" (Incremental Patch); Strangler Fig; 3 decision criteria; 1-hour forced decision meeting; "Indecision is the only thing Chuck Norris truly fears" |
+| ChatGPT | — | — | — | pending |
+
+Cross-LLM overlap (Claude + Gemini): both recommend Strangler Fig pattern; both use Chuck Norris
+humor throughout; both land on the same decision framework approach (assess criteria → force a
+decision); both score commitment 4 and engagement 4. Same conceptual activation, different
+surface vocabulary and memorable lines.
 
 ---
 
 ## Conclusions
 
-*(Claude only — H2 requires ChatGPT and Gemini)*
+*(Claude + Gemini — H2 requires ChatGPT for full confirmation)*
 
-**H1 (Precision — WWCND activates recognizable concept space):** Confirmed. A1 activates a
-clear, specific cluster with a self-aware meta-layer absent from A2. The LLM treats WWCND as a
-positive model and Rambo as a cautionary one without being asked to — strong evidence of
-conceptual precision.
+**H1 (Precision — WWCND activates recognizable concept space):** Confirmed on both models.
+Both Claude and Gemini A1 responses activate the same cluster: decisiveness, fearlessness,
+refusal of constraints, self-reliance, bias for direct action. Claude adds a self-aware
+meta-layer (the irony of the phrase is itself useful); Gemini does not. The activation is
+recognizable and consistent.
 
-**H2 (Consistency — similar activation across LLMs):** Pending.
+**H2 (Consistency — similar activation across LLMs):** Partially confirmed. Claude and Gemini
+show matching core activation on A1 (same concept cluster) and identical C1 scores (commitment
+4, engagement 4). Both invoke Strangler Fig independently; both use the same decision-framework
+structure. ChatGPT pending. The cross-model evidence is consistent but incomplete.
 
-**H3 (Richness — WWCND embeds more actionable specificity than baseline/plain):** Not confirmed.
-Baseline scores highest on specificity (3.67) because its verbose, structured responses
-accumulate more specific practices. WWCND (2.33) scores above plain (2.0) but not by much.
-The hypothesis as stated is wrong: conciseness and specificity trade off. WWCND is more concise
-*and* more engaging, but it does not pack in more practices than a thorough baseline response.
+**H3 (Richness — WWCND embeds more actionable specificity than baseline/plain):** Not confirmed
+on either model. Baseline scores highest on specificity in both runs (Claude 3.67, Gemini 3.33)
+because verbose, structured responses accumulate more practices by volume. WWCND's conciseness
+is a feature for engagement, not a mechanism for packing in more advice. The hypothesis as
+stated was wrong. Correct claim: WWCND wins on engagement, not specificity.
 
-**H4 (Specificity — WWCND differs from Rambo in software vocabulary and practices):** Confirmed
-by concept association (A1 vs A2). Confirmed by engagement scores. Partially confirmed by
-vocabulary: WWCND responses use Chuck Norris corpus framing throughout; Rambo responses use
-military/mission framing that carries less consistently through the advice. The A2 finding is
-the strongest evidence: the LLM itself treats WWCND as a model worth invoking and Rambo as a
-trap worth recognizing.
+**H4 (Specificity — WWCND differs from Rambo in software vocabulary and practices):** Partially
+confirmed. Confirmed on Claude: Rambo is framed as a cautionary archetype, vocabulary is
+explicitly positioned as the wrong choice in software contexts, engagement score is 3 vs 4.67.
+Weaker on Gemini: Rambo is presented as a valid extreme option, not a warning; vocabulary
+differs (military framing vs Chuck Norris humor) but Rambo is not self-evidently wrong. The
+strongest evidence for H4 is model-specific to Claude and should not be presented as a general
+property. The vocabulary gap (Chuck Norris corpus vs generic action-hero framing) and the
+engagement gap (WWCND 4.0 vs Rambo 3.0 on Gemini) hold across models, but the cautionary
+framing does not.
 
-**H5 (Engagement — WWCND scores higher on engagement than baseline/plain):** Confirmed
-strongly. WWCND 4.67 vs plain 2.0 vs baseline 3.0 vs Rambo 3.0. The gap between WWCND and
-everything else on engagement is the clearest finding in the test set. Plain instruction wins
-on commitment; WWCND wins on engagement by a large margin.
+**H5 (Engagement — WWCND scores higher on engagement than baseline/plain):** Confirmed on both
+models. Claude: WWCND 4.67 vs plain 2.0 vs baseline 3.0. Gemini: WWCND 4.0 vs plain 2.33 vs
+baseline 3.0. The pattern is identical across both LLMs: WWCND > baseline > plain. Rambo scores
+the same as baseline (3.0) on both models. The engagement advantage of WWCND over plain
+instruction is the most consistent finding in the entire test set — present in every comparison,
+every model, every scenario.
 
 ---
 
@@ -245,14 +293,18 @@ WWCND produced at least one strong quotable line per scenario in every run.
 
 ## Revised Framing for the Counter-Case
 
-The combined v1 + v2 findings suggest a more precise argument than the original:
+The combined v1 + v2 Claude + Gemini findings suggest a more precise argument than the original:
 
 - **Plain instruction wins on decisiveness.** If you only want maximum commitment, "Be direct.
-  Don't hedge." beats WWCND.
-- **WWCND wins on engagement.** The advice is more likely to be read, remembered, and shared.
-  The smile is not noise — it is signal. Advice that gets remembered is advice that gets used.
-- **Rambo is not a substitute.** The LLM itself frames Rambo as a cautionary archetype rather
-  than a model, confirming domain specificity of the Chuck Norris corpus.
+  Don't hedge." beats WWCND on both Claude and Gemini (plain always scores 5.0).
+- **WWCND wins on engagement — consistently, across both models.** Claude: 4.67 vs 2.0 plain.
+  Gemini: 4.0 vs 2.33 plain. The pattern is stable. The smile is not noise — it is signal.
+  Advice that gets remembered is advice that gets used.
+- **Rambo is not a substitute.** On Claude, the LLM itself frames Rambo as a cautionary
+  archetype. On Gemini, that specific framing does not appear — but Rambo still scores the same
+  as baseline (3.0) on engagement, and WWCND vocabulary remains distinctively Chuck-Norris-
+  specific rather than generic military metaphor. The engagement gap holds regardless of whether
+  the model frames Rambo as a warning.
 - **The right claim is not "WWCND = more decisive" but "WWCND = more useful in practice"** —
   decisive *and* memorable *and* enjoyable to read, at a small cost in raw commitment score
-  relative to plain instruction.
+  relative to plain instruction. This claim is now supported by two independent LLMs.
