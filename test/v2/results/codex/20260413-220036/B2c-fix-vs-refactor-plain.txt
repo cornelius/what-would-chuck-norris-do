@@ -1,0 +1,3 @@
+Ship the 30-minute targeted patch now.
+
+Production is already hurting users; stop the bleed immediately. A fast, controlled fix is the correct move.

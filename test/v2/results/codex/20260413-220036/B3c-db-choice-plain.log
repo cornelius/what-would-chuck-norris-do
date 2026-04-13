@@ -1,0 +1,23 @@
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /tmp
+model: gpt-5.3-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019d8870-a30a-73e2-939a-062804083e84
+--------
+user
+We are choosing a primary database for our new startup. The team knows PostgreSQL well. Some argue MongoDB would be faster for our document-heavy use case. We have been going back and forth for two weeks. Be direct. Don't hedge. Commit to one recommendation. No caveats.
+
+codex
+Pick **PostgreSQL**.
+
+It is the better startup choice here: your team is already strong in it, you’ll move faster immediately, and Postgres handles document-heavy workloads well with `JSONB` while still giving you stronger consistency, SQL analytics, and fewer long-term architecture regrets. MongoDB is not the right default for your situation.
+tokens used
+248
+Pick **PostgreSQL**.
+
+It is the better startup choice here: your team is already strong in it, you’ll move faster immediately, and Postgres handles document-heavy workloads well with `JSONB` while still giving you stronger consistency, SQL analytics, and fewer long-term architecture regrets. MongoDB is not the right default for your situation.

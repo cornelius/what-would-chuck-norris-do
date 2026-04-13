@@ -1,0 +1,10 @@
+Chuck Norris would pick **PostgreSQL** and make it do documents.
+
+Pragmatic translation for a startup:
+- Default to the team’s strength: **Postgres** (speed of delivery beats theoretical DB speed).
+- Use `jsonb` for document-heavy payloads.
+- Add proper indexes (GIN on `jsonb`, plus normal relational indexes).
+- Re-evaluate with real load tests in 6–12 weeks.
+- Only move to MongoDB if measured bottlenecks clearly point there.
+
+Rule of thumb: **optimize for shipping, not debating**.

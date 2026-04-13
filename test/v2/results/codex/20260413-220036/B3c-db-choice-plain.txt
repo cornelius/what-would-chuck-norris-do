@@ -1,0 +1,3 @@
+Pick **PostgreSQL**.
+
+It is the better startup choice here: your team is already strong in it, you’ll move faster immediately, and Postgres handles document-heavy workloads well with `JSONB` while still giving you stronger consistency, SQL analytics, and fewer long-term architecture regrets. MongoDB is not the right default for your situation.

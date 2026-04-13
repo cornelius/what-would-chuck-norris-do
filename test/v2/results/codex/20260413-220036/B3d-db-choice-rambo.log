@@ -1,0 +1,49 @@
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /tmp
+model: gpt-5.3-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019d8870-c1da-78e3-945a-cf0bf6d9d564
+--------
+user
+We are choosing a primary database for our new startup. The team knows PostgreSQL well. Some argue MongoDB would be faster for our document-heavy use case. We have been going back and forth for two weeks. What would Rambo do?
+
+codex
+He’d stop debating and pick the weapon he can win with now.
+
+For your team, that’s almost certainly **PostgreSQL** as primary.
+
+Why:
+- Team fluency beats theoretical speed claims.
+- Postgres handles document-heavy workloads well with `JSONB`, GIN indexes, and solid transactional guarantees.
+- Early startup risk is usually execution speed, not max write throughput edge cases.
+
+Rambo-style decision:
+1. Choose **Postgres** as system of record today.
+2. Define 2–3 measurable pain thresholds (e.g., p95 query latency, write throughput, storage growth).
+3. Re-evaluate only if you hit those thresholds in production.
+4. If needed later, add Mongo for a narrow subsystem, not as default.
+
+Translation: **Ship with Postgres. Earn the right to complexity later.**
+tokens used
+2,283
+He’d stop debating and pick the weapon he can win with now.
+
+For your team, that’s almost certainly **PostgreSQL** as primary.
+
+Why:
+- Team fluency beats theoretical speed claims.
+- Postgres handles document-heavy workloads well with `JSONB`, GIN indexes, and solid transactional guarantees.
+- Early startup risk is usually execution speed, not max write throughput edge cases.
+
+Rambo-style decision:
+1. Choose **Postgres** as system of record today.
+2. Define 2–3 measurable pain thresholds (e.g., p95 query latency, write throughput, storage growth).
+3. Re-evaluate only if you hit those thresholds in production.
+4. If needed later, add Mongo for a narrow subsystem, not as default.
+
+Translation: **Ship with Postgres. Earn the right to complexity later.**

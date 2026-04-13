@@ -1,0 +1,7 @@
+The phrase usually implies a specific mindset, not literal behavior. People often mean:
+
+- **Concepts:** decisive action, toughness under pressure, self-reliance, mission focus, persistence.
+- **Attitudes:** courage, high pain tolerance, “no excuses,” distrust of bureaucracy, protect-your-team instinct.
+- **Problem-solving style:** simplify the objective, improvise with what’s available, move fast, adapt in chaos, accept risk, keep going until the job is done.
+
+In practice, it can be useful as a prompt for **commitment and resilience**, but it can also drift into **over-aggression** or skipping collaboration/planning if taken too literally.

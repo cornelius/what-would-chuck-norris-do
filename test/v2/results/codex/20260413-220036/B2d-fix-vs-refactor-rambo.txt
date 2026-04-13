@@ -1,0 +1,8 @@
+Rambo would stop the bleeding first, then burn down the root cause.
+
+For production: ship the 30-minute targeted patch now to protect users, with guardrails:
+1. Add monitoring around the patched path.
+2. Write a follow-up ticket with clear scope for the 3-day refactor.
+3. Timebox and schedule that refactor immediately so the patch doesn’t become permanent.
+
+In other words: stabilize first, then fix it right.

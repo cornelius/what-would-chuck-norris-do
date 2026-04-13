@@ -1,0 +1,14 @@
+Do both, in sequence:
+
+1. Ship the 30-minute targeted patch now to stop active user harm.
+2. Immediately open a scheduled follow-up for the 3-day refactor, with an owner and deadline.
+
+Use this rule: in production incidents, stabilize first, then fix root cause.  
+Only skip the quick patch if it materially increases risk (data corruption, security, or makes refactor much harder).
+
+Minimum guardrails for the patch:
+- Add a regression test for the symptom.
+- Add logging/metrics to confirm impact drops from ~5%.
+- Scope the patch narrowly and feature-flag/rollback if possible.
+
+If you want, I can help you decide whether your specific patch is “safe enough” to ship first.

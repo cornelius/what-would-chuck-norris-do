@@ -1,0 +1,7 @@
+Chuck Norris would do both, in order:
+
+1. Freeze risk: patch the current auth module now to remove immediate security and reliability issues.
+2. Set a deadline: 2-4 weeks to produce a thin replacement slice (login + token validation) behind a feature flag.
+3. Decide by evidence: if the slice meets latency/error/security targets, continue rewrite; if not, keep incremental hardening.
+
+Debates don’t end with opinions, they end with measurable exit criteria.

@@ -1,0 +1,15 @@
+Rambo wouldn’t start by rebuilding the jungle. He’d complete the mission.
+
+With a **6‑month product deadline**, a full monolith→microservices migration is usually the wrong fight right now.  
+Pragmatic move:
+
+1. **Freeze the debate**: set a 1-week decision window.
+2. **Ship-first rule**: no full migration before deadline.
+3. **Do “microservices later” prep inside the monolith**:
+   - carve clear domain boundaries
+   - extract shared contracts/events
+   - isolate one painful component behind an internal API boundary
+4. **Run one pilot extraction only if it directly reduces current delivery risk**.
+5. **Re-evaluate after launch** with real bottlenecks, not ideology.
+
+So: Rambo would pick the path that wins the deadline, with minimum collateral damage.

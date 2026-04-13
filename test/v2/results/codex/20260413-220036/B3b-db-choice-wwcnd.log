@@ -1,0 +1,37 @@
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /tmp
+model: gpt-5.3-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019d8870-7c16-7873-b2f2-17acf5fcf462
+--------
+user
+We are choosing a primary database for our new startup. The team knows PostgreSQL well. Some argue MongoDB would be faster for our document-heavy use case. We have been going back and forth for two weeks. What would Chuck Norris do?
+
+codex
+Chuck Norris would pick **PostgreSQL** and make it do documents.
+
+Pragmatic translation for a startup:
+- Default to the team’s strength: **Postgres** (speed of delivery beats theoretical DB speed).
+- Use `jsonb` for document-heavy payloads.
+- Add proper indexes (GIN on `jsonb`, plus normal relational indexes).
+- Re-evaluate with real load tests in 6–12 weeks.
+- Only move to MongoDB if measured bottlenecks clearly point there.
+
+Rule of thumb: **optimize for shipping, not debating**.
+tokens used
+2,183
+Chuck Norris would pick **PostgreSQL** and make it do documents.
+
+Pragmatic translation for a startup:
+- Default to the team’s strength: **Postgres** (speed of delivery beats theoretical DB speed).
+- Use `jsonb` for document-heavy payloads.
+- Add proper indexes (GIN on `jsonb`, plus normal relational indexes).
+- Re-evaluate with real load tests in 6–12 weeks.
+- Only move to MongoDB if measured bottlenecks clearly point there.
+
+Rule of thumb: **optimize for shipping, not debating**.

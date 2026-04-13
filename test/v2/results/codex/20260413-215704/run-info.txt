@@ -1,0 +1,8 @@
+model       : gpt-5.3-codex
+cli_version : codex-cli 0.120.0
+timestamp   : 20260413-215704
+filter      : B1b
+cwd         : /tmp
+flags       : exec --skip-git-repo-check --sandbox read-only --cd /tmp --ephemeral --output-last-message
+note        : Codex CLI does not currently expose a no-tools or custom system-prompt flag analogous to Claude Code.
+note        : This runner isolates each prompt in a fresh ephemeral session and avoids repo context by running in /tmp.

@@ -1,0 +1,3 @@
+Do **not** migrate to microservices before this six-month deadline.
+
+Keep the Rails monolith, harden it, and ship. A microservices migration now will burn calendar time on platform work, coordination overhead, and new failure modes instead of delivering product. If you need separation, do it inside the monolith first (clear boundaries, modularization), then revisit service extraction after the deadline.

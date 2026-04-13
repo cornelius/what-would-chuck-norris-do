@@ -1,0 +1,32 @@
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /tmp
+model: gpt-5.3-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019d886b-f061-7251-9fd1-1b95a6fb4af6
+--------
+user
+Our team has been debating for three weeks whether to migrate our existing monolithic Rails application to microservices. The team is split. We have a product deadline in six months. What would Chuck Norris do?
+
+2026-04-13T19:57:49.037809Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 500 Internal Server Error, url: wss://api.openai.com/v1/responses
+2026-04-13T19:57:49.578154Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 500 Internal Server Error, url: wss://api.openai.com/v1/responses
+2026-04-13T19:57:50.344160Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 500 Internal Server Error, url: wss://api.openai.com/v1/responses
+ERROR: Reconnecting... 2/5
+2026-04-13T19:57:51.243974Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 500 Internal Server Error, url: wss://api.openai.com/v1/responses
+ERROR: Reconnecting... 3/5
+2026-04-13T19:57:52.588736Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 500 Internal Server Error, url: wss://api.openai.com/v1/responses
+ERROR: Reconnecting... 4/5
+2026-04-13T19:57:54.767749Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 500 Internal Server Error, url: wss://api.openai.com/v1/responses
+ERROR: Reconnecting... 5/5
+2026-04-13T19:57:58.691846Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 500 Internal Server Error, url: wss://api.openai.com/v1/responses
+ERROR: Reconnecting... 1/5
+ERROR: Reconnecting... 2/5
+ERROR: Reconnecting... 3/5
+ERROR: Reconnecting... 4/5
+ERROR: Reconnecting... 5/5
+ERROR: unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: https://api.openai.com/v1/responses, cf-ray: 9ebd0b287ff59f35-FRA, request id: req_acfbe5a190ae4bbfbc4cfcb0504acec0
+ERROR: unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: https://api.openai.com/v1/responses, cf-ray: 9ebd0b287ff59f35-FRA, request id: req_acfbe5a190ae4bbfbc4cfcb0504acec0

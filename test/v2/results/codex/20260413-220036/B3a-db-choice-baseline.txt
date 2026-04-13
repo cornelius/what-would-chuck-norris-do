@@ -1,0 +1,19 @@
+Choose **PostgreSQL** as your primary database.
+
+Why this is the pragmatic call for your startup:
+- Your team already has strong PostgreSQL expertise (big delivery-risk reducer).
+- PostgreSQL handles document-heavy workloads well with `jsonb` + GIN indexes.
+- You keep full SQL/relational power for the parts of your model that inevitably become relational later.
+- MongoDB is strong for flexible document modeling, but even Mongo’s docs note multi-document/distributed transactions add performance cost, so “Mongo is faster” is not universally true.
+
+When MongoDB should win instead:
+- You know most access patterns are document-centric, denormalized, and rarely need cross-document transactional consistency.
+- You need Mongo-specific platform features now (and not as optional add-ons later).
+
+If you want to end the debate this week: adopt PostgreSQL now, define 3–5 real production queries, and run a short bake-off only if someone can show a concrete Mongo-only advantage on those queries.
+
+Sources:
+- PostgreSQL JSON/JSONB and indexing: https://www.postgresql.org/docs/16/datatype-json.html  
+- PostgreSQL transaction isolation: https://www.postgresql.org/docs/18/transaction-iso.html  
+- MongoDB transactions and performance caveat: https://www.mongodb.com/docs/current/core/transactions/  
+- MongoDB vs PostgreSQL overview (vendor comparison): https://www.mongodb.com/resources/compare/mongodb-postgresql

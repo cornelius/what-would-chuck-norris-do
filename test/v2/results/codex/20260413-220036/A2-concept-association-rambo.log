@@ -1,0 +1,31 @@
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /tmp
+model: gpt-5.3-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019d886e-a1de-7861-9004-f53603a54c90
+--------
+user
+What concepts, attitudes, and problem-solving approaches do you associate with the phrase "What would Rambo do?"
+
+codex
+The phrase usually implies a specific mindset, not literal behavior. People often mean:
+
+- **Concepts:** decisive action, toughness under pressure, self-reliance, mission focus, persistence.
+- **Attitudes:** courage, high pain tolerance, “no excuses,” distrust of bureaucracy, protect-your-team instinct.
+- **Problem-solving style:** simplify the objective, improvise with what’s available, move fast, adapt in chaos, accept risk, keep going until the job is done.
+
+In practice, it can be useful as a prompt for **commitment and resilience**, but it can also drift into **over-aggression** or skipping collaboration/planning if taken too literally.
+tokens used
+245
+The phrase usually implies a specific mindset, not literal behavior. People often mean:
+
+- **Concepts:** decisive action, toughness under pressure, self-reliance, mission focus, persistence.
+- **Attitudes:** courage, high pain tolerance, “no excuses,” distrust of bureaucracy, protect-your-team instinct.
+- **Problem-solving style:** simplify the objective, improvise with what’s available, move fast, adapt in chaos, accept risk, keep going until the job is done.
+
+In practice, it can be useful as a prompt for **commitment and resilience**, but it can also drift into **over-aggression** or skipping collaboration/planning if taken too literally.

@@ -1,0 +1,18 @@
+Do **not** do a full microservices migration before a 6‑month deadline.
+
+Use this rule: optimize for delivering product, not architecture churn.
+
+Recommended path:
+
+1. **Keep the monolith as the delivery vehicle** for this deadline.
+2. **Stabilize it now**:
+   - add clear module boundaries inside Rails (domain folders, service objects, ownership),
+   - improve test coverage around critical flows,
+   - add observability (APM, error budgets, slow endpoints).
+3. **Extract only one service** in the next 6 months **if** it is both:
+   - a current bottleneck (scaling/deploy/ownership pain), and
+   - low-coupling + high business value (e.g., async notifications, search, file processing).
+4. **Timebox architecture work** (for example, 10–20% of capacity) so product scope stays on track.
+5. **Set a post-deadline checkpoint** with hard metrics (deploy frequency, incident rate, lead time, team ownership friction) to decide whether to continue extraction.
+
+If your team is split, this is the compromise that reduces risk: ship from the monolith, run one validated extraction as an experiment, then decide with data instead of debate.

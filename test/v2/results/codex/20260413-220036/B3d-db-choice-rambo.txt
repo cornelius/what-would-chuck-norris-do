@@ -1,0 +1,16 @@
+He’d stop debating and pick the weapon he can win with now.
+
+For your team, that’s almost certainly **PostgreSQL** as primary.
+
+Why:
+- Team fluency beats theoretical speed claims.
+- Postgres handles document-heavy workloads well with `JSONB`, GIN indexes, and solid transactional guarantees.
+- Early startup risk is usually execution speed, not max write throughput edge cases.
+
+Rambo-style decision:
+1. Choose **Postgres** as system of record today.
+2. Define 2–3 measurable pain thresholds (e.g., p95 query latency, write throughput, storage growth).
+3. Re-evaluate only if you hit those thresholds in production.
+4. If needed later, add Mongo for a narrow subsystem, not as default.
+
+Translation: **Ship with Postgres. Earn the right to complexity later.**

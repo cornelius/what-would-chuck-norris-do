@@ -1,0 +1,6 @@
+Chuck Norris ships the 30-minute patch **now** to stop user pain, then roundhouse-kicks a ticket onto the sprint for the 3-day refactor with tests.
+
+Real answer: do both, in that order.  
+1. Hotfix symptom immediately (5% in prod is real impact).  
+2. Add monitoring + rollback safety.  
+3. Follow with the proper refactor before this class of bug returns.

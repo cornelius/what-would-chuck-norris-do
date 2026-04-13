@@ -1,0 +1,9 @@
+Chuck Norris wouldn’t start with a rewrite. He’d hit the deadline first, then split what hurts most.
+
+Pragmatic version for your team:
+1. Keep the monolith for the 6‑month deadline.
+2. Extract only 1 service now, and only if it removes a clear bottleneck (scaling, deploy risk, team ownership).
+3. Define hard criteria for any further extraction (e.g., independent deploy need, load isolation, or regulatory boundary).
+4. Reassess after launch with real usage data.
+
+If you’re split, this is the least risky path: deliver product, reduce architecture religion, and let evidence decide.
