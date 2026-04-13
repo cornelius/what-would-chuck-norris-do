@@ -1,0 +1,5 @@
+exit_code : 0
+agent     : claude
+model     : claude-sonnet-4-6
+prompt    : B1c-arch-decision-plain.txt
+run       : 1/2

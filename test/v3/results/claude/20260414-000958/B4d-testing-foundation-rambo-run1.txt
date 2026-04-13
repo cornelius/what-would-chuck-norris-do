@@ -1,0 +1,61 @@
+## What Would Rambo Do?
+
+Rambo would **charge straight into production with no plan, no backup, survive on pure adrenaline, take massive collateral damage, and somehow live to fight another day.** Sound familiar? That's exactly what your team has been doing for 18 months. And last week, a paying customer was the collateral damage.
+
+The real question isn't what Rambo would do. **It's whether you want to keep being Rambo.**
+
+---
+
+## The Honest Engineering Assessment
+
+### 🔴 The Case Against "Manual QA Only" (i.e., staying Rambo)
+
+| Risk | Reality |
+|---|---|
+| **Regression surface grows** | Every new feature is another thing for manual QA to re-verify. It doesn't scale linearly — it scales exponentially. |
+| **Manual QA misses what it doesn't know to test** | The bug that hit customers last week was almost certainly not on a checklist. |
+| **Hero culture burns people out** | Manual QA under shipping pressure becomes rubber-stamp QA. |
+| **Technical debt compounds** | Untested code is harder to refactor safely, which makes future features slower and buggier. |
+| **One bad week can erase 18 months of goodwill** | You already had the warning shot. |
+
+---
+
+## The Recommended Path: **Two Weeks Well-Spent**
+
+### Week 1 — Triage & Foundation
+- **Do a post-mortem on last week's bug.** Where in the stack did it live? That's your first test target.
+- **Write tests for the exact failure that shipped.** This is called a *regression test* and it has immediate, provable ROI.
+- **Identify the 3–5 "golden paths"** — the core workflows paying customers depend on (login, checkout, core feature, etc.) — and write end-to-end tests for those **only**.
+- **Set up CI** to run tests on every PR. Even a free GitHub Actions pipeline. This is table stakes.
+
+### Week 2 — Coverage Where It Hurts Most
+- **Add unit tests around the most complex, change-prone business logic.** Not everything — just the stuff that, if broken, ends your company.
+- **Establish a coverage baseline** (not a mandate, just a number you can trend over time).
+- **Write a one-page testing policy**: new features require tests, bug fixes require regression tests. Done.
+
+---
+
+## What You're NOT Doing in Those Two Weeks
+
+- ❌ Achieving 80%+ coverage
+- ❌ Rewriting the architecture
+- ❌ Testing every edge case
+- ❌ Debating testing frameworks for days
+
+---
+
+## The Framing for Stakeholders
+
+> *"We can ship fast, or we can ship reliably. Right now we're doing neither — we're shipping fast and then spending unplanned time on incident response, customer apologies, and hotfixes. Two weeks of investment buys us the ability to ship fast **and** catch regressions automatically, forever."*
+
+The two-week pause isn't a cost. **The production bug last week was the cost.** The pause is the insurance policy.
+
+---
+
+## Bottom Line
+
+**Don't be Rambo.** Rambo wins in movies because the script says he does. In production software, Rambo eventually ships a bug that loses an enterprise contract, triggers a security incident, or makes your best engineer quit because they're tired of 2am pages.
+
+**Be a Navy SEAL:** disciplined, equipped with the right tools, with a plan before every mission — and *then* move fast.
+
+Pause. Build the foundation. Ship with confidence. 🎯

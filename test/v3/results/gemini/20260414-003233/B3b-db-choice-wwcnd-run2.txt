@@ -1,0 +1,18 @@
+If Chuck Norris were choosing the database for your startup, the decision would have been made two weeks ago, and it would look something like this:
+
+*   **Chuck Norris doesn't choose a database.** He stares at a text file until it structures the data itself out of pure fear.
+*   **When Chuck Norris uses PostgreSQL**, he doesn't need the `VACUUM` command. The dead tuples simply cease to exist when he enters the room.
+*   **Some say MongoDB is web scale.** Chuck Norris is the scale. He once dropped a MongoDB cluster by roundhouse kicking the shards back together.
+*   **Chuck Norris doesn't do NoSQL.** He does *YesSQL*. He tells the database what schema to use, and it complies.
+
+**But seriously, if Chuck Norris were your CTO right now...**
+
+He would probably tell you to stop bike-shedding and use **PostgreSQL**.
+
+Here is why (in slightly less martial-arts terms):
+
+1.  **The "We know it well" advantage is a superpower.** The best tool for an early-stage startup is almost always the one the team already knows how to use, operate, scale, and debug. Speed of execution beats theoretical performance gains every time.
+2.  **Postgres handles JSON beautifully.** If you have a document-heavy use case, PostgreSQL's `JSONB` data type is incredibly powerful, fast, and supports indexing (GIN/GiST). You can treat Postgres like a document store when you need to, but you still have the safety net of ACID compliance and relational integrity when your business logic inevitably gets more complex.
+3.  **Two weeks is too long to debate.** Startups die from indecision, not from choosing Postgres over Mongo.
+
+Chuck Norris would `git commit -m "Using Postgres"`, roundhouse kick the debate to the curb, and start shipping features.

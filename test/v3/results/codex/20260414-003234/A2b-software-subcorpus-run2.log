@@ -1,0 +1,93 @@
+exit_code : 0
+agent     : codex
+model     : gpt-5.3-codex
+prompt    : A2b-software-subcorpus.txt
+run       : 2/2
+---
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /tmp
+model: gpt-5.3-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019d88ff-ca65-7381-974b-42a9d34791ab
+--------
+user
+Describe Chuck Norris facts that specifically reference software engineering, programming, testing, debugging, or production systems. Give concrete examples. What recurring themes appear in these software-specific facts? How does the humor format relate to the problem-solving attitude the subcorpus encodes? Where does this subcorpus live on the internet, and how widely is it documented?
+
+web search: 
+web search: Chuck Norris facts software engineering programming testing debugging production systems examples
+web search: 
+web search: "Chuck Norris" "programming" "fact"
+web search: 
+web search: site:stackoverflow.com "Chuck Norris" programming
+web search: 
+web search: "geek" "Chuck Norris facts" "programming"
+web search: 
+web search: api.chucknorris.io categories dev jokes
+web search: 
+web search: https://api.chucknorris.io/jokes/categories
+web search: 
+web search: https://api.chucknorris.io/jokes/search?query=debug
+web search: 
+web search: https://api.chucknorris.io/
+web search: 
+web search: 
+web search: 
+web search: "api.chucknorris.io/jokes/search?query=bug"
+web search: 
+web search: "Chuck Norris" "bug" "programming" "fact"
+web search: 
+web search: https://www.databasestar.com/programmer-jokes/
+web search: 
+web search: https://hexdocs.pm/norris/api-reference.html
+web search: 
+web search: 'Something Awful' in https://en.wikipedia.org/wiki/Chuck_Norris_facts
+codex
+Software-specific Chuck Norris facts usually turn hard CS limits into absurd “non-problems.” Concrete examples include jokes about him:
+
+- doing impossible math/computing (e.g., “divide by zero”)
+- having no `Ctrl` key because he is always in control
+- “throwing exceptions” literally
+- declaring arrays with no bounds
+- writing infinite recursion that still returns
+- unit-testing entire apps with one assert
+- never debugging, only “bug killing”
+- making “it works on my machine” universally true
+- skipping bootup straight to desktop / removing disk latency / dominating computers and networks
+
+Recurring themes in this subcorpus:
+
+- Constraint-breaking: undefined behavior, complexity, and limits are treated as optional.
+- Total control: tools, standards, runtime, and even bugs obey the protagonist.
+- Compression of toil: testing, debugging, and ops friction collapse into one decisive action.
+- Anti-fragility fantasy: no flaky environments, no regressions, no incident uncertainty.
+
+How the humor format maps to engineering attitude:
+
+- The formula is usually absolute one-liners (“X doesn’t do Y; Y does X for X”), which mirrors an extreme version of engineering confidence and ownership.
+- Inference from the examples: it encodes a “heroic solver” posture common in dev culture (ship fast, break blockers, be decisive), while parodying it at the same time.
+- It works as catharsis for real pain points: flaky tests, environment drift, debugging grind, and production unpredictability.
+
+Where this software subcorpus lives, and documentation breadth:
+
+- Historical origin/spread: Something Awful-era meme ecosystem and the old `ChuckNorrisFacts.com` archive (reported as ~12k facts).  
+- Current structured home: `api.chucknorris.io` (includes a `dev` category and searchable corpus).
+- Developer-facing docs/ecosystem: official GitHub repo + Swagger/Postman references + language wrappers and API directory listings.
+- Broad meme documentation: Wikipedia + Know Your Meme + long-tail developer joke compilations.
+
+Sources:
+- https://en.wikipedia.org/wiki/Chuck_Norris_facts
+- https://knowyourmeme.com/memes/chuck-norris-facts
+- https://api.chucknorris.io/
+- https://api.chucknorris.io/jokes/categories
+- https://api.chucknorris.io/jokes/search?query=computer
+- https://github.com/chucknorris-io/chuck-api
+- https://hexdocs.pm/norris/api-reference.html
+- https://www.databasestar.com/programmer-jokes/
+Failed to write last message file "v3/results/codex/20260414-003234/A2b-software-subcorpus-run2.txt": No such file or directory (os error 2)
+tokens used
+57,084

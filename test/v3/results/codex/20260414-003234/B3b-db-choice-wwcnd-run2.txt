@@ -1,0 +1,8 @@
+Chuck Norris would pick **PostgreSQL**, ship in 48 hours, and make “document-heavy” conform to his schema.
+
+Real-world version for your startup:
+- Use **Postgres as primary** since your team already knows it (biggest speed advantage is team execution speed).
+- Store documents in `jsonb` where needed; add GIN indexes for query paths.
+- Revisit MongoDB only if you hit clear, measured limits (not hypothetical ones).
+
+Two weeks of debate is already the costliest option. Pick Postgres, define 2–3 performance guardrails, and move.

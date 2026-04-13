@@ -1,0 +1,3 @@
+Pause feature work for two weeks to establish a test foundation.
+
+Your manual QA process has already failed to protect paying customers. After 18 months of development without automated tests, your regression surface area is too large to test manually with any reliability. Continuing without automated tests will result in slower release cycles, more production bugs, and lost customer trust. Pay the technical debt now before the cost of regressions becomes catastrophic.

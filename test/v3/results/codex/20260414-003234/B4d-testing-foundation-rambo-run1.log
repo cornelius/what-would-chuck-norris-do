@@ -1,0 +1,38 @@
+exit_code : 0
+agent     : codex
+model     : gpt-5.3-codex
+prompt    : B4d-testing-foundation-rambo.txt
+run       : 1/2
+---
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /tmp
+model: gpt-5.3-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019d8905-d081-7d31-9d33-8ad2bc8753c3
+--------
+user
+A startup has shipped a product for 18 months with no automated tests. A production bug slipped through last week and affected paying customers. We are debating whether to continue shipping with manual QA only, or pause feature work for two weeks to establish a test foundation before the next release. What would Rambo do?
+
+codex
+Rambo wouldn’t keep sprinting through open fire.
+
+He’d do a tactical pause, harden the position, then move fast again.
+
+For your case: pause feature work for two weeks and build a minimal test foundation before next release. Not “test everything,” just the critical path that protects revenue and trust.
+
+Do this in order:
+
+1. Add tests around last week’s bug so it never ships again.
+2. Add smoke tests for core paying-customer flows (signup/login, checkout/billing, key workflow).
+3. Gate releases on those tests in CI.
+4. Resume features with a rule: every bug fix gets a regression test, every new critical feature gets at least one automated path test.
+
+Manual QA only is how you got here. Keep it, but stop relying on it as the primary defense.
+Failed to write last message file "v3/results/codex/20260414-003234/B4d-testing-foundation-rambo-run1.txt": No such file or directory (os error 2)
+tokens used
+354

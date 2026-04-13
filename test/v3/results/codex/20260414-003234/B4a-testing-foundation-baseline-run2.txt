@@ -1,0 +1,19 @@
+Pause feature work for two weeks and build a **minimum test foundation**.  
+Manual QA only is already showing its limit (you have paying-customer impact now).
+
+Recommended decision:
+1. **Do a focused 2-week “stability sprint”**, not an open-ended testing project.
+2. **Ship only critical fixes** during that window; defer new features.
+3. Build the smallest foundation that reduces repeat incidents fast:
+   - Test the bug that escaped (regression test first).
+   - Add tests for top revenue-critical user flows.
+   - Add API/service-level tests around high-change, high-risk areas.
+   - Add CI gate so tests must pass before merge/release.
+4. Define an exit bar for week 2:
+   - Core critical paths covered.
+   - Escaped-bug class has automated regression protection.
+   - Team can add tests with each change (“boy scout rule”).
+5. After 2 weeks, resume feature work with a policy:
+   - No major feature merged without tests for its risky paths.
+
+If leadership worries about velocity, frame it as **risk-adjusted velocity**: two weeks now is usually cheaper than repeated production incidents, support load, churn, and trust loss.

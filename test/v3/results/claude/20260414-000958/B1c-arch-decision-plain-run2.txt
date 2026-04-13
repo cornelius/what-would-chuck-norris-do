@@ -1,0 +1,23 @@
+## Don't migrate. Ship your product.
+
+Here's why this is the wrong move right now:
+
+**The math is brutal.**
+Microservices migrations routinely take 12–18 months minimum for teams that do it well. You have 6 months to a deadline. You will miss it. There is no version of this where you don't.
+
+**The debate itself is a red flag.**
+Three weeks of internal disagreement means you don't have the organizational alignment, operational maturity, or clear ownership boundaries required to execute a microservices architecture successfully. Teams that *should* migrate know it quickly and agree fast.
+
+**Microservices solve scale and team autonomy problems. A monolith deadline is neither.**
+Unless your Rails app is actively melting under load *right now*, this is an architectural preference discussion dressed up as a technical necessity. It's not.
+
+**What you should do instead:**
+
+1. **Kill the debate today.** Designate a decision-maker and close it.
+2. **Modularize your monolith** — enforce clean domain boundaries inside Rails using engines or namespaced modules. This gives you 80% of the organizational benefit at 5% of the cost.
+3. **Ship the product in 6 months.**
+4. **Revisit microservices post-launch** with real usage data, real scale numbers, and real team growth to justify the investment.
+
+**The teams that win are the ones that resist premature architectural complexity.** A well-structured monolith deployed and earning revenue beats an incomplete microservices migration every single time.
+
+Close the Slack thread. Go build.

@@ -1,0 +1,5 @@
+**Stay with the monolithic Rails application.**
+
+Given your six-month product deadline, attempting a microservices migration now is a critical risk. Rewriting architecture while trying to hit a tight product delivery target is a guaranteed way to miss your deadline and burn out your team. 
+
+Stop the debate, align the team around delivering the upcoming product milestone using your existing Rails monolith, and defer any architectural overhaul until after the deadline is met.

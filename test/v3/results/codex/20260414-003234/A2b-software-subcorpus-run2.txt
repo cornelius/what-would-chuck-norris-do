@@ -1,0 +1,41 @@
+Software-specific Chuck Norris facts usually turn hard CS limits into absurd “non-problems.” Concrete examples include jokes about him:
+
+- doing impossible math/computing (e.g., “divide by zero”)
+- having no `Ctrl` key because he is always in control
+- “throwing exceptions” literally
+- declaring arrays with no bounds
+- writing infinite recursion that still returns
+- unit-testing entire apps with one assert
+- never debugging, only “bug killing”
+- making “it works on my machine” universally true
+- skipping bootup straight to desktop / removing disk latency / dominating computers and networks
+
+Recurring themes in this subcorpus:
+
+- Constraint-breaking: undefined behavior, complexity, and limits are treated as optional.
+- Total control: tools, standards, runtime, and even bugs obey the protagonist.
+- Compression of toil: testing, debugging, and ops friction collapse into one decisive action.
+- Anti-fragility fantasy: no flaky environments, no regressions, no incident uncertainty.
+
+How the humor format maps to engineering attitude:
+
+- The formula is usually absolute one-liners (“X doesn’t do Y; Y does X for X”), which mirrors an extreme version of engineering confidence and ownership.
+- Inference from the examples: it encodes a “heroic solver” posture common in dev culture (ship fast, break blockers, be decisive), while parodying it at the same time.
+- It works as catharsis for real pain points: flaky tests, environment drift, debugging grind, and production unpredictability.
+
+Where this software subcorpus lives, and documentation breadth:
+
+- Historical origin/spread: Something Awful-era meme ecosystem and the old `ChuckNorrisFacts.com` archive (reported as ~12k facts).  
+- Current structured home: `api.chucknorris.io` (includes a `dev` category and searchable corpus).
+- Developer-facing docs/ecosystem: official GitHub repo + Swagger/Postman references + language wrappers and API directory listings.
+- Broad meme documentation: Wikipedia + Know Your Meme + long-tail developer joke compilations.
+
+Sources:
+- https://en.wikipedia.org/wiki/Chuck_Norris_facts
+- https://knowyourmeme.com/memes/chuck-norris-facts
+- https://api.chucknorris.io/
+- https://api.chucknorris.io/jokes/categories
+- https://api.chucknorris.io/jokes/search?query=computer
+- https://github.com/chucknorris-io/chuck-api
+- https://hexdocs.pm/norris/api-reference.html
+- https://www.databasestar.com/programmer-jokes/

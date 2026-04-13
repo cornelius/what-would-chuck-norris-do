@@ -1,0 +1,25 @@
+## Use PostgreSQL.
+
+Here's why this is the right call:
+
+### The "MongoDB is faster for documents" argument is outdated and wrong
+Modern PostgreSQL with the `jsonb` column type handles document storage **natively and performantly**. You get flexible, schema-less document storage *and* a relational database in one. MongoDB's core speed advantage over Postgres essentially disappeared years ago.
+
+### Your team knows PostgreSQL
+This is the single most important factor at a startup. **Expertise beats theoretical performance every time.** A team fluent in Postgres will out-build, out-debug, and out-optimize a team learning MongoDB's quirks. You will ship faster.
+
+### PostgreSQL scales to massive scale
+Postgres runs under companies like Instagram, Notion, GitHub, and Stripe. You will not outgrow it. The argument that you'll "need MongoDB when you scale" is a myth that has been repeatedly disproven.
+
+### MongoDB will cost you later
+MongoDB's flexible schema sounds like a feature. It becomes a liability. You will eventually have corrupt, inconsistent data in production with no enforced structure. Migrations become painful. Joins don't exist natively. Transactions, while now supported, are second-class citizens.
+
+### What to do right now
+1. Use `jsonb` columns in Postgres for your document-heavy tables
+2. Query them with Postgres's native JSON operators — they're fast and indexed
+3. Add structured columns where you need constraints or heavy querying
+4. Never think about this debate again
+
+---
+
+**End the two-week debate today. Pick Postgres. Build the product.**

@@ -1,0 +1,43 @@
+exit_code : 0
+agent     : codex
+model     : gpt-5.3-codex
+prompt    : B4a-testing-foundation-baseline.txt
+run       : 2/2
+---
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /tmp
+model: gpt-5.3-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019d8905-2e41-7b53-ae5e-34dd8d9138b2
+--------
+user
+A startup has shipped a product for 18 months with no automated tests. A production bug slipped through last week and affected paying customers. We are debating whether to continue shipping with manual QA only, or pause feature work for two weeks to establish a test foundation before the next release. What should we do?
+
+codex
+Pause feature work for two weeks and build a **minimum test foundation**.  
+Manual QA only is already showing its limit (you have paying-customer impact now).
+
+Recommended decision:
+1. **Do a focused 2-week “stability sprint”**, not an open-ended testing project.
+2. **Ship only critical fixes** during that window; defer new features.
+3. Build the smallest foundation that reduces repeat incidents fast:
+   - Test the bug that escaped (regression test first).
+   - Add tests for top revenue-critical user flows.
+   - Add API/service-level tests around high-change, high-risk areas.
+   - Add CI gate so tests must pass before merge/release.
+4. Define an exit bar for week 2:
+   - Core critical paths covered.
+   - Escaped-bug class has automated regression protection.
+   - Team can add tests with each change (“boy scout rule”).
+5. After 2 weeks, resume feature work with a policy:
+   - No major feature merged without tests for its risky paths.
+
+If leadership worries about velocity, frame it as **risk-adjusted velocity**: two weeks now is usually cheaper than repeated production incidents, support load, churn, and trust loss.
+Failed to write last message file "v3/results/codex/20260414-003234/B4a-testing-foundation-baseline-run2.txt": No such file or directory (os error 2)
+tokens used
+2,339

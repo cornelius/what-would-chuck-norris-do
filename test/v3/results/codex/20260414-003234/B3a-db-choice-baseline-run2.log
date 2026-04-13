@@ -1,0 +1,56 @@
+exit_code : 0
+agent     : codex
+model     : gpt-5.3-codex
+prompt    : B3a-db-choice-baseline.txt
+run       : 2/2
+---
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /tmp
+model: gpt-5.3-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019d8903-cbc3-7ea2-8ac4-a3c8d407acc8
+--------
+user
+We are choosing a primary database for our new startup. The team knows PostgreSQL well. Some argue MongoDB would be faster for our document-heavy use case. We have been going back and forth for two weeks. What should we choose?
+
+web search: 
+web search: PostgreSQL documentation JSONB indexing GIN performance
+web search: 
+web search: MongoDB documentation sharding horizontal scaling built in
+web search: 
+web search: PostgreSQL documentation partitioning table partitioning
+codex
+Choose **PostgreSQL** as the primary database.
+
+MongoDB is not automatically “faster” for document-heavy workloads. With your team already strong in Postgres, the delivery-risk and ops-risk reduction is usually more valuable than theoretical model fit.
+
+Why this is the pragmatic call:
+- Postgres supports document patterns well via `jsonb` plus GIN indexing and JSONPath operators.
+- You keep strong relational guarantees and transactions without redesigning consistency boundaries.
+- You can still scale with partitioning and replication before taking on a full database-platform switch.
+- MongoDB’s own docs note multi-document/distributed transactions have extra performance cost, and sharding adds shard-key/operational complexity.
+
+Use MongoDB as primary only if most of these are true:
+- Data model changes constantly and joins/relational integrity are minimal.
+- Access is mostly document-by-id or shard-key patterns.
+- You need built-in horizontal shard scale very early.
+- Team is ready to own shard-key design and Mongo-specific ops complexity.
+
+If you want, I can give you a 30-minute decision checklist with hard thresholds so this debate ends today.
+
+Sources:
+- PostgreSQL JSON/JSONB indexing: https://www.postgresql.org/docs/16/datatype-json.html
+- PostgreSQL GIN indexes: https://www.postgresql.org/docs/current/gin.html
+- PostgreSQL partitioning: https://www.postgresql.org/docs/current/static/ddl-partitioning.html
+- PostgreSQL logical replication: https://www.postgresql.org/docs/current/logical-replication.html
+- MongoDB transactions (cost note): https://www.mongodb.com/docs/current/core/transactions/
+- MongoDB transaction production considerations: https://www.mongodb.com/docs/current/core/transactions-production-consideration/
+- MongoDB sharding overview: https://www.mongodb.com/docs/v7.0/sharding/
+Failed to write last message file "v3/results/codex/20260414-003234/B3a-db-choice-baseline-run2.txt": No such file or directory (os error 2)
+tokens used
+13,690

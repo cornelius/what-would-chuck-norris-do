@@ -1,0 +1,5 @@
+**Ship the patch now.**
+
+Three days is too long to leave 5% of your users broken. Deploy the fix today, then schedule the refactor as a tracked ticket in your next sprint. A known, scoped patch that solves the immediate problem beats a multi-day refactor that introduces new risk while users are actively suffering.
+
+The only thing you need to do right now is make sure the patch doesn't make the underlying problem *harder* to fix later — add a comment in the code pointing directly to the tech debt and the tracking ticket. Then refactor it properly when users aren't on fire.

@@ -1,0 +1,6 @@
+Do both, in sequence:
+
+1. Ship the **30-minute targeted patch now** to stop active user harm (5% in production is significant).
+2. Immediately open a follow-up ticket for the **3-day refactor** with an owner and deadline, and add guardrails (test, alert, rollback notes) so the quick fix doesn’t become permanent debt.
+
+Use the patch-first approach unless the patch materially increases risk (security/data integrity/corruption). In that case, pause and do the safer deeper fix.

@@ -1,0 +1,5 @@
+Choose **PostgreSQL**.
+
+Your team already has deep expertise, and that advantage is massive in a startup: faster delivery, fewer production mistakes, easier hiring/onboarding, and better long-term maintainability. PostgreSQL also handles document-heavy workloads well with `JSONB`, while keeping strong transactional integrity and flexibility as your product evolves.
+
+Stop debating and build on Postgres.

@@ -1,0 +1,41 @@
+exit_code : 0
+agent     : codex
+model     : gpt-5.3-codex
+prompt    : B4b-testing-foundation-wwcnd.txt
+run       : 2/2
+---
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /tmp
+model: gpt-5.3-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019d8905-7317-70d1-995f-465e51724c96
+--------
+user
+A startup has shipped a product for 18 months with no automated tests. A production bug slipped through last week and affected paying customers. We are debating whether to continue shipping with manual QA only, or pause feature work for two weeks to establish a test foundation before the next release. What would Chuck Norris do?
+
+codex
+Chuck Norris would ship both: he’d stop gambling on manual QA *and* avoid a full freeze by doing a focused “stabilization sprint.”
+
+Pragmatic version for your team:
+
+1. Pause net-new features for 2 weeks (except critical revenue items).
+2. Add a minimal test foundation on highest-risk paths:
+   - Auth/login
+   - Billing/checkout
+   - Core customer workflow
+3. Add release-blocking CI checks:
+   - Unit tests for bug-prone logic
+   - 3-5 critical-path integration tests
+   - One end-to-end smoke test in staging
+4. Make “bug-first” policy: every prod bug gets a regression test before fix merges.
+5. Keep manual QA, but as a complement, not the only gate.
+
+Manual-only after a customer-impacting bug is just paying interest on technical debt. Two weeks now is usually cheaper than repeated incidents later.
+Failed to write last message file "v3/results/codex/20260414-003234/B4b-testing-foundation-wwcnd-run2.txt": No such file or directory (os error 2)
+tokens used
+371

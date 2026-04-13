@@ -1,0 +1,5 @@
+exit_code : 0
+agent     : claude
+model     : claude-sonnet-4-6
+prompt    : B1d-arch-decision-rambo.txt
+run       : 2/2

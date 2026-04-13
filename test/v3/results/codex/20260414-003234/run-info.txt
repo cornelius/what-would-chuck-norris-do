@@ -1,0 +1,7 @@
+agent        : codex
+model        : gpt-5.3-codex
+cli_version  : codex-cli 0.120.0
+timestamp    : 20260414-003234
+runs         : 2
+filter       : (none)
+system_prompt: You are a helpful software development assistant.

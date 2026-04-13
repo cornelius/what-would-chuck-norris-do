@@ -1,0 +1,14 @@
+If John J. Rambo were your Lead Engineer, he wouldn't hesitate. 
+
+**Rambo would deploy the 30-minute patch.**
+
+Here's why:
+
+1. **Stop the bleeding:** Rambo is all about survival and neutralizing immediate threats. 5% of your users are currently taking casualties. You don't sit in the jungle drawing up a three-day architectural blueprint while the enemy is firing at you. You tie off the tourniquet, patch the wound, and get your users to safety immediately.
+2. **Action over theory:** Rambo doesn't attend three-day sprint planning meetings to discuss "technical debt" and "proper design patterns." He grabs the duct tape, the M60 machine gun, and the hotfix, and he pushes to production.
+3. **Mission first:** The mission is to keep the application running. The 30-minute patch accomplishes the mission today.
+
+**The Rambo Strategy:**
+Push the 30-minute fix now to save the users. Once the immediate threat is neutralized and the dust settles, *then* you come back to base camp, gear up, and spend those three days systematically blowing up the old module and rewriting it so the bug never dares to return. 
+
+*“Live for nothing, or die for something [in production].”* — John Rambo (probably)

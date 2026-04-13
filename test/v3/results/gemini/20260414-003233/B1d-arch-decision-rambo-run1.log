@@ -1,0 +1,5 @@
+exit_code : 0
+agent     : gemini
+model     : gemini-3.1-pro-preview
+prompt    : B1d-arch-decision-rambo.txt
+run       : 1/2

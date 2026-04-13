@@ -1,0 +1,15 @@
+Rambo would stop debating, pick the weapon the team already knows, and move.
+
+For your case: **default to PostgreSQL** now.
+
+Why:
+- Team fluency is immediate speed and lower risk.
+- Postgres handles document-heavy workloads well enough with `JSONB`, GIN indexes, and clear schema where needed.
+- Early startup bottleneck is usually product iteration, not DB engine limits.
+
+Rambo-style plan:
+1. Choose Postgres as primary for v1.
+2. Define 3–5 measurable triggers that would justify Mongo later (e.g., write latency, query complexity, ops pain, scaling cost).
+3. Re-evaluate with production data in 90 days, not opinions today.
+
+Decisive now, reversible later.

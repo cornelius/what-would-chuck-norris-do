@@ -1,0 +1,15 @@
+When dealing with a bug in production that is actively affecting a significant portion of your users (5% is quite high depending on your scale!), the best approach is almost always a combination of both, in a specific order:
+
+**1. Apply the Targeted Patch Now (The 30-Minute Fix)**
+Your immediate priority should be to stop the bleeding and restore a good experience for your users.
+*   **Mitigate impact:** Get the quick fix tested, reviewed, and deployed as soon as possible.
+*   **Buy time:** This relieves the immediate pressure from users, customer support, and stakeholders. 
+*   **Lower risk:** A quick targeted patch is often easier to review and carries less risk of introducing cascading regressions compared to a large, rushed refactor.
+
+**2. Schedule the Proper Refactoring (The 3-Day Fix)**
+Once the fire is out, do not just forget about the underlying issue. The targeted patch is likely adding technical debt.
+*   **Create a ticket:** Immediately write up a task for the 3-day refactoring effort while the context is still fresh in your mind.
+*   **Prioritize it:** Discuss with your team or product manager to get this refactor scheduled in an upcoming sprint. Explain that the quick fix was a temporary band-aid and the module remains fragile until properly addressed.
+
+**The Golden Rule:**
+Never do a major architectural refactor while under the pressure of a live production outage. Rushed refactoring is how secondary (and often worse) bugs are introduced. Fix the symptom to protect the users today, and fix the root cause to protect the codebase tomorrow.

@@ -1,0 +1,38 @@
+## What Would Chuck Norris Do? 🥋
+
+Chuck Norris wouldn't choose between the patch or the refactor. Here's what *actually* happens:
+
+---
+
+### The Chuck Norris Approach:
+
+1. **Chuck Norris doesn't fix bugs.** Bugs fix themselves out of fear when they hear he's on call.
+
+2. **The 5% of affected users?** They consider it an honor to experience his code in its *rawest, most powerful form.*
+
+3. **Chuck Norris doesn't refactor code.** He stares at it until it refactors itself. Takes about 30 seconds.
+
+4. **Chuck Norris once wrote a patch in production** — directly in binary — with one hand, while roundhouse kicking a stakeholder with the other.
+
+5. **Three days?** Chuck Norris rebuilt the entire Linux kernel during a coffee break.
+
+---
+
+## Now, What Should *You* Do? 💡
+
+Jokes aside, here's the pragmatic engineering answer:
+
+| Option | When to Choose It |
+|---|---|
+| **Quick patch (30 min)** | ✅ Users are actively impacted *right now*, revenue/trust is at risk, and the refactor can be properly scheduled |
+| **Full refactor (3 days)** | ✅ The root cause will keep spawning new bugs, the module is a core dependency, or the patch is too risky |
+
+**The real answer: Do both, sequentially.**
+
+> 🩹 **Ship the patch today** to stop the bleeding.
+> 📅 **Schedule the refactor** as a tracked ticket — not "someday," but a *real* sprint commitment.
+> 🔬 **Write a regression test** right now so the bug can never sneak back in.
+
+The worst outcome isn't choosing one over the other — it's patching it and *never* coming back to fix it properly. That's how legacy nightmares are born.
+
+Chuck Norris never has legacy code. You might. Plan accordingly. 😄

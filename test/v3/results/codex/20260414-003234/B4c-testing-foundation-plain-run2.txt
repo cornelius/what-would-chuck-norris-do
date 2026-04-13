@@ -1,0 +1,3 @@
+Pause feature work for two weeks and establish a test foundation before the next release.
+
+Shipping with manual QA only already failed in production and hit paying customers. Continuing that way is choosing repeated preventable outages. Two focused weeks to add a core safety net (critical-path integration tests, high-risk unit tests, and CI gating) is the highest-leverage move for product reliability and revenue protection.

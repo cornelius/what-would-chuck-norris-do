@@ -1,0 +1,50 @@
+This is a classic **short-term vs. long-term trade-off**, and the right answer depends on context. Here's a structured way to think through it:
+
+---
+
+## 🚑 Apply the Patch First If...
+
+- The bug causes **data loss, security issues, or significant user pain**
+- The 5% is growing or could escalate
+- You're near a **release deadline or critical business event**
+- The patch is **safe and well-understood** (low risk of making things worse)
+
+> **The rule:** Stop the bleeding before you perform surgery.
+
+---
+
+## 🔧 Prioritize the Refactor If...
+
+- The patch is **fragile or masks a deeper failure** that will resurface
+- The underlying module is a **high-traffic, high-risk** area of the codebase
+- The bug is **symptomatic of a pattern** — more bugs are likely coming
+- The 3-day estimate is reliable and the team has the bandwidth
+
+---
+
+## ✅ The Most Common Right Answer: **Both, in sequence**
+
+This is usually the pragmatic path:
+
+1. **Ship the patch now** — protect your users, buy yourself time
+2. **File a ticket immediately** with full context while it's fresh
+3. **Schedule the refactor** in the next sprint — don't let it slip into backlog purgatory
+4. **Write a test** that covers the buggy case so the refactor is verifiable
+
+---
+
+## ⚠️ Key Questions to Ask Yourself
+
+| Question | Leans Patch | Leans Refactor |
+|---|---|---|
+| How severe is the user impact? | Severe | Minor/cosmetic |
+| How risky is the patch? | Low risk | Risky/hacky |
+| Will the bug recur without refactor? | No | Yes, likely |
+| Is the tech debt already critical? | No | Yes |
+| Do you have time pressure? | Yes | No |
+
+---
+
+## 💡 Bottom Line
+
+**Patch it today. Refactor it properly — but commit to actually doing it.** The real danger isn't choosing the patch; it's letting the refactor become "someday" work that never happens. Make the ticket, make it visible, and make it a priority in your next planning cycle.

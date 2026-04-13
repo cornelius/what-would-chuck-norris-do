@@ -1,0 +1,3 @@
+Pause feature work for two weeks and establish an automated test foundation. 
+
+You have paying customers, and a production bug has already compromised their trust. Eighteen months of shipping without automated tests means your technical debt is compounding, and manual QA can no longer reliably protect your users. Stop shipping new features until you have a functional automated safety net in place to prevent future regressions.

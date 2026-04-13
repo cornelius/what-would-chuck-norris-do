@@ -1,0 +1,14 @@
+Don’t do a full microservices migration before a six-month product deadline.
+
+What to do instead:
+
+1. Freeze the architecture decision for this release: keep the monolith.
+2. Improve it as a **modular monolith** now:
+- enforce clear domain boundaries
+- separate ownership by module
+- reduce cross-module coupling
+- add API contracts/events internally where future extraction is likely
+3. Extract at most **one** service only if it solves an immediate bottleneck (independent scaling, deployment isolation, or team autonomy), and only with strict scope.
+4. Set a post-release checkpoint (date on calendar) to re-evaluate with data: deploy frequency, lead time, incident rate, scaling pain, team coordination overhead.
+
+Reason: microservices increase delivery overhead (infra, observability, CI/CD, contracts, ops) and usually slow teams in the short term. With six months left, optimize for shipping the product, not a large platform rewrite.

@@ -1,0 +1,5 @@
+Choose **PostgreSQL**.
+
+You already have team expertise, which means faster execution, fewer production mistakes, and better hiring/onboarding leverage. For document-heavy workloads, PostgreSQL with `JSONB` is strong enough while keeping you in a mature, reliable relational system.
+
+Stop debating and build on Postgres.

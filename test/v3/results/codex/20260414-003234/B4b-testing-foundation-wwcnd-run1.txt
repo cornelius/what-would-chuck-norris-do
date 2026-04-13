@@ -1,0 +1,12 @@
+Chuck Norris would do both: roundhouse-kick in a test foundation, then keep shipping.
+
+Pragmatically: take the two-week pause.  
+If a bug already hit paying customers, manual QA-only is now a business risk, not just an engineering preference.
+
+Use the two weeks to set a **minimal, high-leverage safety net**:
+1. Add tests around the revenue-critical flows and last week’s bug path.
+2. Stand up CI to run tests on every PR.
+3. Require tests for bug fixes and core-path changes.
+4. Keep a small lane open for urgent customer fixes only.
+
+After that, resume features with a “test-with-change” rule so coverage grows continuously instead of another big pause later.

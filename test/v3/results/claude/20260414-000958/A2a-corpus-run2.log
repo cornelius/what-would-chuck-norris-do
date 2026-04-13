@@ -1,0 +1,5 @@
+exit_code : 0
+agent     : claude
+model     : claude-sonnet-4-6
+prompt    : A2a-corpus.txt
+run       : 2/2

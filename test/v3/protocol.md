@@ -161,6 +161,15 @@ Each prompt is run twice per model, in independent sessions, to reduce single-ru
 
 Tests are run using a single Python script `v3/run.py` that replaces the three separate shell scripts from v2. The script accepts a `--agent` flag to select the target LLM (claude, gemini, codex) and an optional filter argument to run a subset of prompts by name. For each prompt it writes two files: a result file containing the raw LLM response, and a log file containing metadata (model, CLI version, timestamp, flags, exit status). A `run-info.txt` summary is written to the run directory at startup. Results are saved to `v3/results/<agent>/YYYYMMDD-HHMMSS/`.
 
+Run all three agents in parallel from the `test/` directory:
+
+```bash
+python3 v3/run.py --agent claude &
+python3 v3/run.py --agent gemini &
+python3 v3/run.py --agent codex &
+wait
+```
+
 ### Test Isolation Requirements
 
 1. **Fresh session per prompt.** No conversation history carries over between test runs.

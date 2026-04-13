@@ -1,0 +1,5 @@
+Choose **PostgreSQL**. 
+
+Your team already knows it, which is the most critical factor for a startup's velocity. You will ship faster and spend less time fighting unfamiliar operational hurdles. PostgreSQL's `JSONB` support is exceptionally powerful, highly performant, and fully capable of handling your document-heavy use case natively. 
+
+End the debate today and build with PostgreSQL.

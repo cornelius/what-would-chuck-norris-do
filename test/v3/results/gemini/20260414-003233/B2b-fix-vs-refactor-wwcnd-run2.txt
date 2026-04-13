@@ -1,0 +1,15 @@
+If Chuck Norris were your lead developer, he would roundhouse kick the 30-minute patch into production in 3 seconds to stop the bleeding, and then stare at the underlying module until it refactored itself out of pure fear.
+
+But since you might not have that specific superpower, here is the standard, battle-tested engineering approach:
+
+**Apply the 30-minute patch right now.** 
+
+Here is why:
+* **The Bleeding:** 5% of your user base is a massive number in a production environment. You cannot leave them broken for three days. Your primary duty right now is restoring service and mitigating user pain.
+* **The Refactor:** A 3-day refactor is a significant piece of work. Doing it under the extreme stress of an active production outage is a guaranteed way to introduce new, potentially worse bugs. You will rush it, skip tests, and make mistakes.
+
+**The Strategy:**
+1. **The Tactical Strike (Now):** Write the targeted patch, test it, get it reviewed, and deploy it. Fix the symptom for the users immediately.
+2. **The Strategic Victory (Later):** Once the fire is out and users are happy, immediately create a high-priority ticket in your backlog for the 3-day refactor. Do it properly, with a clear head, proper unit tests, and thorough QA, during normal working hours. 
+
+Fix the leak first, then rebuild the pipes!

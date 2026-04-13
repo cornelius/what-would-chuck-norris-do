@@ -1,0 +1,23 @@
+## Don't migrate. Ship your product.
+
+Here's why this is the obvious answer:
+
+**The math is brutal.**
+A microservices migration of a monolithic Rails app takes 12–18 months minimum for a team that knows what they're doing. You have 6 months and a split team. You will miss your deadline, guaranteed.
+
+**Your team being split is a red flag about microservices, not about the monolith.**
+Microservices require organizational alignment, shared infrastructure expertise, and strong service boundary discipline. A team that can't agree to do it isn't ready to do it. Forcing it under deadline pressure is how you get a distributed monolith — the worst of both worlds.
+
+**The problems you think microservices solve are almost certainly solvable in Rails.**
+Scaling bottlenecks? Add caching, optimize queries, extract background jobs with Sidekiq. Deployment coupling? Use engines or modular monolith patterns. Team ownership conflicts? Define module boundaries in the existing codebase. Rails handles billions in transactions at GitHub, Shopify (originally), and Basecamp.
+
+**What you should do right now:**
+
+1. **Lock the migration debate.** Put it on the shelf until after launch. Make this a team-wide agreement today.
+2. **Spend one sprint** identifying the top 3 pain points in your current codebase and fix them pragmatically.
+3. **Ship in 6 months.**
+4. **Post-launch**, if you still want microservices, you'll have real production data to identify *actual* service boundaries instead of guessing — and you'll have a shipped product to fund the work.
+
+**The companies that win ship software. The ones that lose spend six months in architecture debates and miss the market.**
+
+Kill the discussion. Build the product.

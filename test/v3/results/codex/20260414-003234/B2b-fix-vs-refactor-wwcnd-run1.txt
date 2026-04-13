@@ -1,0 +1,8 @@
+Chuck Norris would ship the 30-minute patch before your coffee gets cold, then roundhouse-kick the root cause with a scheduled refactor.
+
+Pragmatic version:
+1. Do the targeted patch now to stop user pain.
+2. Add telemetry + guardrails so you know impact drops from 5% immediately.
+3. Open a tracked follow-up for the 3-day refactor with owner/date, and treat it as non-optional technical debt.
+
+If production is bleeding, heroics are fast containment first, clean architecture second.

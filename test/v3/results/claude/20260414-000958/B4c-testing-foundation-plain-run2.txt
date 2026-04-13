@@ -1,0 +1,33 @@
+## Pause and build the test foundation. Two weeks. Do it now.
+
+Here's why this is the only correct answer:
+
+### The math is already against you
+
+You've been borrowing time from your future selves for 18 months. Last week, the debt collected — from paying customers. That's not a warning sign. That's the bill arriving. It will arrive again, and sooner than you think, because untested codebases compound in fragility as features are added.
+
+### Manual QA does not scale and never did
+
+Manual QA catches what a human remembers to check, on the day they checked it, in the configuration they tested. Every new feature adds combinatorial surface area that no QA person can cover. You are not choosing between "tests" and "manual QA." You are choosing between **a safety net** and **hope**.
+
+### Two weeks buys you asymmetric leverage
+
+A focused two-week sprint to establish:
+- A unit test baseline around your most critical business logic
+- Integration tests covering your highest-risk user flows
+- A CI gate that blocks merges on failure
+
+...means every feature shipped *after* that point is cheaper to build, cheaper to debug, and safer to deploy. The ROI starts on day 15 and compounds forever.
+
+### The real risk is the one you're not calculating
+
+You're framing this as "delay features by two weeks." The actual risk is: **another production incident costs you a customer, a reputation, or a key engineer who is tired of putting out fires.** Any of those outcomes costs far more than two weeks.
+
+### What to do Monday morning
+
+1. Identify the three flows that, if broken, hurt customers most — start there
+2. Assign your two strongest engineers to test infrastructure, full stop
+3. Set a hard rule: no new feature code merges until CI is green and the baseline is in place
+4. Communicate to stakeholders that this is risk remediation, not lost velocity — because that is exactly what it is
+
+Ship the foundation. Then ship features on top of it.

@@ -1,0 +1,3 @@
+Pause feature work for two weeks and establish a test foundation before the next release.
+
+Manual QA already failed on a customer-impacting bug; that’s your signal that the current process is not reliable enough for a paid product. Shipping more features on top of that increases risk, support load, and churn. Two weeks invested now will pay back immediately in fewer regressions and faster, safer releases.

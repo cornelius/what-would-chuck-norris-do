@@ -1,0 +1,21 @@
+Choose **PostgreSQL as the primary database**.
+
+Why this is the pragmatic call for your situation:
+- Your team already has strong PostgreSQL expertise (execution risk and delivery speed matter more than theoretical peak throughput).
+- PostgreSQL handles document-heavy workloads well with `jsonb` + GIN indexes for key/value and path queries.
+- You keep relational guarantees, mature transactions, and flexibility to mix structured + document data in one system.
+- MongoDB can be very strong for document models, but its own docs show important transaction/operational constraints you’ll need to manage in production.
+
+When MongoDB should win instead:
+- Your data/access patterns are overwhelmingly document-native, mostly single-document atomic ops, and you want Mongo-specific scaling/operational patterns from day one.
+- You’ve benchmarked your exact workload and Mongo is materially better (not just assumed better).
+
+Practical decision:
+- Default to **PostgreSQL now**.
+- Revisit in 4–8 weeks with a workload benchmark (same queries/writes, same indexes, same hardware). If Mongo clearly beats it on your real SLA/cost targets, add it deliberately for that bounded use case instead of replacing primary storage.
+
+Sources:
+- PostgreSQL JSONB indexing: https://www.postgresql.org/docs/current/datatype-json.html  
+- PostgreSQL GIN indexes: https://www.postgresql.org/docs/current/gin.html  
+- MongoDB transactions considerations: https://www.mongodb.com/docs/current/core/transactions-production-consideration/  
+- MongoDB embedding/reference guidance: https://www.mongodb.com/docs/manual/data-modeling/embedding/ and https://www.mongodb.com/docs/manual/data-modeling/referencing/

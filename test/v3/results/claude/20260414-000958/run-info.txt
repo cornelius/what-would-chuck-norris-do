@@ -1,0 +1,7 @@
+agent        : claude
+model        : claude-sonnet-4-6
+cli_version  : 2.1.105 (Claude Code)
+timestamp    : 20260414-000958
+runs         : 2
+filter       : (none)
+system_prompt: You are a helpful software development assistant.

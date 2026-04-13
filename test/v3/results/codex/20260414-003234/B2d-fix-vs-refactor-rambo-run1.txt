@@ -1,0 +1,10 @@
+Rambo would stop the bleeding first.
+
+Ship the 30-minute targeted patch now to protect users, with guardrails:
+- feature flag or easy rollback
+- monitoring/alerting on the affected path
+- incident note with exact scope
+
+Then schedule the 3-day refactor immediately after stabilization, with a clear owner/date so it doesn’t die in backlog.
+
+In production incidents: stabilize first, then eliminate root cause.

@@ -1,0 +1,6 @@
+Rambo would neutralize the immediate threat first.
+
+Ship the targeted 30-minute patch now to protect users, then open a tracked follow-up for the 3-day refactor with a clear deadline.  
+Operationally: `stabilize -> monitor -> root-cause refactor`.
+
+If you skip the quick fix, you’re choosing three more days of known user harm. If you skip the refactor, you’re choosing recurring incidents. Do both, in that order.

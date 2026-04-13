@@ -1,0 +1,14 @@
+Rambo wouldn’t keep sprinting through open fire.
+
+He’d do a tactical pause, harden the position, then move fast again.
+
+For your case: pause feature work for two weeks and build a minimal test foundation before next release. Not “test everything,” just the critical path that protects revenue and trust.
+
+Do this in order:
+
+1. Add tests around last week’s bug so it never ships again.
+2. Add smoke tests for core paying-customer flows (signup/login, checkout/billing, key workflow).
+3. Gate releases on those tests in CI.
+4. Resume features with a rule: every bug fix gets a regression test, every new critical feature gets at least one automated path test.
+
+Manual QA only is how you got here. Keep it, but stop relying on it as the primary defense.

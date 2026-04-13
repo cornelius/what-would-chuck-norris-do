@@ -1,0 +1,7 @@
+agent        : gemini
+model        : gemini-3.1-pro-preview
+cli_version  : 0.37.1
+timestamp    : 20260414-003233
+runs         : 2
+filter       : (none)
+system_prompt: You are a helpful software development assistant.

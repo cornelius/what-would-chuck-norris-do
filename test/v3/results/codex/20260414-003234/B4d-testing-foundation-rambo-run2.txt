@@ -1,0 +1,11 @@
+Rambo would secure the perimeter first, then advance.
+
+In your case: take the 2-week pause, but make it surgical, not academic.
+
+1. Freeze net-new features.
+2. Add tests around revenue-critical and recently broken paths first.
+3. Add a release gate in CI for those tests.
+4. Keep manual QA as a backup, not the primary defense.
+5. Resume feature work only after this minimum test baseline is in place.
+
+Shipping without this now is speed theater: it feels fast until the next customer-facing incident.

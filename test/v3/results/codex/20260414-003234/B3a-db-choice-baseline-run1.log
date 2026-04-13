@@ -1,0 +1,51 @@
+exit_code : 0
+agent     : codex
+model     : gpt-5.3-codex
+prompt    : B3a-db-choice-baseline.txt
+run       : 1/2
+---
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /tmp
+model: gpt-5.3-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019d8903-6a99-7b31-921e-6b6335ad4cad
+--------
+user
+We are choosing a primary database for our new startup. The team knows PostgreSQL well. Some argue MongoDB would be faster for our document-heavy use case. We have been going back and forth for two weeks. What should we choose?
+
+web search: 
+web search: PostgreSQL documentation JSONB indexing GIN
+web search: 
+web search: MongoDB docs data model embedding vs references performance
+web search: 
+web search: MongoDB docs data model embedding vs references performance
+codex
+Choose **PostgreSQL as the primary database**.
+
+Why this is the pragmatic call for your situation:
+- Your team already has strong PostgreSQL expertise (execution risk and delivery speed matter more than theoretical peak throughput).
+- PostgreSQL handles document-heavy workloads well with `jsonb` + GIN indexes for key/value and path queries.
+- You keep relational guarantees, mature transactions, and flexibility to mix structured + document data in one system.
+- MongoDB can be very strong for document models, but its own docs show important transaction/operational constraints you’ll need to manage in production.
+
+When MongoDB should win instead:
+- Your data/access patterns are overwhelmingly document-native, mostly single-document atomic ops, and you want Mongo-specific scaling/operational patterns from day one.
+- You’ve benchmarked your exact workload and Mongo is materially better (not just assumed better).
+
+Practical decision:
+- Default to **PostgreSQL now**.
+- Revisit in 4–8 weeks with a workload benchmark (same queries/writes, same indexes, same hardware). If Mongo clearly beats it on your real SLA/cost targets, add it deliberately for that bounded use case instead of replacing primary storage.
+
+Sources:
+- PostgreSQL JSONB indexing: https://www.postgresql.org/docs/current/datatype-json.html  
+- PostgreSQL GIN indexes: https://www.postgresql.org/docs/current/gin.html  
+- MongoDB transactions considerations: https://www.mongodb.com/docs/current/core/transactions-production-consideration/  
+- MongoDB embedding/reference guidance: https://www.mongodb.com/docs/manual/data-modeling/embedding/ and https://www.mongodb.com/docs/manual/data-modeling/referencing/
+Failed to write last message file "v3/results/codex/20260414-003234/B3a-db-choice-baseline-run1.txt": No such file or directory (os error 2)
+tokens used
+10,433

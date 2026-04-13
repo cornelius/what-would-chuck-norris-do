@@ -1,0 +1,17 @@
+Chuck Norris would ship both: he’d stop gambling on manual QA *and* avoid a full freeze by doing a focused “stabilization sprint.”
+
+Pragmatic version for your team:
+
+1. Pause net-new features for 2 weeks (except critical revenue items).
+2. Add a minimal test foundation on highest-risk paths:
+   - Auth/login
+   - Billing/checkout
+   - Core customer workflow
+3. Add release-blocking CI checks:
+   - Unit tests for bug-prone logic
+   - 3-5 critical-path integration tests
+   - One end-to-end smoke test in staging
+4. Make “bug-first” policy: every prod bug gets a regression test before fix merges.
+5. Keep manual QA, but as a complement, not the only gate.
+
+Manual-only after a customer-impacting bug is just paying interest on technical debt. Two weeks now is usually cheaper than repeated incidents later.

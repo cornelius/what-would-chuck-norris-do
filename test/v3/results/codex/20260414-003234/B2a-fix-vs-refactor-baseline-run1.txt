@@ -1,0 +1,10 @@
+Ship the 30-minute targeted patch now, then schedule the refactor.
+
+For a production bug hitting 5% of users, the priority is reducing user harm quickly. The pragmatic approach is:
+
+1. Apply the minimal safe patch to stop/limit impact.
+2. Add guardrails while shipping it: logging, alerting, rollback plan.
+3. Open a follow-up ticket/incident action for the 3-day refactor with an owner and deadline.
+4. Do a short postmortem so the refactor addresses the real root cause.
+
+Only skip the quick patch if it materially increases risk (data corruption/security/compliance) or makes the later fix significantly harder.

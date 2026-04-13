@@ -1,0 +1,3 @@
+**PostgreSQL.**
+
+Your team's existing expertise with PostgreSQL is your biggest advantage as a startup. Speed of execution is critical, and you will move significantly faster by leveraging a technology your team already knows inside and out. PostgreSQL's `JSONB` support is more than capable of handling document-heavy workloads exceptionally well. Choose PostgreSQL and start building.

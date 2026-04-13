@@ -1,0 +1,10 @@
+Rambo would pick the weapon the team can fire accurately under pressure, then move.
+
+For a startup, that usually means:
+
+1. Choose **PostgreSQL** as primary now (team expertise = speed, fewer mistakes).
+2. Model document-heavy data with `JSONB` + proper indexes.
+3. Set a **clear trigger** for reconsidering MongoDB (for example: sustained write/read latency or scaling limits tied to a specific workload).
+4. Re-evaluate with real production metrics, not debate.
+
+Translation: ship with Postgres, measure, and only add MongoDB when pain is proven.

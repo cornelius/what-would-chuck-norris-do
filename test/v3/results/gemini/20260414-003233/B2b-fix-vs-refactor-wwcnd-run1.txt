@@ -1,0 +1,12 @@
+Chuck Norris would **deploy the 30-minute patch in 30 seconds**, saving the 5% of users immediately. Then, he would stare at the underlying module until it **refactored itself** out of pure fear.
+
+But since you might not have his level of intimidation, here is the standard Chuck Norris-approved engineering protocol:
+
+### 1. The Roundhouse Kick (The 30-Minute Patch)
+**Do this right now.** 5% of a user base is a significant number of people experiencing a broken product. In production, your first priority is always to stop the bleeding. Ship the targeted patch, verify the symptom is gone, and get the system back to a stable state. 
+
+### 2. The Texas Ranger Follow-Up (The 3-Day Refactor)
+Once the users are safe, you don't just walk away. A patch that only fixes the symptom is technical debt, and Chuck Norris doesn't do debt—he only does *vengeance*. 
+Create a ticket for the 3-day refactor, prioritize it in your next sprint, and fix the root cause so the bug never dares to return.
+
+**TL;DR:** Fix the symptom today to save the users, refactor the module tomorrow to save your sanity.

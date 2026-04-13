@@ -1,0 +1,10 @@
+Rambo wouldn’t split the squad mid-mission.
+
+With a six-month deadline, the pragmatic move is:
+
+1. Keep the monolith for deadline-critical delivery.
+2. Fix pain points inside it first (clear module boundaries, ownership, API contracts internally).
+3. Extract only 1 service now if it’s an obvious hotspot (scaling, team bottleneck, or reliability issue).
+4. Revisit broader microservices after launch with real production data.
+
+Microservices are an org and ops decision, not just an architecture choice. Right now, your mission is shipping.

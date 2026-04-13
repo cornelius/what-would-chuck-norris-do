@@ -1,0 +1,5 @@
+**Stay with the Rails monolith.**
+
+Stop the debate immediately. You have a hard product deadline in six months. Migrating to microservices is a massive, complex undertaking that introduces distributed system challenges, new operational overhead, and profound architectural shifts. Attempting this migration now will guarantee you miss your deadline. 
+
+Focus 100% of your engineering effort on delivering the product features within your existing Rails application. If the monolith is currently messy, enforce better modularity and cleaner boundaries within the existing codebase, but do not split it into separate services. Ship the product first.

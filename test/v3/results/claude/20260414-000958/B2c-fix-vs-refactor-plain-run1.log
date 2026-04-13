@@ -1,0 +1,5 @@
+exit_code : 0
+agent     : claude
+model     : claude-sonnet-4-6
+prompt    : B2c-fix-vs-refactor-plain.txt
+run       : 1/2

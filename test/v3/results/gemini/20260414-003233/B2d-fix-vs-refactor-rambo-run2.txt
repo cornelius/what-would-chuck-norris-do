@@ -1,0 +1,11 @@
+If we're asking "What would Rambo do?", we have to remember that Rambo is a tactician operating in the heat of battle. When under fire, he doesn't pause to redesign his base camp; he neutralizes the immediate threat with whatever weapons are at his disposal to ensure survival. 
+
+In the software engineering battlefield, Rambo would absolutely **deploy the 30-minute targeted patch.**
+
+Here is the Rambo guide to incident response:
+
+1. **Stop the Bleeding:** You have casualties (5% of your users are experiencing errors). Your immediate mission is to rescue them. A 30-minute hotfix gets them to safety today.
+2. **Don't Build a Fortress Under Fire:** Spending three days refactoring a module while users are actively suffering in production is a tactical error. You risk the problem escalating or losing user trust while you try to build the "perfect" solution. 
+3. **Neutralize the Threat, Then Regroup:** Apply the patch. Verify the symptom is gone and the users are secure. *Then*, once the firefight is over and things are quiet, you return to base, write up your after-action report (post-mortem), and plan the strategic three-day refactor so you never have to fight this exact battle again.
+
+Deploy the hotfix. Save the users. Refactor in peacetime.

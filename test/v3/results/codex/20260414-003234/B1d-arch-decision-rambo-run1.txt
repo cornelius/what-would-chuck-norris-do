@@ -1,0 +1,10 @@
+Rambo wouldn’t start a war he can’t finish before the deadline.
+
+With 6 months left, a full monolith-to-microservices migration is usually a high-risk miss. The pragmatic move is:
+
+1. Keep the monolith for the deadline path.
+2. Extract only one painful, low-coupling domain (if any) using a strangler pattern.
+3. Set strict go/no-go criteria: ownership, CI/CD, observability, on-call, data boundaries.
+4. Timebox architecture work (for example, 10-15% capacity) and spend the rest shipping product.
+
+If the team is split, decide by deadline risk: choose the option with the highest probability of shipping on time, not the cleanest long-term diagram.

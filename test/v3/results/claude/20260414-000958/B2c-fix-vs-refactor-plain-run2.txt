@@ -1,0 +1,11 @@
+**Ship the patch today. Do the refactor later as a scheduled work item.**
+
+Here's why:
+
+1. **5% of users are broken right now.** Every hour you spend on a clean solution is an hour real users are hitting a real bug. That's not acceptable when you have a 30-minute fix available.
+
+2. **Three days of refactoring is a project, not a bug fix.** It carries its own risk of regressions, scope creep, and introducing *new* production issues. You don't do surgery to fix a cut.
+
+3. **"Later" is only acceptable if you make it real.** The moment you merge the patch, file a ticket, assign it, and put the refactor in the next sprint. Don't let the patch become permanent by default — that's the only way this decision goes wrong.
+
+**The patch is the right call. Refactoring under pressure to fix a bug is how you get two problems instead of one.**

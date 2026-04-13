@@ -1,0 +1,24 @@
+## Pause and build the test foundation. Do it now.
+
+Here's why this is the only correct answer:
+
+### The math is against you
+
+Manual QA found zero bugs last week. A paying customer found it instead. That is your signal. Manual QA at this stage isn't a safety net — it's a ritual that feels like safety while providing diminishing returns as the codebase grows.
+
+### 18 months of untested code is already compounding interest against you
+
+Every feature you ship without tests makes the next bug harder to catch and harder to fix. You are not choosing between "two weeks of lost features" vs. "keep shipping." You are choosing between "two weeks of pain now" vs. "six months of slower and slower shipping, more production incidents, and eventually a rewrite."
+
+### What to do in those two weeks
+
+1. **Write tests for the exact code path that caused last week's bug.** That's your starting point, not some ideal coverage percentage.
+2. **Add integration tests around your highest-risk, highest-revenue flows** — checkout, auth, core data writes. Not everything. The critical paths.
+3. **Wire up CI so no PR merges without tests passing.** This is the cultural lock-in that makes the two weeks permanent progress rather than a one-time effort.
+4. **Set a coverage floor of ~60–70% on new code only.** Don't try to retrofit everything at once.
+
+### The real risk is not pausing
+
+Startups don't die from a two-week feature pause. They die from eroding customer trust after repeated production incidents. You already had the incident. The next one will be worse because customers will remember the first one.
+
+**Stop shipping. Build the foundation. Resume in two weeks with a codebase you can confidently deploy.**

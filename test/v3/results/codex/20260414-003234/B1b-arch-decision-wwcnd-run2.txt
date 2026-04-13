@@ -1,0 +1,10 @@
+Chuck Norris wouldn’t start with microservices. He’d ship the deadline first, then split what hurts.
+
+For your next 6 months:
+1. Keep the monolith.
+2. Identify 1-2 high-pain boundaries (e.g., billing, async processing, search).
+3. Extract only if it directly de-risks delivery.
+4. Add clear module boundaries inside the monolith now (service objects, bounded contexts, API contracts).
+5. Revisit full migration after launch with real bottleneck data.
+
+Microservices are an organizational scaling move, not a “debate winner” move. With a hard six-month deadline, the safest strong move is a modular monolith plus targeted extractions.

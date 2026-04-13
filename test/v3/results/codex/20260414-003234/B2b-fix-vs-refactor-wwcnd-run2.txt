@@ -1,0 +1,6 @@
+Chuck would do both, in order:
+
+1. Ship the 30-minute targeted patch now to stop user impact (5% in prod is real damage).
+2. Immediately open a follow-up ticket for the 3-day refactor with owner + date, and treat it as non-optional.
+
+Real-world version: stabilize first, then remove the cause before the patch becomes permanent debt.

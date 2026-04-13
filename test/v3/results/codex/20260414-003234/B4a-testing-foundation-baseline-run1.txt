@@ -1,0 +1,16 @@
+Pause feature work for two weeks and build a **minimum test foundation**.
+
+Manual QA-only after a customer-impacting prod bug is a bad risk tradeoff. You don’t need “full test coverage,” but you do need guardrails before the next release.
+
+Recommended approach:
+
+1. Freeze new features (allow only urgent revenue/security fixes).
+2. In 2 weeks, deliver a thin but high-leverage test baseline:
+- CI pipeline running on every PR
+- Smoke tests for core paid user journeys
+- Regression tests for last week’s incident and top 5 historical bug classes
+- Contract/integration tests for the most failure-prone boundaries (billing, auth, critical APIs)
+- PR rule: no merge without passing tests + bugfix includes a test
+3. Resume feature work with this rule: each new feature ships with tests for critical paths.
+
+This gives you a fast reduction in customer risk without trying to “boil the ocean.” If helpful, I can outline a day-by-day 10-business-day implementation plan.

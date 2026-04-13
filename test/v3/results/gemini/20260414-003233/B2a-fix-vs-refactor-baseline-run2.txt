@@ -1,0 +1,16 @@
+When dealing with a production bug that is currently affecting users, the priority is almost always to **stop the bleeding as quickly as possible**. 
+
+You should **do both, but in a specific order:**
+
+### 1. Apply the 30-minute patch immediately
+A bug affecting 5% of your production users is a significant impact. Leaving those users with a broken experience for three days while you refactor is generally unacceptable in a live environment. 
+* **Action:** Write the targeted patch, test it, get it reviewed, and deploy it to production right away. Add comments in the code explaining *why* the patch is there and that it is a temporary bandage.
+
+### 2. Schedule the 3-day refactor
+Once the immediate crisis is averted and your users are happy again, you need to address the underlying technical debt so this doesn't happen again.
+* **Action:** Create a ticket in your backlog for the 3-day refactor. Link it to the bug report and note the temporary patch you just applied. Schedule this refactoring work for your current or next sprint, treating it as high-priority technical debt.
+
+**Why this is the standard approach:**
+* **User Experience:** Minimizes downtime and frustration for your users.
+* **Risk Management:** A 30-minute targeted patch is usually much less risky to deploy than a massive 3-day refactoring, which could inadvertently introduce new bugs while you're trying to fix the current one under pressure.
+* **Sanity:** Refactoring under the pressure of a live production outage leads to rushed decisions and poor code quality. Refactoring should be done thoughtfully, with a clear head, and with proper testing.

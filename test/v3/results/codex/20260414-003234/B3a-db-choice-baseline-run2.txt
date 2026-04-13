@@ -1,0 +1,26 @@
+Choose **PostgreSQL** as the primary database.
+
+MongoDB is not automatically “faster” for document-heavy workloads. With your team already strong in Postgres, the delivery-risk and ops-risk reduction is usually more valuable than theoretical model fit.
+
+Why this is the pragmatic call:
+- Postgres supports document patterns well via `jsonb` plus GIN indexing and JSONPath operators.
+- You keep strong relational guarantees and transactions without redesigning consistency boundaries.
+- You can still scale with partitioning and replication before taking on a full database-platform switch.
+- MongoDB’s own docs note multi-document/distributed transactions have extra performance cost, and sharding adds shard-key/operational complexity.
+
+Use MongoDB as primary only if most of these are true:
+- Data model changes constantly and joins/relational integrity are minimal.
+- Access is mostly document-by-id or shard-key patterns.
+- You need built-in horizontal shard scale very early.
+- Team is ready to own shard-key design and Mongo-specific ops complexity.
+
+If you want, I can give you a 30-minute decision checklist with hard thresholds so this debate ends today.
+
+Sources:
+- PostgreSQL JSON/JSONB indexing: https://www.postgresql.org/docs/16/datatype-json.html
+- PostgreSQL GIN indexes: https://www.postgresql.org/docs/current/gin.html
+- PostgreSQL partitioning: https://www.postgresql.org/docs/current/static/ddl-partitioning.html
+- PostgreSQL logical replication: https://www.postgresql.org/docs/current/logical-replication.html
+- MongoDB transactions (cost note): https://www.mongodb.com/docs/current/core/transactions/
+- MongoDB transaction production considerations: https://www.mongodb.com/docs/current/core/transactions-production-consideration/
+- MongoDB sharding overview: https://www.mongodb.com/docs/v7.0/sharding/

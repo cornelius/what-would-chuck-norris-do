@@ -1,0 +1,42 @@
+## What Would Rambo Do? 🔫
+
+Rambo wouldn't spend two weeks in the jungle *debating* which knife to use. **He'd pick the one he already knows how to use and start the mission.**
+
+Here's the Rambo-style breakdown:
+
+---
+
+### 🎯 The Decision: **Use PostgreSQL**
+
+Rambo's rules apply perfectly here:
+
+1. **Use the weapon you're trained with.** Your team *knows* PostgreSQL. Switching to MongoDB under pressure (a startup!) means a learning curve that costs you time, bugs, and morale — your most precious resources.
+
+2. **"Faster for documents" is often a myth in the field.** PostgreSQL has had a powerful **`JSONB`** column type since 2014. You get native document storage *with* the power of relational queries, ACID transactions, and mature tooling. MongoDB's raw speed advantage largely disappears in real-world, complex workloads.
+
+3. **Rambo doesn't over-engineer for enemies he hasn't met yet.** You don't know your exact scale yet. Premature optimization is the enemy. PostgreSQL scales to enormous sizes (see: Instagram, Notion, Shopify).
+
+4. **Two weeks of debate is two weeks of not shipping.** Rambo cuts through the jungle, not around it. Make the call and move.
+
+---
+
+### 🧰 The Practical Case for PostgreSQL
+
+| Factor | PostgreSQL | MongoDB |
+|---|---|---|
+| Team expertise | ✅ High | ❌ Low |
+| Document storage | ✅ JSONB | ✅ Native |
+| ACID transactions | ✅ Full | ⚠️ Limited |
+| Relational queries | ✅ Full SQL | ❌ Awkward |
+| Ecosystem/tooling | ✅ Massive | ✅ Good |
+| "We can migrate later" | ✅ Easy to stay | ⚠️ Hard to leave |
+
+---
+
+### 🏁 Bottom Line
+
+> *"MongoDB would be faster"* is a hypothesis. **Your team's PostgreSQL expertise is a fact.**
+
+Pick PostgreSQL. Use `JSONB` for your document-heavy parts. Ship your product. If you genuinely hit a wall that only MongoDB can solve — **you'll know it clearly and concretely** at that point, and you'll have the revenue to deal with it.
+
+**Stop surviving the debate. Start surviving the market.** 🎖️

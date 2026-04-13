@@ -1,0 +1,11 @@
+Chuck Norris would pick **PostgreSQL** and ship.
+
+Reason: your team already has deep Postgres skill, and execution speed beats hypothetical DB speed in an early startup. For “document-heavy,” Postgres gives you `JSONB`, indexing, transactions, and fewer operational surprises than a full pivot to MongoDB.
+
+Pragmatic move:
+1. Use Postgres as primary.
+2. Model docs in `JSONB` where needed.
+3. Add measured benchmarks on real workloads.
+4. Revisit only if hard evidence shows Postgres is the bottleneck.
+
+Chuck Norris doesn’t debate for two weeks. He sets a deadline, chooses the option with highest delivery confidence, and moves.

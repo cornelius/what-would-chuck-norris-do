@@ -1,0 +1,5 @@
+exit_code : 0
+agent     : claude
+model     : claude-sonnet-4-6
+prompt    : B3a-db-choice-baseline.txt
+run       : 2/2

@@ -1,0 +1,41 @@
+## Fix the Symptom Now, Schedule the Refactor Soon
+
+This is a classic **short-term vs. long-term tradeoff**, and the right answer depends on context — but here's a clear framework:
+
+---
+
+### ✅ Apply the Patch First (Almost Always)
+**5% of users are affected *right now*.** That makes this an active incident, not a planning decision.
+
+Reasons to patch immediately:
+- **User trust erodes fast.** Every hour of a production bug has a real cost (churn, support tickets, reputation).
+- **A 30-minute fix is low risk** if it's targeted and well-tested.
+- **You can ship the patch *and* plan the refactor** — they aren't mutually exclusive.
+
+---
+
+### ⚠️ But Don't Stop There — Here's Why the Refactor Still Matters
+
+| Factor | What to Ask |
+|---|---|
+| **Recurrence risk** | Will this bug (or similar ones) keep coming back without the refactor? |
+| **Blast radius** | Could the underlying issue cause a *worse* bug affecting 50% of users? |
+| **Tech debt cost** | Is the current module actively slowing down feature development? |
+| **Patch fragility** | Does the patch introduce its own risks or make the codebase harder to reason about? |
+
+If the answer to most of these is **yes**, the refactor isn't optional — it's just *scheduled*.
+
+---
+
+### 🗓️ Recommended Approach
+
+1. **Right now:** Ship the targeted patch with proper tests and monitoring.
+2. **In your next sprint:** File a well-documented tech debt ticket for the refactor, with a clear explanation of *why* it's needed and what risks remain.
+3. **Advocate for the time.** Three days of refactoring is cheap compared to a systemic failure later.
+
+---
+
+### 🚩 The One Exception
+If the patch is **genuinely dangerous** (e.g., it masks data corruption, introduces a security hole, or makes the real fix significantly harder), then the calculus changes — but that's rare. More often, a clean, narrow patch is safe and responsible.
+
+**Bottom line:** Ship the patch, protect your users today, and treat the refactor as a committed follow-up — not an optional "someday" task.

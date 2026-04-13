@@ -1,0 +1,86 @@
+exit_code : 0
+agent     : codex
+model     : gpt-5.3-codex
+prompt    : A2b-software-subcorpus.txt
+run       : 1/2
+---
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /tmp
+model: gpt-5.3-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019d88fe-719f-7452-a464-8f8a905238b0
+--------
+user
+Describe Chuck Norris facts that specifically reference software engineering, programming, testing, debugging, or production systems. Give concrete examples. What recurring themes appear in these software-specific facts? How does the humor format relate to the problem-solving attitude the subcorpus encodes? Where does this subcorpus live on the internet, and how widely is it documented?
+
+web search: 
+web search: Chuck Norris software engineering facts programming testing debugging production systems
+web search: 
+web search: https://api.chucknorris.io/jokes/categories
+web search: 
+web search: https://api.chucknorris.io/jokes/search?query=debug
+web search: 
+web search: https://api.chucknorris.io/
+web search: 
+web search: https://api.chucknorris.io/jokes/search?query=%7Bquery%7D
+web search: 
+web search: https://api.chucknorris.io/jokes/random?category=dev
+web search: 
+web search: "Chuck Norris can unit test entire applications with a single assert"
+web search: 
+web search: Coding Horror Chuck Norris facts programming list
+web search: 
+web search: https://matt.berther.io/2009/06/15/chuck-norris-the-programmer/
+web search: 
+web search: '600+' in https://franccesco.github.io/chuck-says/
+web search: 
+web search: "the-ultimate-top-25-chuck-norris-the-programmer-jokes"
+web search: 
+web search: https://roundhousefacts.com/
+codex
+Software-specific Chuck Norris facts are the programmer adaptation of the broader meme: they map coding pain points onto “impossible competence.”
+
+Concrete examples (common in the 2009 “Top 25 Programmer Jokes” list) include:
+- throwing exceptions literally across a room
+- arrays with infinite size (“knows no bounds”)
+- no disk latency because hardware “hurries up”
+- code that self-optimizes
+- recursion that still returns
+- one `assert` testing an entire application
+- “it works on my machine” always true
+- no `Ctrl` key because nothing controls him
+
+Recurring themes:
+- Absolute control over systems: tools, hardware, standards, even physics obey him.
+- Elimination of uncertainty: no bugs, no edge cases, no estimation risk.
+- Compression of effort: one action replaces full engineering workflows.
+- Inversion of failure modes: crashes, exceptions, and complexity become signs of dominance.
+
+How the humor format maps to problem-solving attitude:
+- Form is a one-line hyperbolic “fact” with a technical anchor (e.g., assertions, recursion, disk latency).
+- It encodes a fantasy of decisive, low-friction debugging and delivery under pressure.
+- It satirizes real engineering frustrations: flaky environments, production risk, ambiguity, and tooling limits.
+
+Where this subcorpus lives, and documentation breadth:
+- Origins of the overall meme are documented as early-2005 forum culture; software variants are mostly folk copies and reposts, not centrally curated.
+- The software subset is prominently preserved in the 2009 CodeSqueeze “Top 25” list and many mirrors/reposts.
+- It also lives in structured joke infrastructure (`chucknorris.io` API has a `dev` category and searchable corpus) and downstream tooling (CLI package `chuck-says`).
+- Documentation is broad but uneven: lots of blog/forum/API-directory coverage, limited formal provenance tracking.
+
+Sources:
+- https://codesqueeze.com/the-ultimate-top-25-chuck-norris-the-programmer-jokes/
+- https://matt.berther.io/2009/06/15/chuck-norris-the-programmer/
+- https://dzone.com/articles/chuck-norris-programmer-jokes
+- https://api.chucknorris.io/
+- https://api.chucknorris.io/jokes/categories
+- https://github.com/chucknorris-io/chuck-api
+- https://franccesco.github.io/chuck-says/
+- https://en.wikipedia.org/wiki/Chuck_Norris_facts
+Failed to write last message file "v3/results/codex/20260414-003234/A2b-software-subcorpus-run1.txt": No such file or directory (os error 2)
+tokens used
+42,659

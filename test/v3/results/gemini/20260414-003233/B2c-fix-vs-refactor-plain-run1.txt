@@ -1,0 +1,3 @@
+Apply the 30-minute targeted patch immediately. 
+
+A bug affecting 5% of your production users is a high-severity incident. You cannot leave that percentage of your user base broken for three days. Stop the bleeding now to restore service.
