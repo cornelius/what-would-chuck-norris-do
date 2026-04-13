@@ -1,0 +1,11 @@
+If Chuck Norris were facing this bug, he wouldn’t choose. **He would stare at the code until the bug fixed itself out of sheer terror**, instantly resulting in a perfectly refactored module in 0.001 milliseconds. 
+
+However, since we mere mortals are bound by the laws of time and space, here is the Chuck Norris-approved real-world translation:
+
+**1. Apply the 30-minute patch immediately (Stop the bleeding)**
+A bug affecting 5% of your production users is a live fire. You don't rebuild the fire station while the house is burning down. Deploy the targeted patch right now to get those users back up and running. Chuck Norris protects the innocent (your users) first.
+
+**2. Schedule the 3-day refactor (Hunt down the root cause)**
+Once the patch is live and the immediate threat is neutralized, you don't just walk away. The patch is duct tape; the bad architecture is the real enemy. Write a ticket for the 3-day refactor, put it at the top of your next sprint, and hunt down that technical debt with extreme prejudice. 
+
+In short: **Patch today to save the users; refactor tomorrow to save your sanity.**

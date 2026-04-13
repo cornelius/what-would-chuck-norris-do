@@ -1,0 +1,21 @@
+In this scenario, the best approach is almost always a **two-step process**: 
+
+**1. Apply the targeted patch immediately (The Hotfix)**
+Since the bug is in *production* and affecting a significant portion of your user base (5%), your primary and immediate goal is to stop the bleeding and restore functionality for those users. Waiting three days to fix a live issue impacting that many people is generally unacceptable. 
+
+*   **Action:** Write the 30-minute patch, test it thoroughly to ensure it doesn't break anything else, get it reviewed, and deploy it.
+*   **Add Comments:** Leave a very clear comment in the code explaining *why* this symptom-level fix is there and referencing a ticket for the proper refactor.
+
+**2. Schedule the proper refactor (The Long-Term Fix)**
+Once the production fire is out, you shouldn't just walk away. The underlying issue still exists and will likely cause more bugs in the future.
+
+*   **Action:** Immediately create a technical debt/refactoring ticket in your backlog to spend the three days properly fixing the underlying module. 
+*   **Prioritize:** Advocate to get this ticket prioritized in your next sprint or development cycle while the context is still fresh in your mind.
+
+**Why this is the best approach:**
+
+*   **Minimizes User Impact:** You restore service for your users in 30 minutes instead of 3 days.
+*   **Reduces Risk:** Refactoring an entire module over three days carries a high risk of introducing *new* bugs. You don't want to be doing major architectural changes under the immense pressure of an active production outage.
+*   **Separates Concerns:** You treat "incident response" and "system improvement" as two separate, sequential tasks. 
+
+By hotfixing first and refactoring second, you protect your users right now while still protecting the long-term health of your codebase.
