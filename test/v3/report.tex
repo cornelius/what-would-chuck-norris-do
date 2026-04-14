@@ -89,7 +89,7 @@
 \fancyhead[L]{\small\color{dimgray}\lightfont WWCND Semantic Anchor Validation}
 \fancyhead[R]{\small\color{dimgray}\lightfont Protocol v3 · April 2026}
 \fancyfoot[R]{\small\color{dimgray}\lightfont \thepage}
-\fancyfoot[L]{\small\color{dimgray}\lightfont \textit{Confidential — Internal Research}}
+\fancyfoot[L]{}
 
 % ── Section title styling ────────────────────────────────────────────────────
 \titleformat{\section}
@@ -248,6 +248,22 @@ Protocol v3 — Test Results and Analysis}
 \tableofcontents
 \newpage
 
+% ── Epigraph ──────────────────────────────────────────────────────────────────
+\vspace*{1.8cm}
+\begin{center}
+  \begin{minipage}{0.72\textwidth}
+    \centering
+    {\color{dimgray}\lightfont\small\itshape
+    ``Chuck Norris doesn't write tests.\\
+    He stares at the code until it confesses.''}
+
+    \medskip
+    {\color{dimgray!70}\fontsize{8}{10}\selectfont\lightfont
+    — Chuck Norris Facts Corpus, software subcorpus, c.~2007}
+  \end{minipage}
+\end{center}
+\vspace{1.4cm}
+
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \section{Executive Summary}
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -255,18 +271,16 @@ Protocol v3 — Test Results and Analysis}
 This report presents the results of Protocol~v3, a structured empirical test of
 \textit{``What Would Chuck Norris Do?''} (WWCND) as a semantic anchor candidate for the
 Semantic Anchors catalog. A semantic anchor is a short phrase that, when included in a
-prompt, reliably activates a recognizable, bounded concept cluster in a large language
-model and consistently steers responses toward that cluster across independent invocations
-and models.
-
+prompt, reliably activates a recognizable, bounded concept cluster in a large language model
+and consistently steers responses toward that cluster across independent invocations and models.
 The test ran 19~prompts across three models (Claude, Gemini, Codex) with N=2~independent
-runs per prompt — a total of 114~response files scored manually against four criteria:
+runs per prompt — 114~response files scored manually against four criteria:
 Precise, Rich, Consistent, and Attributable.
 
 \begin{tcolorbox}[passbox, title={Overall Verdict}]
   \textbf{WWCND qualifies as a semantic anchor. All four criteria pass.}
 
-  \medskip
+  \smallskip
 
   \begin{tabular}{@{}L{2.8cm} L{1.5cm} L{8cm}@{}}
   \toprule
@@ -282,28 +296,25 @@ Precise, Rich, Consistent, and Attributable.
 
 \subsection*{Key findings}
 
-\begin{itemize}[leftmargin=1.4em, itemsep=3pt]
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, parsep=0pt]
   \item \textbf{Clear signal, not just noise.} WWCND consistently produces more engaged,
-    more decisive responses than plain instruction across all models and all scenarios
-    (Engagement +2.0 to +3.0 over plain). The anchor does something that
-    \textit{``Be direct. Don't hedge.''} alone does not.
+    more decisive responses than plain instruction (Engagement +2.0 to +3.0 over plain).
+    The anchor does something that \textit{``Be direct. Don't hedge.''} alone does not.
 
   \item \textbf{Cross-model consistency is the strongest finding.} Three independent models
     recommended: keep the monolith (S1); patch first (S2); use PostgreSQL (S3); pause for
-    test foundation (S4). All three invoked the Strangler Fig pattern for S1 without prompting.
+    tests (S4). All three invoked the Strangler Fig pattern for S1 without prompting.
 
   \item \textbf{Character activation is model-dependent.} Claude and Gemini fully activate
-    the Chuck Norris meme corpus — software-grounded humor, memorable framing, specific voice.
-    Codex applies a uniform terse style to all persona anchors; the WWCND effect is present
-    but understated.
+    the Chuck Norris meme corpus. Codex applies a uniform terse style to all persona anchors;
+    the WWCND effect is present but understated.
 
-  \item \textbf{WWCND vs.\ Rambo.} WWCND equals or exceeds Rambo on every measured
-    dimension. On Claude and Gemini, WWCND distinctly outperforms Rambo in engagement.
-    On Codex, both persona anchors receive the same minimal invocation.
+  \item \textbf{WWCND vs.\ Rambo.} WWCND equals or exceeds Rambo on every measured dimension.
+    On Claude and Gemini, WWCND distinctly outperforms Rambo in engagement.
 
   \item \textbf{Engagement is the primary value add.} WWCND produces baseline-equivalent
-    insight quality while delivering significantly higher engagement. Advice packaged with
-    WWCND framing is more likely to be remembered and acted on.
+    insight quality while delivering significantly higher engagement — advice more likely to
+    be remembered and acted on.
 \end{itemize}
 
 \newpage
