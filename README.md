@@ -41,4 +41,4 @@ test/    Empirical test protocol and results
 - [v1–v3 Protocol Comparison](test/COMPARISON.md) — How the protocol evolved and what each iteration settled
 - [v3 Protocol](test/v3/protocol.md) — Final test design: questions, conditions, scenarios, scoring rubric
 - [v3 Results](test/v3/RESULTS.md) — Full scoring log and verdict
-- [v3 Report (PDF)](test/v3/report.pdf) — Professional report with all results and analysis
+- [v3 Report (PDF)](test/v3/wwcnd-semantic-anchor-validation.pdf) — Professional report with all results and analysis
