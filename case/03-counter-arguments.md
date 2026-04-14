@@ -64,7 +64,7 @@ These are the properties that *produce* consistent LLM activation, not the rever
 
 **The humor objection is a deployment concern, not a consistency concern.** If different LLMs all respond with decisive, problem-solving approaches expressed humorously, that is *consistent* activation — consistently tonal. The question for the consistency criterion is whether different users get the *same conceptual activation*, not whether they get the same register.
 
-**We are running empirical tests.** See the [test protocol](../test/protocol.md) for the full design. Results will be added to the [test/results](../test/results/) directory.
+**The empirical tests confirm consistency.** Protocol v3 ran 19 prompts across three independent models (Claude, Gemini, Codex) with N=2 runs per prompt. All three models gave the same recommendation on all four scenarios (12/12): keep the monolith (S1); patch first, then refactor (S2); use PostgreSQL (S3); pause for test foundation (S4). Without any coordination, all three models independently invoked the Strangler Fig pattern for S1 — a named technique not mentioned in the prompt. Cross-model recommendation agreement and cross-model named-pattern overlap at this level directly falsifies the prediction that responses would "cluster around humor and roundhouse-kick metaphors." See [v3 Results](../test/v3/RESULTS.md).
 
 ---
 
@@ -118,7 +118,7 @@ This deserves a direct response.
 
 This corpus means that when an LLM encounters WWCND in a software engineering context, it draws on this specific vocabulary — not generic hero decisiveness, but decisiveness mapped onto software development concepts. Terminator and Rambo do not have this. Bruce Willis does not have this. The Chuck Norris meme tradition uniquely intersected with developer culture in a way that produced a domain-specific anchoring vocabulary.
 
-**The "interchangeable" claim is also an empirical one.** Our test protocol includes a comparison condition using "What would the Terminator do?" on identical problems. If the responses are meaningfully different — in particular if WWCND consistently activates software-specific vocabulary while Terminator does not — the interchangeability objection collapses. See [test/protocol.md](../test/protocol.md).
+**The "interchangeable" claim has been tested empirically.** Protocol v3 ran WWCND against a Rambo condition on all four scenarios, across three models. WWCND equaled or exceeded Rambo on every measured dimension (engagement and insight quality). On Claude and Gemini, WWCND distinctly outperformed Rambo in engagement — the Chuck Norris character activation was clearly recognizable while Rambo produced generic action-hero framing without the software-specific vocabulary. The WWCND responses consistently included domain-mapped framing (e.g., "your codebase has gone feral — it needs a wrangler, not a demolition crew") that Rambo responses did not. See [v3 Results](../test/v3/RESULTS.md).
 
 ---
 

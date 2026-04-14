@@ -2,7 +2,7 @@
 
 **A semantic anchor for decisive, no-compromise problem-solving.**
 
-This repository documents the proposal of "What Would Chuck Norris Do?" (WWCND) as a semantic anchor for the [Semantic Anchors](https://llm-coding.github.io/Semantic-Anchors/) catalog, the subsequent rejection, the research and counter-arguments we assembled, and the empirical test we are running to support the case.
+This repository documents the proposal of "What Would Chuck Norris Do?" (WWCND) as a semantic anchor for the [Semantic Anchors](https://llm-coding.github.io/Semantic-Anchors/) catalog, the subsequent rejection, the research and counter-arguments we assembled, and the empirical tests we ran to support the case.
 
 ## The Anchor
 
@@ -17,7 +17,9 @@ The phrase draws on the Chuck Norris meme corpus — a vast, culturally consiste
 | Anchor proposed (Issue #426) | [LLM-Coding/Semantic-Anchors#426](https://github.com/LLM-Coding/Semantic-Anchors/issues/426) |
 | Copilot implementation (PR #428) | [LLM-Coding/Semantic-Anchors#428](https://github.com/LLM-Coding/Semantic-Anchors/pull/428) |
 | Both declined | See above |
-| Counter-argument in progress | This repository |
+| v1 exploratory test | Positive signal; methodology refined |
+| v2 structured test | Positive; metric issues identified and corrected in v3 |
+| **v3 empirical test — POSITIVE** | **All four criteria pass. See [v3 results](test/v3/RESULTS.md) and [full report](test/v3/report.pdf)** |
 
 ## Repository Structure
 
@@ -35,5 +37,8 @@ test/    Empirical test protocol and results
 
 ### Test
 
-- [Test Overview and Procedure](test/README.md) — What we are testing, why, and how to run it
-- [Test Protocol](test/protocol.md) — Research questions, conditions, scenarios, scoring rubric
+- [Test Overview](test/README.md) — What we tested, why, and how to run it
+- [v1–v3 Protocol Comparison](test/COMPARISON.md) — How the protocol evolved and what each iteration settled
+- [v3 Protocol](test/v3/protocol.md) — Final test design: questions, conditions, scenarios, scoring rubric
+- [v3 Results](test/v3/RESULTS.md) — Full scoring log and verdict
+- [v3 Report (PDF)](test/v3/report.pdf) — Professional report with all results and analysis
