@@ -19,7 +19,7 @@ The phrase draws on the Chuck Norris meme corpus — a vast, culturally consiste
 | Both declined | See above |
 | v1 exploratory test | Positive signal; methodology refined |
 | v2 structured test | Positive; metric issues identified and corrected in v3 |
-| **v3 empirical test — POSITIVE** | **All four criteria pass. See [v3 results](test/v3/RESULTS.md) and [full report](test/v3/report.pdf)** |
+| **v3 empirical test — POSITIVE** | **All four criteria pass. See [v3 results](test/v3/RESULTS.md) and [full report](test/v3/wwcnd-semantic-anchor-validation.pdf)** |
 
 ## Repository Structure
 
@@ -34,6 +34,7 @@ test/    Empirical test protocol and results
 - [02 · Rejection Analysis](case/02-rejection-analysis.md) — Detailed breakdown of each rejection reason
 - [03 · Counter-Arguments](case/03-counter-arguments.md) — Evidence-based response to every objection
 - [04 · Corpus and Precedents](case/04-corpus-and-precedents.md) — Attribution evidence and catalog precedents that support the case
+- [05 · GitHub Issue Comment](case/05-github-issue-comment.md) — Prepared comment for reopening LLM-Coding/Semantic-Anchors#426
 
 ### Test
 
