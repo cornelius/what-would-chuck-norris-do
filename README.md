@@ -35,6 +35,7 @@ test/    Empirical test protocol and results
 - [03 · Counter-Arguments](case/03-counter-arguments.md) — Evidence-based response to every objection
 - [04 · Corpus and Precedents](case/04-corpus-and-precedents.md) — Attribution evidence and catalog precedents that support the case
 - [05 · GitHub Issue Comment](case/05-github-issue-comment.md) — Prepared comment for reopening LLM-Coding/Semantic-Anchors#426
+- [06 · New Issue Draft](case/06-new-issue-draft.md) — Draft of a fresh anchor proposal re-submitting WWCND with the v3 empirical evidence
 
 ### Test
 
