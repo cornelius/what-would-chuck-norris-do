@@ -11,7 +11,7 @@ Status: **DRAFT — do not submit yet.** Review below.
 ## Title
 
 ```
-[Anchor Proposal]: What would Chuck Norris do? (WWCND)
+[Anchor Proposal]: What would Chuck Norris do? (WWCND) — resubmission of #426 with additional empirical validation
 ```
 
 ## Proposed Term
